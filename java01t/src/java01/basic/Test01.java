@@ -1,26 +1,39 @@
 package java01.basic;
 
-//1. 변수 선언 : 데이터 저장소 준비
 public class Test01 {
 	public static void main(String[] args) {
-		// [데이터 종류와 크기] [메모리 별명];
-		// 자바의 기본 데이터 종류: 정수, 실수, 논리, 문자
-		// 1) 정수: byte(1), short(2), int(4), long(8)
-		// 2) 실수: float(4), double(8)
-		// 3) 논리: boolean(1)
-		// 4) 문자: char(2)
-		
-		byte b1; // 변수 선언
-		b1 = 20; // 값 할당
-		
-		b1 = -128;
-		
-		byte b2, b3, b4;
-		
-		byte b5 = 20;
-		
-		byte b6=20, b7=30;
-		
+    final int READ = 0x01;		// ... 0001
+    final int WRITE = 0x02; 	// ... 0010
+    final int DEL = 0x04;		// ... 0100
+    
+    int p1 = READ; 
+    int p2 = READ | WRITE;
+    int p3 = READ | DEL;
+    int p4 = READ | WRITE | DEL;
+    
+    int x = p4;
+    
+    if ((x & READ) == READ) {
+    		System.out.println("읽기OK");
+    } 
+    
+    if ((x & WRITE) == WRITE) {
+  			System.out.println("쓰기OK");
+    } 
+    
+    if ((x & DEL) == DEL) {
+			System.out.println("삭제OK");
+    }
+    
+    
 	}
 
 }
+
+
+
+
+
+
+
+
