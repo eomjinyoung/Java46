@@ -22,8 +22,10 @@ public class CalculatorTest {
 		result /= 4;
 		calcPath += "/ " + 4;
 		
+		System.out.println("***********************");
 		System.out.println(calcPath);
 		System.out.println("계산 결과는:" + result);
+		System.out.println("***********************");
 		
 		//30 / 2 - 4 * 3 = ?
 		result = 0;
@@ -41,9 +43,10 @@ public class CalculatorTest {
 		result *= 3;
 		calcPath += "* " + 3 + " ";
 		
+		System.out.println("***********************");
 		System.out.println(calcPath);
 		System.out.println("계산 결과는:" + result);
-		
+		System.out.println("***********************");
 		
 	}
 
