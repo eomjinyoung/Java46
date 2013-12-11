@@ -2,8 +2,61 @@ package java01.basic;
 
 public class Test01 {
 	public static void main(String[] args) {
-		int i = 2, j = 1;
+		int[] scores = new int[4];
+		scores[0] = 100;
+		scores[1] = 98;
 		
+		scores = new int[3];
+		scores[0] = 50;
+		scores[1] = 40;
+		
+	
+	}
+	
+	public static void main10(String[] args) {
+		int[] scores = new int[4];
+		scores[0] = 100;
+		scores[1] = 98;
+		scores[2] = 100;
+		scores[3] = 80;
+		
+		int total = 0;
+		for (int i = 0; i < scores.length; i++) {
+			total += scores[i];
+		}
+		
+		float aver = (float)total / scores.length;
+		
+		System.out.println("합계:" + total);
+		System.out.println("평균:" + aver);
+	}
+	
+	
+	
+	public static void main09(String[] args) {
+		int kor = 100;
+		int eng = 98;
+		int math = 100;
+		int sci = 80;
+		
+		int total = kor + eng + math + sci;
+		float aver = (float)total / 4;
+		
+		System.out.println("합계:" + total);
+		System.out.println("평균:" + aver);
+	}
+	
+	public static void main08(String[] args) {
+		for (int i = 2; i < 10; i++) {
+			for (int j = 1; j < 10; j++) {
+				System.out.println(i + "*" + j + "=" + (i*j));
+			}
+		}
+	}
+	
+	public static void main07(String[] args) {
+		int i = 2, j = 1;
+		AAA:
 		while (i < 10) {
 			j = 1;
 			while (j < 10) {
@@ -17,9 +70,12 @@ public class Test01 {
 				}
 				
 				System.out.println(i + "*" + j + "=" + (i*j));
+				if (i == 5 && j == 5)
+					break AAA;
 				j++;
 			}
 			i++;
+
 		}
 	}
 	
@@ -128,6 +184,7 @@ public class Test01 {
 	}
 
 }
+
 
 
 
