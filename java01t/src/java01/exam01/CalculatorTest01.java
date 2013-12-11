@@ -1,6 +1,6 @@
 package java01.exam01;
 
-public class CalculatorTest {
+public class CalculatorTest01 {
 
 	public static void main(String[] args) {
 		//20 * 30 + 2 - 13 / 4 = ?
@@ -22,7 +22,10 @@ public class CalculatorTest {
 		result /= 4;
 		calcPath += "/ " + 4;
 		
-		printResult(calcPath, result);
+		System.out.println("***********************");
+		System.out.println(calcPath);
+		System.out.println("계산 결과는:" + result);
+		System.out.println("***********************");
 		
 		//30 / 2 - 4 * 3 = ?
 		result = 0;
@@ -40,16 +43,13 @@ public class CalculatorTest {
 		result *= 3;
 		calcPath += "* " + 3 + " ";
 		
-		printResult(calcPath, result);
+		System.out.println("***********************");
+		System.out.println(calcPath);
+		System.out.println("계산 결과는:" + result);
+		System.out.println("***********************");
 		
 	}
-	
-	static void printResult(String str, double value) {
-		System.out.println("------------------------");
-		System.out.println(str);
-		System.out.println("계산 결과는:" + value);
-		System.out.println("***********************");
-	}
+
 }
 
 
