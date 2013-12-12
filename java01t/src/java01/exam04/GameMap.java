@@ -1,33 +1,37 @@
 package java01.exam04;
 
 public class GameMap {
-	int[][] map = new int[7][7];
-	
-	public void init() {
-	  for (int y = 0; y < 7; y++) {
-			for (int x = 0; x < 7; x++) {
-				this.map[y][x] = 0;
-			}
-		}
-  }
+	AngryBird bird;
+	BadPig pig;
 	
 	public void print() {
 		System.out.println("-------");
 	  for (int y = 0; y < 7; y++) {
 			for (int x = 0; x < 7; x++) {
-				System.out.print(this.map[y][x]);
+				if (bird != null && 
+					x == bird.getX() && 
+					y == bird.getY()) {
+					System.out.print(bird.getFlag());
+				} else if (pig != null && 
+					x == pig.getX() && 
+					y == pig.getY()) {
+					System.out.print(pig.getFlag());
+				}	else {
+					System.out.print(".");
+				}
 			}
 			System.out.println();
 		}
 	  System.out.println("-------");
   }
 
-	public void locate(AngryBird bird) {
-		int x = bird.getX();
-		int y = bird.getY();
-		
-		map[y][x] = 1;
-  }
+	public void setAngryBird(AngryBird bird) {
+		this.bird = bird;
+	}
+	
+	public void setBadPig(BadPig pig) {
+		this.pig = pig;
+	}
 }
 
 

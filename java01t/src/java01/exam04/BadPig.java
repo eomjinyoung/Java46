@@ -1,15 +1,16 @@
 package java01.exam04;
 
-public class AngryBird {
+public class BadPig {
 	public static final int NORTH = 1;
 	public static final int EAST = 2;
 	public static final int SOUTH = 3;
 	public static final int WEST = 4;
 	
-	private String flag = "$";
+	private String flag = "M";
 	private int direction = 1; // north(1), east(2), south(3), west(4)
 	private int x = 0;
 	private int y = 0;
+	private int weight = 40;
 	
 	public void init(int x, int y) {
 		this.x = x;
@@ -37,26 +38,7 @@ public class AngryBird {
 		return this.flag;
 	}
 	
-	public void turnLeft() {
-		if (this.direction == 1)
-			this.direction = 4;
-		else 
-			this.direction--;
-	}
-	
-	public void trunRight() {
-		if (this.direction == 4)
-			this.direction = 1;
-		else 
-			this.direction++;
+	public int getWeight() { 
+		return this.weight;
 	}
 }
-
-
-
-
-
-
-
-
-
