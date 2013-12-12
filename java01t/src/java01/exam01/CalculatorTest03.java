@@ -1,6 +1,6 @@
 package java01.exam01;
 
-public class CalculatorTest {
+public class CalculatorTest03 {
 	static double result = 0;
 	static String calcPath = "";
 	
