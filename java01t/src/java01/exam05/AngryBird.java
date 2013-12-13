@@ -2,12 +2,13 @@ package java01.exam05;
 
 public class AngryBird extends Item {
 	protected int direction = 1;
-	
+
 	public AngryBird() {
 		this('V');
 	}
 	
 	public AngryBird(char flag) {
+		super(0, 0);
 		this.flag = flag;
 	}
 	

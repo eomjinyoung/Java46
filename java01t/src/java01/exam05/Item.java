@@ -13,6 +13,13 @@ abstract public class Item {
 	protected int x = 0;
 	protected int y = 0;	
 	
+	public Item() {}
+	
+	public Item(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
 	public void setPosition(int x, int y) {
 		this.x = x;
 		this.y = y;
