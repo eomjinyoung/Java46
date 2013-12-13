@@ -11,19 +11,20 @@ public class AngryBirdGame {
 		map.print();
 		
 		AngryBird bird = new AngryBird();
-		bird.init(3, 3);
+		bird.setPosition(3, 3);
 		
 		BadPig pig = new BadPig();
-		pig.init(3, 5);
+		pig.setPosition(6, 5);
 		
 		map.setAngryBird(bird);
 		map.setBadPig(pig);
 		
-		bird.turnLeft();
-		bird.turnLeft();
-		bird.move();
-		bird.move();
-		
+		bird.turnRight();
+		for (int i = 0; i < 3; i++) bird.move();
+
+		bird.turnRight();
+		for (int i = 0; i < 2; i++) bird.move();
+				
 		map.print();
 		
 		

@@ -6,14 +6,14 @@ public class AngryBird {
 	public static final int SOUTH = 3;
 	public static final int WEST = 4;
 	
-	private String flag = "$";
+	private char flag = 'V';
 	private int direction = 1; // north(1), east(2), south(3), west(4)
 	private int x = 0;
 	private int y = 0;
 	
 	//public AngryBird() {}
 	
-	public void init(int x, int y) {
+	public void setPosition(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -35,7 +35,7 @@ public class AngryBird {
 		return this.y;
 	}
 	
-	public String getFlag() {
+	public char getFlag() {
 		return this.flag;
 	}
 	
@@ -46,7 +46,7 @@ public class AngryBird {
 			this.direction--;
 	}
 	
-	public void trunRight() {
+	public void turnRight() {
 		if (this.direction == 4)
 			this.direction = 1;
 		else 
