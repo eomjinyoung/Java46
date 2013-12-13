@@ -12,6 +12,8 @@ public class BadPig {
 	private int y = 0;
 	private int weight = 40;
 	
+	//public BadPig() {}
+	
 	public void init(int x, int y) {
 		this.x = x;
 		this.y = y;
