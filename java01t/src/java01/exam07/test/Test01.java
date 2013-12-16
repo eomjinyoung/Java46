@@ -19,7 +19,7 @@ public class Test01 {
 		m.setTel( "010-1111-2222" );
 		
 		int a = 20;
-		
+
 		System.out.println(m.getName());
 		System.out.println(m.getAge());
 		System.out.println(m.getEmail());

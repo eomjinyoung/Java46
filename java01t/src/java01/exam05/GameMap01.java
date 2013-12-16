@@ -1,29 +1,27 @@
 package java01.exam05;
 
-public class GameMap {
+public class GameMap01 {
 	public static final int DEFAULT_X_SIZE = 7;
 	public static final int DEFAULT_Y_SIZE = 7;
 	
 	char[][] map;
-	Item[] items;
-	int itemSize;
+	AngryBird bird;
+	BadPig pig;
 	int maxX;
 	int maxY;
 	
-	public GameMap() {
+	public GameMap01() {
 		this(DEFAULT_X_SIZE, DEFAULT_Y_SIZE);
 	}
 	
-	public GameMap(int maxValue) {
+	public GameMap01(int maxValue) {
 		this(maxValue, maxValue);
 	}
 	
-	public GameMap(int maxX, int maxY) {
+	public GameMap01(int maxX, int maxY) {
 		this.maxX = maxX;
 		this.maxY = maxY;
 		map = new char[maxY][maxX];
-		items = new Item[10];
-		itemSize = 0;
 	}
 	
 	private void initMap() {
@@ -35,9 +33,11 @@ public class GameMap {
 	}
 	
 	private void locateItems() {
-		for (int i = 0; i < itemSize; i++) {
-			map[items[i].getY()][items[i].getX()] = 
-					items[i].getFlag();
+		if (pig != null) {
+			map[pig.getY()][pig.getX()] = pig.getFlag();
+		}
+		if (bird != null) {
+			map[bird.getY()][bird.getX()] = bird.getFlag();
 		}
 	}
 	
@@ -64,13 +64,13 @@ public class GameMap {
 		System.out.println();
   }
 
-	public void addItem(Item item) {
-		if (itemSize < items.length) {
-			items[itemSize] = item;
-			itemSize++;
-		}
+	public void setAngryBird(AngryBird bird) {
+		this.bird = bird;
 	}
 	
+	public void setBadPig(BadPig pig) {
+		this.pig = pig;
+	}
 }
 
 

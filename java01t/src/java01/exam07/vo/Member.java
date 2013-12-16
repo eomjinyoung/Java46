@@ -12,41 +12,36 @@ public class Member {
 	protected String email;
 	protected String tel;
 	
+	public String getName() {
+		return name;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getName() {
-		return this.name;
+	public int getAge() {
+		return age;
 	}
-	
 	public void setAge(int age) {
-		if (age >= 8 && age <= 100) {
+		if(this.age > 7 && this.age < 101) {
 			this.age = age;
-		} else {
+		} else { 
 			this.age = 20;
 		}
 	}
-	
-	public int getAge() {
-		return this.age;
+	public String getEmail() {
+		return email;
 	}
-	
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public String getEmail() {
-		return this.email;
+	public String getTel() {
+		return tel;
 	}
-	
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
 	
-	public String getTel() {
-		return this.tel;
-	}
+
 }
 
 

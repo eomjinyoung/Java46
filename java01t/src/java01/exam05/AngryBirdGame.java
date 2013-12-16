@@ -16,8 +16,10 @@ public class AngryBirdGame {
    	BadPig pig = new BadPig();
 		pig.setPosition(6, 5);
 		
-		map.setAngryBird(bird);
-		map.setBadPig(pig);
+		map.addItem(pig);
+		map.addItem(bird);
+		//map.setAngryBird(bird);
+		//map.setBadPig(pig);
 		
 		bird.turnRight();
 		for (int i = 0; i < 3; i++) bird.move();
