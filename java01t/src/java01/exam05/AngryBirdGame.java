@@ -13,7 +13,7 @@ public class AngryBirdGame {
 		AngryBird bird = new AngryBird();
 		bird.setPosition(3, 3);
 		
-		BadPig pig = new BadPig();
+   	BadPig pig = new BadPig();
 		pig.setPosition(6, 5);
 		
 		map.setAngryBird(bird);

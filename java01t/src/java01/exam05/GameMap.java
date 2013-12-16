@@ -3,6 +3,7 @@ package java01.exam05;
 public class GameMap {
 	public static final int DEFAULT_X_SIZE = 7;
 	public static final int DEFAULT_Y_SIZE = 7;
+	
 	char[][] map;
 	AngryBird bird;
 	BadPig pig;

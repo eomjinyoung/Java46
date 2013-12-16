@@ -2,6 +2,16 @@ package java01.exam06;
 
 public class StringTest01 /*extends Object*/ {
 	public static void main(String[] args) {
+		String s1 = "Hello";
+		String s2 = s1.replace('l', 'x');
+		String s3 = "Hexxo";
+		
+		if (s2 == s3) {
+			System.out.println("s2 == s3");
+		}
+	}
+	
+	public static void main05(String[] args) {
 		StringBuffer s1 = new StringBuffer("Hello");
 		StringBuffer s2 = new StringBuffer("Hello");
 		
