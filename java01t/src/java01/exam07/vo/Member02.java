@@ -1,28 +1,16 @@
 package java01.exam07.vo;
 
-// 3. equals() 재정의 
-public class Member /*extends Object*/ {
+// 2. 캡슐화 : 
+// - 데이터를 외부에서 직접 접근하는 것을 제한
+// - 외부에서 값을 할당하고 꺼낼 때 사용할 메서드를 정의
+// - 값을 할당하는 메서드 => setXXX() => setter 메서드
+// - 값을 꺼내는 메서드 => getXXX() => getter 메서드
+// - 꺼내는 값이 boolean =>  isXXX() => getter 메서드
+public class Member02 /*extends Object*/ {
 	protected String name;
 	protected int age;
 	protected String email;
 	protected String tel;
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null || !(obj instanceof Member)) 
-			return false;
-		
-		Member other = (Member)obj;
-		if (!this.name.equals(other.name))
-			return false;
-		if (this.age != other.age)
-			return false;
-		if (!this.email.equals(other.email))
-			return false;
-		if (!this.tel.equals(other.tel))
-			return false;
-		return true;
-	}
 	
 	public String getName() {
 		return name;
