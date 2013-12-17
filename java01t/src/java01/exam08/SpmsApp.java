@@ -14,7 +14,7 @@ public class SpmsApp {
 		
 		System.out.print("나이:");
 		member.setAge( Integer.parseInt(scanner.nextLine()) );
-		
+				
 		System.out.print("이메일:");
 		member.setEmail(scanner.nextLine());
 		

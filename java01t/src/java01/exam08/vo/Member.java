@@ -63,7 +63,7 @@ public class Member /*extends Object*/ {
 		return age;
 	}
 	public void setAge(int age) {
-		if(this.age > 7 && this.age < 101) {
+		if(age > 7 && age < 101) {
 			this.age = age;
 		} else { 
 			this.age = 20;
