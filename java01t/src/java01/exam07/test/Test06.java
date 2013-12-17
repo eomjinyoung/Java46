@@ -1,7 +1,9 @@
 package java01.exam07.test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.PriorityQueue;
 import java.util.Stack;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -9,8 +11,45 @@ import java.util.concurrent.SynchronousQueue;
 
 // Collection 다루기
 public class Test06 {
-	//4. Queue
+	//6. Map: Hashtable
+	// - key 또는 value에 null을 허용 안함.
+	// - 동기화시킴. => 데이터를 꺼내는 중에도 새로 입력된 데이터를 꺼낼 수 있다.
+	// - HashMap 보다 속도 느리다.
 	public static void main(String[] args) {
+		Hashtable names = new Hashtable();
+		names.put("100", "홍길동");
+		names.put("200", "일지매");
+		names.put("300", "똘이장군");
+		names.put("400", "주먹대장");
+		names.put("500", "홍길동");
+		names.put("600", "일지매");
+		names.put("700", null);
+		
+		System.out.println( names.get("100") );
+		System.out.println( names.get("600") );
+		System.out.println( names.get("700") );
+	}
+	
+	//5. Map
+	// - key 또는 value에 null 허용
+	// - 데이터를 꺼내는 중에는 새로운 데이터가 추가되더라도 무시한다.
+	public static void main05(String[] args) {
+		HashMap names = new HashMap();
+		names.put("100", "홍길동");
+		names.put("200", "일지매");
+		names.put("300", "똘이장군");
+		names.put("400", "주먹대장");
+		names.put("500", "홍길동");
+		names.put("600", "일지매");
+		names.put("700", null);
+		
+		System.out.println( names.get("100") );
+		System.out.println( names.get("600") );
+		System.out.println( names.get("700") );
+	}
+	
+	//4. Queue
+	public static void main04(String[] args) {
 		ConcurrentLinkedQueue names = new ConcurrentLinkedQueue();
 		names.add("홍길동");
 		names.add("일지매");
