@@ -6,6 +6,8 @@ import java.util.Scanner;
 import java01.exam08.vo.Member;
 
 public class SpmsApp {
+	static ArrayList<Member> members = new ArrayList<Member>();
+	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String[] command = null;
@@ -15,23 +17,12 @@ public class SpmsApp {
 			command = prompt(scanner);
 			
 			switch(command[0]) {
-			case "add":
-				System.out.println("add 처리");
-				break;
-			case "list":
-				System.out.println("list 처리");
-				break;
-			case "update":
-				System.out.println("update 처리");
-				break;
-			case "delete":
-				System.out.println("delete 처리");
-				break;
-			case "read":
-				System.out.println("read 처리");
-				break;
-			case "quit":
-				break loop;
+			case "add": processAdd(scanner); break;
+			case "list": processList(); break;
+			case "update": processUpdate(scanner, command[1]); break;
+			case "delete": processDelete(scanner, command[1]); break;
+			case "read": processRead(command[1]); break;
+			case "quit": break loop;
 			default:
 				System.out.println("사용할 수 없는 명령어입니다.");
 			}
@@ -39,16 +30,44 @@ public class SpmsApp {
 		scanner.close();
 	}
 
-	private static String[] prompt(Scanner scanner) {
-	  System.out.print("명령>");
-	  return scanner.nextLine().split(" ");
+	private static void processRead(String email) {
+		for (Member member : members) {
+			if (email.equals(member.getEmail())) {
+				System.out.println("이름:" + member.getName());
+				System.out.println("나이:" + member.getAge());
+				System.out.println("이메일:" + member.getEmail());
+				System.out.println("전화:" + member.getTel());
+				return;
+			}
+		}
   }
-	
-	public static void main01(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		String command = null;
-		ArrayList members = new ArrayList();
+
+	private static void processDelete(Scanner scanner, String email) {
+	  // TODO Auto-generated method stub
+	  
+  }
+
+	private static void processUpdate(Scanner scanner, String email) {
+	  // TODO Auto-generated method stub
+	  
+  }
+
+	private static void processList() {
+		System.out.println("----------------------------");
+		System.out.println("이름 \t 나이 \t 전화");
+		System.out.println("----------------------------");
+		
+		for (Member member : members) {
+			System.out.print(member.getName() + "\t");
+			System.out.print(member.getAge() + "\t");
+			System.out.println(member.getTel());
+		}
+	  
+  }
+
+	private static void processAdd(Scanner scanner) {
 		Member member = null;
+		String command = null;
 		
 		do {
 			member = new Member();
@@ -78,18 +97,12 @@ public class SpmsApp {
 			System.out.print("계속하시겠습니까?(y/n)");
 			command = scanner.nextLine();
 		} while (command.toLowerCase().equals("y"));
-		
-		System.out.println("----------------------------");
-		System.out.println("이름 \t 나이 \t 전화");
-		System.out.println("----------------------------");
-		for (int i = 0; i < members.size(); i++) {
-			member = (Member)members.get(i);
-			System.out.print(member.getName() + "\t");
-			System.out.print(member.getAge() + "\t");
-			System.out.println(member.getTel());
-		}
-	}
+  }
 
+	private static String[] prompt(Scanner scanner) {
+	  System.out.print("명령>");
+	  return scanner.nextLine().split(" ");
+  }
 }
 
 
