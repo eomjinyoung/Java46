@@ -43,12 +43,68 @@ public class SpmsApp {
   }
 
 	private static void processDelete(Scanner scanner, String email) {
-	  // TODO Auto-generated method stub
-	  
+		for (Member member : members) {
+			if (email.equals(member.getEmail())) {
+				System.out.print("정말 삭제하시겠습니까?(y/n)");
+				String command = scanner.nextLine();
+				if (command.toLowerCase().equals("y")) {
+					members.remove(member);
+					System.out.println("삭제되었습니다.");
+				} else {
+					System.out.println("삭제 취소하였습니다.");
+				}
+				return;
+			}
+		}
+		
+		System.out.println("해당 이메일의 멤버를 찾을 수 없습니다!");
   }
 
 	private static void processUpdate(Scanner scanner, String email) {
-	  // TODO Auto-generated method stub
+		Member temp = new Member();
+		Member member = null; 
+		
+		for (int i = 0; i < members.size(); i++) {
+			member = members.get(i);
+			if (email.equals(member.getEmail())) {
+				System.out.print("이름(" + member.getName() + "):");
+				String value = scanner.nextLine();
+				if (!value.equals("")) {
+					temp.setName(value);
+				} else {
+					temp.setName(member.getName());
+				}
+				System.out.print("나이(" + member.getAge() + "):");
+				value = scanner.nextLine();
+				if (!value.equals("")) {
+					temp.setAge( Integer.parseInt(value) );
+				} else {
+					temp.setAge( member.getAge() );
+				}
+				System.out.print("전화(" + member.getTel() + "):");
+				value = scanner.nextLine();
+				if (!value.equals("")) {
+					temp.setTel(value);
+				} else {
+					temp.setTel(member.getTel());
+				}
+				
+				temp.setEmail(member.getEmail());
+				
+				System.out.print("변경하시겠습니까?(y/n)");
+				value = scanner.nextLine();
+				
+				if (value.toLowerCase().equals("y")) {
+					members.set(i, temp);
+					System.out.println("변경 성공입니다.");
+				} else {
+					System.out.println("변경 취소하였습니다.");
+				}
+				return;
+			}
+		}
+		
+		System.out.println("해당 이메일의 멤버를 찾을 수 없습니다.");
 	  
   }
 
