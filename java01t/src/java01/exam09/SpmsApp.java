@@ -6,8 +6,45 @@ import java.util.Scanner;
 import java01.exam08.vo.Member;
 
 public class SpmsApp {
-
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		String[] command = null;
+		
+		loop:
+		while(true) {
+			command = prompt(scanner);
+			
+			switch(command[0]) {
+			case "add":
+				System.out.println("add 처리");
+				break;
+			case "list":
+				System.out.println("list 처리");
+				break;
+			case "update":
+				System.out.println("update 처리");
+				break;
+			case "delete":
+				System.out.println("delete 처리");
+				break;
+			case "read":
+				System.out.println("read 처리");
+				break;
+			case "quit":
+				break loop;
+			default:
+				System.out.println("사용할 수 없는 명령어입니다.");
+			}
+		}
+		scanner.close();
+	}
+
+	private static String[] prompt(Scanner scanner) {
+	  System.out.print("명령>");
+	  return scanner.nextLine().split(" ");
+  }
+	
+	public static void main01(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String command = null;
 		ArrayList members = new ArrayList();
