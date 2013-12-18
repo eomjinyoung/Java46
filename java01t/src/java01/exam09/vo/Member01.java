@@ -1,25 +1,16 @@
 package java01.exam09.vo;
 
 // 
-public class Member /*extends Object*/ {
+public class Member01 /*extends Object*/ {
 	protected String name;
 	protected int age;
 	protected String email;
 	protected String tel;
 	
-	public Member() {}
-	
-	public Member(String csv) {
-		String[] items = csv.split(",");
-		this.name = items[0];
-		this.age = Integer.parseInt(items[1]);
-		this.email = items[2];
-		this.tel = items[3];
-	}
-	
 	@Override
   public String toString() {
-	  return name + "," + age + "," + email + "," + tel;
+	  return "Member [name=" + name + ", age=" + age + ", email=" + email
+	      + ", tel=" + tel + "]";
   }
 
 	@Override
@@ -41,7 +32,7 @@ public class Member /*extends Object*/ {
 		  return false;
 	  if (getClass() != obj.getClass())
 		  return false;
-	  Member other = (Member) obj;
+	  Member01 other = (Member01) obj;
 	  if (age != other.age)
 		  return false;
 	  if (email == null) {

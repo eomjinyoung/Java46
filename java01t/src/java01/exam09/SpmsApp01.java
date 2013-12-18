@@ -1,20 +1,16 @@
 package java01.exam09;
 
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import java01.exam09.vo.Member;
+import java01.exam08.vo.Member;
 
-public class SpmsApp {
+public class SpmsApp01 {
 	static ArrayList<Member> members = new ArrayList<Member>();
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String[] command = null;
-		
-		load();
 		
 		loop:
 		while(true) {
@@ -32,35 +28,7 @@ public class SpmsApp {
 			}
 		}
 		scanner.close();
-		
-		save();
 	}
-
-	private static void load() throws Exception {
-		FileReader in = new FileReader("member01.dat");
-		char[] buf = new char[1024];
-		int len = in.read(buf);
-		in.close();
-		
-		String data = new String(buf, 0, len);
-		String[] memberData = data.split("#");
-		for (String s : memberData) {
-			members.add(new Member(s));
-		}
-	}
-
-	private static void save() throws Exception {
-		FileWriter out = new FileWriter("member01.dat");
-		String temp = null;
-		char[] data = null;
-		
-		for (Member member : members) {
-			temp = member.toString() + "#";
-			data = temp.toCharArray();
-			out.write(data);
-		}
-		out.close();
-  }
 
 	private static void processRead(String email) {
 		for (Member member : members) {
