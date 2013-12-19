@@ -1,7 +1,9 @@
 package java01.exam09.vo;
 
+import java.io.Serializable;
+
 // 
-public class Member /*extends Object*/ {
+public class Member implements Serializable {
 	protected String name;
 	protected int age;
 	protected String email;
