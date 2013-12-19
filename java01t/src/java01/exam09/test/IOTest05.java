@@ -8,10 +8,10 @@ import java.io.FileInputStream;
 // - 평균 탐색 시간이 많이 소요된다.
 // - 가능한 읽을 때 한 번에 왕창 읽는 것이 좋다.
 // - 이런 버퍼링을 처리하는 클래스 BufferedXXX 클래스
-
+@SuppressWarnings("unused")
 public class IOTest05 {
 
-	public static void main(String[] args) throws Exception {
+  public static void main(String[] args) throws Exception {
 		FileInputStream in = new FileInputStream("aaa.zip");
 		BufferedInputStream in2 = new BufferedInputStream(in);
 		
@@ -26,7 +26,6 @@ public class IOTest05 {
 		in.close();
 		
 		System.out.println(endTime - startTime);
-		
 	}
 	
 	public static void main02(String[] args) throws Exception {
