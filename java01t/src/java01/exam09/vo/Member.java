@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 // 
 public class Member implements Serializable {
-	protected String name;
+  // 바이트 배열로 만들 때 버전 명시 -> 나중에 읽을 때 검사
+	private static final long serialVersionUID = 1L;
+
+  protected String name;
 	protected int age;
 	protected String email;
 	protected String tel;
