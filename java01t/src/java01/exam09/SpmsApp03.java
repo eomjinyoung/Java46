@@ -1,9 +1,9 @@
 package java01.exam09;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -11,10 +11,10 @@ import java.util.Scanner;
 
 import java01.exam09.vo.Member;
 
-public class SpmsApp {
-	static ArrayList<Member> members;
+public class SpmsApp03 {
+	static ArrayList<Member> members = new ArrayList<Member>();
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Scanner scanner = new Scanner(System.in);
 		String[] command = null;
 		
@@ -24,19 +24,15 @@ public class SpmsApp {
 		while(true) {
 			command = prompt(scanner);
 			
-			try {
-				switch(command[0]) {
-				case "add": processAdd(scanner); break;
-				case "list": processList(); break;
-				case "update": processUpdate(scanner, command[1]); break;
-				case "delete": processDelete(scanner, command[1]); break;
-				case "read": processRead(command[1]); break;
-				case "quit": break loop;
-				default:
-					System.out.println("사용할 수 없는 명령어입니다.");
-				}
-			} catch (Exception e) {
-				System.out.println("명령어 실행 중 오류가 발생했습니다!");
+			switch(command[0]) {
+			case "add": processAdd(scanner); break;
+			case "list": processList(); break;
+			case "update": processUpdate(scanner, command[1]); break;
+			case "delete": processDelete(scanner, command[1]); break;
+			case "read": processRead(command[1]); break;
+			case "quit": break loop;
+			default:
+				System.out.println("사용할 수 없는 명령어입니다.");
 			}
 		}
 		scanner.close();
@@ -44,34 +40,34 @@ public class SpmsApp {
 		save();
 	}
 
-	@SuppressWarnings("unchecked")
-  private static void load() {
-		try {
-			FileInputStream in = new FileInputStream("member03.dat");
-			ObjectInputStream in2 = new ObjectInputStream(in);
-			
-			members = (ArrayList<Member>)in2.readObject();
-			
-			in2.close();
-			in.close();
-		} catch (Exception e) {
-			System.out.println("파일 로딩 중 오류발생!");
-			members = new ArrayList<Member>();
-    }
+	private static void load() throws Exception {
+		FileInputStream in = new FileInputStream("member02.dat");
+		ObjectInputStream in2 = new ObjectInputStream(in);
+		
+		int len = in2.readInt();
+		
+		Member member = null;
+		for (int i = 0; i < len; i++) {
+			member = (Member)in2.readObject();
+			System.out.println(member);
+		}
+		
+		in2.close();
+		in.close();
 	}
 
-	private static void save() {
-		try {
-			FileOutputStream out = new FileOutputStream("member03.dat");
-			ObjectOutputStream out2 = new ObjectOutputStream(out);
-			
-			out2.writeObject(members);
-			
-			out2.close();
-			out.close();
-		} catch (Exception e) {
-			System.out.println("저장 중 오류발생!");
+	private static void save() throws Exception {
+		FileOutputStream out = new FileOutputStream("member02.dat");
+		ObjectOutputStream out2 = new ObjectOutputStream(out);
+		
+		out2.writeInt(members.size());
+		
+		for (Member member : members) {
+			out2.writeObject(member);
 		}
+		
+		out2.close();
+		out.close();
   }
 
 	private static void processRead(String email) {
