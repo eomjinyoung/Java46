@@ -223,7 +223,7 @@ public class ProjectController {
   }
 
 	private String[] prompt() {
-	  System.out.print("명령>");
+	  System.out.print("프로젝트관리>");
 	  return scanner.nextLine().split(" ");
   }	
 }

@@ -44,7 +44,7 @@ public class SpmsApp {
   }
 
 	private static int prompt(Scanner scanner) {
-	  System.out.print("선택>");
+	  System.out.print("메뉴>");
 	  return Integer.parseInt(scanner.nextLine());
   }
 }

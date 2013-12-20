@@ -200,7 +200,7 @@ public class MemberController {
   }
 
 	private String[] prompt() {
-	  System.out.print("명령>");
+	  System.out.print("멤버관리>");
 	  return scanner.nextLine().split(" ");
   }	
 }

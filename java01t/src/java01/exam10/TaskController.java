@@ -191,7 +191,7 @@ public class TaskController {
   }
 
 	private String[] prompt() {
-	  System.out.print("명령>");
+	  System.out.print("작업관리>");
 	  return scanner.nextLine().split(" ");
   }	
 }
