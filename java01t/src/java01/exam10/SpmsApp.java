@@ -6,6 +6,7 @@ public class SpmsApp {
 	public static final int MENU_QUIT = 0;
 	public static final int MENU_PROJECT = 1;
 	public static final int MENU_MEMBER = 2;
+	public static final int MENU_TASK = 3;
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
@@ -36,6 +37,7 @@ public class SpmsApp {
 	  System.out.println("[메뉴]");
 	  System.out.println("1. 프로젝트관리");
 	  System.out.println("2. 멤버관리");
+	  System.out.println("3. 작업관리");
 	  System.out.println("0. 종료");
   }
 
