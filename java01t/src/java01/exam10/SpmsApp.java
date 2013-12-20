@@ -13,6 +13,7 @@ public class SpmsApp {
 		
 		ProjectController projectController = new ProjectController(scanner);
 		MemberController memberController = new MemberController(scanner);
+		TaskController taskController = new TaskController(scanner);
 		
 		loop:
 		while(true) {
@@ -22,6 +23,7 @@ public class SpmsApp {
 				switch(prompt(scanner)) {
 				case MENU_PROJECT: projectController.execute(); break;
 				case MENU_MEMBER: memberController.execute(); break;
+				case MENU_TASK: taskController.execute(); break;
 				case MENU_QUIT: break loop;
 				default:
 					System.out.println("그런 메뉴 없습니다.");

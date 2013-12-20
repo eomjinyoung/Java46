@@ -4,17 +4,15 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java01.exam10.vo.Task;
 
-import java01.exam10.vo.Project;
-
-public class ProjectController {
-	ArrayList<Project> projects;
+public class TaskController {
+	ArrayList<Task> tasks;
 	Scanner scanner;
 	
-	public ProjectController(Scanner scanner) {
+	public TaskController(Scanner scanner) {
 		this.scanner = scanner;
 	}
 	
@@ -51,25 +49,25 @@ public class ProjectController {
 	@SuppressWarnings("unchecked")
   private void load() {
 		try {
-			FileInputStream in = new FileInputStream("project04.dat");
+			FileInputStream in = new FileInputStream("task04.dat");
 			ObjectInputStream in2 = new ObjectInputStream(in);
 			
-			projects = (ArrayList<Project>)in2.readObject();
+			tasks = (ArrayList<Task>)in2.readObject();
 			
 			in2.close();
 			in.close();
 		} catch (Exception e) {
 			System.out.println("파일 로딩 중 오류발생!");
-			projects = new ArrayList<Project>();
+			tasks = new ArrayList<Task>();
     }
 	}
 
 	private void save() {
 		try {
-			FileOutputStream out = new FileOutputStream("project04.dat");
+			FileOutputStream out = new FileOutputStream("task04.dat");
 			ObjectOutputStream out2 = new ObjectOutputStream(out);
 			
-			out2.writeObject(projects);
+			out2.writeObject(tasks);
 			
 			out2.close();
 			out.close();
@@ -79,25 +77,22 @@ public class ProjectController {
   }
 
 	private void processRead(int no) {
-		for (Project project : projects) {
-			if (no == project.getNo()) {
-				System.out.println("제목:" + project.getTitle());
-				System.out.println("시작일:" + project.getStartDate());
-				System.out.println("종료일:" + project.getEndDate());
-				System.out.println("상태:" + project.getState());
-				System.out.println("설명:" + project.getDescription());
+		for (Task task : tasks) {
+			if (no == task.getNo()) {
+				System.out.println("제목:" + task.getTitle());
+				System.out.println("상태:" + task.getState());
 				return;
 			}
 		}
   }
 
 	private void processDelete(int no) {
-		for (Project project : projects) {
-			if (no == project.getNo()) {
+		for (Task task : tasks) {
+			if (no == task.getNo()) {
 				System.out.print("정말 삭제하시겠습니까?(y/n)");
 				String command = scanner.nextLine();
 				if (command.toLowerCase().equals("y")) {
-					projects.remove(project);
+					tasks.remove(task);
 					System.out.println("삭제되었습니다.");
 				} else {
 					System.out.println("삭제 취소하였습니다.");
@@ -110,52 +105,36 @@ public class ProjectController {
   }
 
 	private void processUpdate(int no) {
-		Project temp = new Project();
-		Project project = null; 
+		Task temp = new Task();
+		Task task = null; 
 		
-		for (int i = 0; i < projects.size(); i++) {
-			project = projects.get(i);
-			if (no == project.getNo()) {
+		for (int i = 0; i < tasks.size(); i++) {
+			task = tasks.get(i);
+			if (no == task.getNo()) {
 				
-				System.out.print("제목(" + project.getTitle() + "):");
+				System.out.print("제목(" + task.getTitle() + "):");
 				String value = scanner.nextLine();
 				if (!value.equals("")) {
 					temp.setTitle(value);
 				} else {
-					temp.setTitle(project.getTitle());
+					temp.setTitle(task.getTitle());
 				}
 				
-				System.out.print("시작일(" + project.getStartDate() + "):");
-				value = scanner.nextLine();
-				if (!value.equals("")) {
-					temp.setStartDate( Date.valueOf(value) );
-				} else {
-					temp.setStartDate( project.getStartDate() );
-				}
-				
-				System.out.print("종료일(" + project.getEndDate() + "):");
-				value = scanner.nextLine();
-				if (!value.equals("")) {
-					temp.setEndDate( Date.valueOf(value) );
-				} else {
-					temp.setEndDate( project.getEndDate() );
-				}
-				
-				System.out.print("상태(" + project.getState() + "):");
+				System.out.print("상태(" + task.getState() + "):");
 				value = scanner.nextLine();
 				if (!value.equals("")) {
 					temp.setState( Integer.parseInt(value) );
 				} else {
-					temp.setState(project.getState());
+					temp.setState(task.getState());
 				}
 				
-				temp.setNo(project.getNo());
+				temp.setNo(task.getNo());
 				
 				System.out.print("변경하시겠습니까?(y/n)");
 				value = scanner.nextLine();
 				
 				if (value.toLowerCase().equals("y")) {
-					projects.set(i, temp);
+					tasks.set(i, temp);
 					System.out.println("변경 성공입니다.");
 				} else {
 					System.out.println("변경 취소하였습니다.");
@@ -170,48 +149,37 @@ public class ProjectController {
 
 	private void processList() {
 		System.out.println("----------------------------");
-		System.out.println("번호 \t 프로젝트 \t 시작일 \t 종료일 \t 상태");
+		System.out.println("번호 \t 작업명 \t 상태");
 		System.out.println("----------------------------");
 		
-		for (Project project : projects) {
-			System.out.print(project.getNo() + "\t");
-			System.out.print(project.getTitle() + "\t");
-			System.out.print(project.getStartDate() + "\t");
-			System.out.print(project.getEndDate() + "\t");
-			System.out.println(project.getState());
+		for (Task task : tasks) {
+			System.out.print(task.getNo() + "\t");
+			System.out.print(task.getTitle() + "\t");
+			System.out.println(task.getState());
 		}
   }
 
 	private void processAdd() {
-		Project project = null;
+		Task task = null;
 		String command = null;
 		
 		do {
-			project = new Project();
+			task = new Task();
 			
 			System.out.print("번호:");
-			project.setNo(Integer.parseInt(scanner.nextLine()));
+			task.setNo(Integer.parseInt(scanner.nextLine()));
 			
 			System.out.print("제목:");
-			project.setTitle(scanner.nextLine());
-			
-			System.out.print("시작일:");
-			project.setStartDate( Date.valueOf(scanner.nextLine()) );
-					
-			System.out.print("종료일:");
-			project.setEndDate( Date.valueOf(scanner.nextLine()) );
+			task.setTitle(scanner.nextLine());
 			
 			System.out.print("상태:");
-			project.setState(Integer.parseInt(scanner.nextLine()));
-			
-			System.out.print("내용:");
-			project.setDescription( scanner.nextLine() );
+			task.setState(Integer.parseInt(scanner.nextLine()));
 			
 			System.out.print("등록하시겠습니까?(y/n)");
 			command = scanner.nextLine();
 			
 			if (command.toLowerCase().equals("y")) {
-				projects.add(project);
+				tasks.add(task);
 				System.out.println("등록 성공입니다.");
 			} else {
 				System.out.println("등록 취소하였습니다.");
