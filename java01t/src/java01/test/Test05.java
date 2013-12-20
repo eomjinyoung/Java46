@@ -26,10 +26,11 @@ public class Test05 {
 			for(int i = 0; i < teamSize; i++) {
 				System.out.print(selectedStudentNo() + ",");
 				selectedCount++;
-				if (selectedCount > count)
+				if (selectedCount >= count)
 					break loop; 
 			}
 			System.out.println();
+			scanner.nextLine();
 			teamCount++;
 		}
 		
