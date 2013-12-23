@@ -20,21 +20,25 @@ public class Worker02 {
 	}
 	
 	public void service() throws Exception {
+		String[] command = in.nextLine().split(" ");
+		processHello(command[1]);
+		
+		String message = null;
+		
 		loop:
 		while(true) {
-			String[] command = in.nextLine().split(" ");
+			message = in.nextLine();
 			
-			switch(command[0]) {
-			case "hello":
-				processHello(command[1]);
-				break;
+			switch(message) {
 			case "quit":
 				processQuit();
 				break loop;
 			default:
-				processMessage(command[0]);	
+				processMessage(message);	
 			}
 		}
+		
+		System.out.println(peerName + "님이 퇴장하셨습니다!");
 		
 		keyboard.close();
 		in.close();
