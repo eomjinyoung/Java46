@@ -101,7 +101,7 @@ public class TaskController {
 			}
 		}
 		
-		System.out.println("해당 이메일의 멤버를 찾을 수 없습니다!");
+		System.out.println("해당 번호의 작업을 찾을 수 없습니다!");
   }
 
 	private void processUpdate(int no) {

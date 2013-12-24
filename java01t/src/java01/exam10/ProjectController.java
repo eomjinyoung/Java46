@@ -106,7 +106,7 @@ public class ProjectController {
 			}
 		}
 		
-		System.out.println("해당 이메일의 멤버를 찾을 수 없습니다!");
+		System.out.println("해당 번호의 프로젝트를 찾을 수 없습니다!");
   }
 
 	private void processUpdate(int no) {
@@ -147,6 +147,14 @@ public class ProjectController {
 					temp.setState( Integer.parseInt(value) );
 				} else {
 					temp.setState(project.getState());
+				}
+				
+				System.out.print("설명(" + project.getDescription() + "):");
+				value = scanner.nextLine();
+				if (!value.equals("")) {
+					temp.setDescription( value );
+				} else {
+					temp.setDescription(project.getDescription());
 				}
 				
 				temp.setNo(project.getNo());
