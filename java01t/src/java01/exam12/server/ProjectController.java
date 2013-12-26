@@ -45,7 +45,7 @@ public class ProjectController {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("명령어 실행 중 오류가 발생했습니다!");
+				out.println("명령어 실행 중 오류가 발생했습니다!");
 			}
 		}
 		save();
@@ -60,7 +60,7 @@ public class ProjectController {
 	@SuppressWarnings("unchecked")
   private void load() {
 		try {
-			FileInputStream in = new FileInputStream("spms1226.dat");
+			FileInputStream in = new FileInputStream("spms_project1226.dat");
 			ObjectInputStream in2 = new ObjectInputStream(in);
 			
 			projects = (ArrayList<Project>)in2.readObject();
@@ -75,7 +75,7 @@ public class ProjectController {
 
 	private void save() {
 		try {
-			FileOutputStream out = new FileOutputStream("spms1226.dat");
+			FileOutputStream out = new FileOutputStream("spms_project1226.dat");
 			ObjectOutputStream out2 = new ObjectOutputStream(out);
 			
 			out2.writeObject(projects);

@@ -6,10 +6,12 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class SpmsServer extends Thread {
-	public static final int MENU_QUIT = 0;
-	public static final int MENU_PROJECT = 1;
-	public static final int MENU_MEMBER = 2;
-	public static final int MENU_TASK = 3;
+	public static final String MENU_QUIT = "0";
+	public static final String MENU_PROJECT = "1";
+	public static final String MENU_MEMBER = "2";
+	public static final String MENU_TASK = "3";
+	public static final String MENU_HELP = "help";
+	public static final String MENU_HELLO = "hello";
 	
 	Socket s;
 	PrintStream out;
@@ -29,14 +31,20 @@ public class SpmsServer extends Thread {
 			while(true) {
 				command = in.nextLine();
 				switch(command) {
-				case "hello":
-				case "help":
+				case MENU_HELLO:
+				case MENU_HELP:
 					printMenu();
 					break;
-				case "1":
+				case MENU_PROJECT:
 					processProject();
 					break;
-				case "0":
+				case MENU_MEMBER:
+					processMember();
+					break;
+				case MENU_TASK:
+					processTask();
+					break;
+				case MENU_QUIT:
 					out.println("goodbye");
 					break loop;
 				default:
@@ -73,7 +81,23 @@ public class SpmsServer extends Thread {
 	  } catch (Exception e) {}
 	  printMenu();
   }
+	
+	private void processMember() {
+	  MemberController controller = new MemberController(in, out);
+	  try {
+	  		controller.execute();
+	  } catch (Exception e) {}
+	  printMenu();
+  }
 
+	private void processTask() {
+	  TaskController controller = new TaskController(in, out);
+	  try {
+	  		controller.execute();
+	  } catch (Exception e) {}
+	  printMenu();
+	}
+	  
 	private void printMenu() {
 	  out.println("[메뉴]");
 	  out.println("1. 프로젝트관리");
