@@ -5,15 +5,19 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class SpmsServer {
+public class SpmsServer extends Thread {
 	public static final int MENU_QUIT = 0;
 	public static final int MENU_PROJECT = 1;
 	public static final int MENU_MEMBER = 2;
 	public static final int MENU_TASK = 3;
 	
-	static Socket s;
-	static PrintStream out;
-	static Scanner in;
+	Socket s;
+	PrintStream out;
+	Scanner in;
+	
+	public SpmsServer(Socket s) {
+		
+	}
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("Spms 서버가 실행되었습니다.");

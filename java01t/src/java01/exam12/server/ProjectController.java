@@ -8,13 +8,12 @@ import java.io.PrintStream;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import java01.exam12.server.vo.Project;
 
 public class ProjectController {
 	ArrayList<Project> projects;
-	static PrintStream out;
-	static Scanner in;
+	PrintStream out;
+	Scanner in;
 	
 	public ProjectController(Scanner in, PrintStream out) {
 		this.in = in;
@@ -33,15 +32,13 @@ public class ProjectController {
 				switch(command[0]) {
 				case "add": processAdd(); break;
 				case "list": processList(); break;
-				case "update": processUpdate(
-													Integer.parseInt(command[1]) ); 
+				case "update": 
+					processUpdate(Integer.parseInt(command[1]) ); 
 					break;
-				case "delete": //processDelete( 
-											//		Integer.parseInt(command[1]) ); 
+				case "delete": 
+					processDelete(Integer.parseInt(command[1]) ); 
 					break;
-				case "read": //processRead(Integer.parseInt(command[1]) ); break;
-					out.println("OKOK");
-					break;
+				case "read": processRead(Integer.parseInt(command[1]) ); break;
 				case "quit": break loop;
 				default:
 					out.println("사용할 수 없는 명령어입니다.");
@@ -212,46 +209,41 @@ public class ProjectController {
 				return;
 			}
 		}
-		out.println("해당 이메일의 멤버를 찾을 수 없습니다.");
+		out.println("해당 번호의 프로젝트를 찾을 수 없습니다.");
   }
-	/*
+
 	private void processRead(int no) {
 		for (Project project : projects) {
 			if (no == project.getNo()) {
-				System.out.println("제목:" + project.getTitle());
-				System.out.println("시작일:" + project.getStartDate());
-				System.out.println("종료일:" + project.getEndDate());
-				System.out.println("상태:" + project.getState());
-				System.out.println("설명:" + project.getDescription());
+				out.println("제목:" + project.getTitle());
+				out.println("시작일:" + project.getStartDate());
+				out.println("종료일:" + project.getEndDate());
+				out.println("상태:" + project.getState());
+				out.println("내용:" + project.getDescription());
 				return;
 			}
 		}
+		out.println("해당 번호의 프로젝트를 찾을 수 없습니다.");
   }
-
+	
 	private void processDelete(int no) {
 		for (Project project : projects) {
 			if (no == project.getNo()) {
-				System.out.print("정말 삭제하시겠습니까?(y/n)");
-				String command = scanner.nextLine();
+				out.println("정말 삭제하시겠습니까?(y/n)");
+				out.println();
+				String command = in.nextLine();
 				if (command.toLowerCase().equals("y")) {
 					projects.remove(project);
-					System.out.println("삭제되었습니다.");
+					out.println("삭제되었습니다.");
 				} else {
-					System.out.println("삭제 취소하였습니다.");
+					out.println("삭제 취소하였습니다.");
 				}
 				return;
 			}
 		}
 		
-		System.out.println("해당 번호의 프로젝트를 찾을 수 없습니다!");
+		out.println("해당 번호의 프로젝트를 찾을 수 없습니다!");
   }
-
-
-
-
-
-
-*/
 
 }
 
