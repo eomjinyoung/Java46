@@ -15,52 +15,58 @@ public class SpmsServer extends Thread {
 	PrintStream out;
 	Scanner in;
 	
-	public SpmsServer(Socket s) {
-		
+	public SpmsServer(Socket s) throws Exception {
+		this.s = s;
+		out = new PrintStream(s.getOutputStream());
+		in = new Scanner(s.getInputStream());
 	}
 	
-	public static void main(String[] args) throws Exception {
+	@Override
+	public void run() {
+		try {
+			String command = null;
+			loop:
+			while(true) {
+				command = in.nextLine();
+				switch(command) {
+				case "hello":
+				case "help":
+					printMenu();
+					break;
+				case "1":
+					processProject();
+					break;
+				case "0":
+					out.println("goodbye");
+					break loop;
+				default:
+					printError();	
+				}
+			}
+			
+			out.close();
+			in.close();
+			s.close();
+		} catch (Exception e) {}
+	}
+	
+	@SuppressWarnings("resource")
+  public static void main(String[] args) throws Exception {
 		System.out.println("Spms 서버가 실행되었습니다.");
 		ServerSocket ss = new ServerSocket(9090);
 		
-		s = ss.accept();
-		out = new PrintStream(s.getOutputStream());
-		in = new Scanner(s.getInputStream());
-		
-		String command = null;
-		loop:
-		while(true) {
-			command = in.nextLine();
-			switch(command) {
-			case "hello":
-			case "help":
-				printMenu();
-				break;
-			case "1":
-				processProject();
-				break;
-			case "server quit":
-				out.println("goodbye");
-				break loop;
-			default:
-				printError();	
-			}
+		while (true) {
+			new SpmsServer(ss.accept()).start();
 		}
-		
-		out.close();
-		in.close();
-		s.close();
-		ss.close();
-		System.out.println(">> Spms 서버가 종료되었습니다.");
 	}
 
-	private static void printError() {
+	private void printError() {
 		out.println("명령어가 잘못되었습니다!");
 		out.println("메뉴>");
 	  out.println();	 
   }
 
-	private static void processProject() {
+	private void processProject() {
 	  ProjectController controller = new ProjectController(in, out);
 	  try {
 	  		controller.execute();
@@ -68,7 +74,7 @@ public class SpmsServer extends Thread {
 	  printMenu();
   }
 
-	private static void printMenu() {
+	private void printMenu() {
 	  out.println("[메뉴]");
 	  out.println("1. 프로젝트관리");
 	  out.println("2. 멤버관리");
