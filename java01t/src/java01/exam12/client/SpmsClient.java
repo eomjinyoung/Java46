@@ -21,7 +21,7 @@ public class SpmsClient {
 			if (serverMessage.equals("")) {
 				out.println(keyboard.nextLine());
 				
-			} if (serverMessage.equals("goodbye")) {
+			} else if (serverMessage.equals("goodbye")) {
 				break;
 				
 			} else {
