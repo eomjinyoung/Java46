@@ -4,11 +4,10 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-//2. Server03과 연동하는 클라이언트
 public class SpmsClient {
 
 	public static void main(String[] args) throws Exception {
-		Socket s = new Socket("localhost", 9090);
+		Socket s = new Socket("192.168.0.27", 9090);
 		PrintStream out = new PrintStream(s.getOutputStream());
 		Scanner in = new Scanner(s.getInputStream());
 		Scanner keyboard = new Scanner(System.in);

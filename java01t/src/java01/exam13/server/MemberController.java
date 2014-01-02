@@ -119,6 +119,7 @@ public class MemberController {
 			}
 			
 			temp.setEmail(member.getEmail());
+			temp.setNo(no);
 			
 			out.println("변경하시겠습니까?(y/n)");
 			out.println();
@@ -139,10 +140,11 @@ public class MemberController {
 	private void processList() throws Exception {
 		ArrayList<Member> members = memberDao.selectList();
 		out.println("----------------------------");
-		out.println("이름 \t 나이 \t 전화");
+		out.println("번호 \t 이름 \t 나이 \t 전화");
 		out.println("----------------------------");
 		
 		for (Member member : members) {
+			out.print(member.getNo() + "\t");
 			out.print(member.getName() + "\t");
 			out.print(member.getAge() + "\t");
 			out.println(member.getTel());
