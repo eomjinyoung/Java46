@@ -12,6 +12,7 @@ public class Task implements Serializable {
 	int 			no;
 	String 	title;
 	int			state;
+	int			projectNo;
 	Member		worker;
 	
 	@Override
@@ -73,6 +74,12 @@ public class Task implements Serializable {
 	}
 	public void setWorker(Member worker) {
 		this.worker = worker;
+	}
+	public int getProjectNo() {
+		return projectNo;
+	}
+	public void setProjectNo(int projectNo) {
+		this.projectNo = projectNo;
 	}
 	
 	

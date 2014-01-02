@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java01.exam13.server.vo.Member;
 
 public class MemberDao {
+	
 	public ArrayList<Member> selectList() throws Exception {
 		ArrayList<Member> list = new ArrayList<Member>();
 		Connection conn = null;
@@ -39,6 +40,7 @@ public class MemberDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 			
 		} finally {
 			try {if(rs != null) rs.close();} catch (Exception e) {}
@@ -78,6 +80,7 @@ public class MemberDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 			
 		} finally {
 			try {if(rs != null) rs.close();} catch (Exception e) {}
