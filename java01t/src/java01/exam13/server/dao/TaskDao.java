@@ -30,6 +30,8 @@ public class TaskDao {
 				task = new Task();
 				task.setNo(rs.getInt("TNO"));
 				task.setTitle(rs.getString("TITLE"));
+				task.setStartDate(rs.getDate("SDATE"));
+				task.setEndDate(rs.getDate("EDATE"));
 				task.setState(rs.getInt("STATE"));
 				task.setProjectNo(rs.getInt("PNO"));
 				
@@ -71,7 +73,10 @@ public class TaskDao {
 				task = new Task();
 				task.setNo(rs.getInt("TNO"));
 				task.setTitle(rs.getString("TITLE"));
+				task.setStartDate(rs.getDate("SDATE"));
+				task.setEndDate(rs.getDate("EDATE"));
 				task.setState(rs.getInt("STATE"));
+				task.setTags(rs.getString("TAGS"));
 				task.setProjectNo(rs.getInt("PNO"));
 			}
 			
@@ -100,8 +105,11 @@ public class TaskDao {
 					"spms", "spms");
 			stmt = conn.createStatement();
 			count = stmt.executeUpdate(
-					"INSERT INTO TASKS(TITLE,PNO)"
+					"INSERT INTO TASKS(TITLE,SDATE,EDATE,TAGS,PNO)"
 					+ " VALUES('" + task.getTitle()
+					+ "','" + task.getStartDate()
+					+ "','" + task.getEndDate()
+					+ "','" + task.getTags()
 					+ "'," + task.getProjectNo() 
 					+ ")");
 		
@@ -128,15 +136,17 @@ public class TaskDao {
 					+ "useUnicode=true&characterEncoding=UTF8", 
 					"spms", "spms");
 			stmt = conn.createStatement();
-			count = stmt.executeUpdate(
-					"update TASKS set "
-					+ " TITLE='" + task.getTitle() + "',"
-					//+ " SDATE='" +  + "',"
-					//+ " EDATE='" + member.getTel() + "',"
-					+ " STATE='" + task.getState() + "',"
-					//+ " TAGS='" + member.getTel() + "',"
-					+ " PNO=" + task.getProjectNo()
-					+ " where TNO=" + task.getNo());
+
+			StringBuffer buf = new StringBuffer();
+			buf.append("update TASKS set ");
+			buf.append(" TITLE='" + task.getTitle() + "',");
+			buf.append(" SDATE='" + task.getStartDate() + "',");
+			buf.append(" EDATE='" + task.getEndDate() + "',");
+			buf.append(" STATE=" + task.getState() + ",");
+			buf.append(" TAGS='" + task.getTags() + "',");
+			buf.append(" PNO=" + task.getProjectNo());
+			buf.append(" where TNO=" + task.getNo());
+			count = stmt.executeUpdate(buf.toString());
 		
 		} catch (Exception e) {
 			e.printStackTrace();

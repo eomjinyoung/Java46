@@ -1,8 +1,10 @@
 package java01.exam13.server;
 
 import java.io.PrintStream;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import java01.exam13.server.dao.TaskDao;
 import java01.exam13.server.vo.Task;
 
@@ -56,10 +58,10 @@ public class TaskController {
 		if (task != null) {
 			out.println("작업번호:" + task.getNo());
 			out.println("작업명:" + task.getTitle());
-			out.println("시작일:");
-			out.println("종료일:");
+			out.println("시작일:" + task.getStartDate());
+			out.println("종료일:" + task.getEndDate());
 			out.println("상태:" + task.getState());
-			out.println("태그들:");
+			out.println("태그들:" + task.getTags());
 			out.println("프로젝트번호:" + task.getProjectNo());
 			out.println("작업자:");
 			return;
@@ -97,6 +99,24 @@ public class TaskController {
 			} else {
 				temp.setTitle(task.getTitle());
 			}
+			
+			out.println("시작일(" + task.getStartDate() + "):");
+			out.println();
+			value = in.nextLine();
+			if (!value.equals("")) {
+				temp.setStartDate(Date.valueOf(value));
+			} else {
+				temp.setStartDate(task.getStartDate());
+			}
+			
+			out.println("종료일(" + task.getEndDate() + "):");
+			out.println();
+			value = in.nextLine();
+			if (!value.equals("")) {
+				temp.setEndDate(Date.valueOf(value));
+			} else {
+				temp.setEndDate(task.getEndDate());
+			}
 
 			out.println("상태(" + task.getState() + "):");
 			out.println();
@@ -105,6 +125,15 @@ public class TaskController {
 				temp.setState( Integer.parseInt(value) );
 			} else {
 				temp.setState(task.getState());
+			}
+			
+			out.println("태그들(" + task.getTags() + "):");
+			out.println();
+			value = in.nextLine();
+			if (!value.equals("")) {
+				temp.setTags(value);
+			} else {
+				temp.setTags(task.getTags());
 			}
 
 			out.println("프로젝트번호(" + task.getProjectNo() + "):");
@@ -164,6 +193,18 @@ public class TaskController {
 			out.println("작업명:");
 			out.println();
 			task.setTitle(in.nextLine());
+			
+			out.println("시작일:");
+			out.println();
+			task.setStartDate(Date.valueOf(in.nextLine()));
+			
+			out.println("종료일:");
+			out.println();
+			task.setEndDate(Date.valueOf(in.nextLine()));
+			
+			out.println("태그들:");
+			out.println();
+			task.setTags(in.nextLine());
 
 			out.println("등록하시겠습니까?(y/n)");
 			out.println();

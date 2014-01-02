@@ -1,6 +1,7 @@
 package java01.exam13.server.vo;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Task implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -11,7 +12,10 @@ public class Task implements Serializable {
   
 	int 			no;
 	String 	title;
+	Date			startDate;
+	Date			endDate;
 	int			state;
+	String 	tags;
 	int			projectNo;
 	Member		worker;
 	
@@ -81,6 +85,28 @@ public class Task implements Serializable {
 	public void setProjectNo(int projectNo) {
 		this.projectNo = projectNo;
 	}
-	
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
 	
 }
