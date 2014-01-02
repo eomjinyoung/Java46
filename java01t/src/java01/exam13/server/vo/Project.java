@@ -1,7 +1,7 @@
 package java01.exam13.server.vo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 public class Project implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -17,6 +17,7 @@ public class Project implements Serializable {
 	Date				startDate;
 	Date				endDate;
 	int				state;
+	String			tags;
 	Member			owner;
 	
 	@Override
@@ -106,4 +107,11 @@ public class Project implements Serializable {
 	public void setOwner(Member owner) {
 		this.owner = owner;
 	}
+	public String getTags() {
+		return tags;
+	}
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+	
 }

@@ -5,12 +5,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java01.exam13.server.vo.Task;
 
-public class TaskDao {
+import java01.exam13.server.vo.Project;
+
+public class ProjectDao {
 	
-	public ArrayList<Task> selectList() throws Exception {
-		ArrayList<Task> list = new ArrayList<Task>();
+	public ArrayList<Project> selectList() throws Exception {
+		ArrayList<Project> list = new ArrayList<Project>();
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -23,19 +24,18 @@ public class TaskDao {
 					"spms", "spms");
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(
-					"select TNO,TITLE,SDATE,EDATE,STATE,PNO from TASKS");
+					"select PNO,TITLE,SDATE,EDATE,STATE from PROJECTS");
 			
-			Task task = null;
+			Project project = null;
 			while(rs.next()) {
-				task = new Task();
-				task.setNo(rs.getInt("TNO"));
-				task.setTitle(rs.getString("TITLE"));
-				task.setStartDate(rs.getDate("SDATE"));
-				task.setEndDate(rs.getDate("EDATE"));
-				task.setState(rs.getInt("STATE"));
-				task.setProjectNo(rs.getInt("PNO"));
+				project = new Project();
+				project.setNo(rs.getInt("PNO"));
+				project.setTitle(rs.getString("TITLE"));
+				project.setStartDate(rs.getDate("SDATE"));
+				project.setEndDate(rs.getDate("EDATE"));
+				project.setState(rs.getInt("STATE"));
 				
-				list.add(task);
+				list.add(project);
 			}
 			
 		} catch (Exception e) {
@@ -51,8 +51,8 @@ public class TaskDao {
 		return list;
 	}
 	
-	public Task selectOne(int no) throws Exception {
-		Task task = null;
+	public Project selectOne(int no) throws Exception {
+		Project project = null;
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -65,19 +65,19 @@ public class TaskDao {
 					"spms", "spms");
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(
-					"select TNO,TITLE,SDATE,EDATE,STATE,PNO,TAGS,MNO"
-					+ " from TASKS"
-					+ " where TNO=" + no);
+					"select TITLE,CONTENTS,SDATE,EDATE,STATE,TAGS"
+					+ " from PROJECTS"
+					+ " where PNO=" + no);
 			
 			if(rs.next()) {
-				task = new Task();
-				task.setNo(rs.getInt("TNO"));
-				task.setTitle(rs.getString("TITLE"));
-				task.setStartDate(rs.getDate("SDATE"));
-				task.setEndDate(rs.getDate("EDATE"));
-				task.setState(rs.getInt("STATE"));
-				task.setTags(rs.getString("TAGS"));
-				task.setProjectNo(rs.getInt("PNO"));
+				project = new Project();
+				project.setNo(no);
+				project.setTitle(rs.getString("TITLE"));
+				project.setDescription(rs.getString("CONTENTS"));
+				project.setStartDate(rs.getDate("SDATE"));
+				project.setEndDate(rs.getDate("EDATE"));
+				project.setState(rs.getInt("STATE"));
+				project.setTags(rs.getString("TAGS"));
 			}
 			
 		} catch (Exception e) {
@@ -89,10 +89,10 @@ public class TaskDao {
 			try {if(stmt != null) stmt.close();} catch (Exception e) {}
 			try {if(conn != null) conn.close();} catch (Exception e) {}
 		}	
-		return task;
+		return project;
 	}
 	
-	public int insert(Task task) throws Exception {
+	public int insert(Project project) throws Exception {
 		int count = 0;
 		Connection conn = null;
 		Statement stmt = null;
@@ -105,13 +105,13 @@ public class TaskDao {
 					"spms", "spms");
 			stmt = conn.createStatement();
 			count = stmt.executeUpdate(
-					"INSERT INTO TASKS(TITLE,SDATE,EDATE,TAGS,PNO)"
-					+ " VALUES('" + task.getTitle()
-					+ "','" + task.getStartDate()
-					+ "','" + task.getEndDate()
-					+ "','" + task.getTags()
-					+ "'," + task.getProjectNo() 
-					+ ")");
+					"INSERT INTO PROJECTS(TITLE,CONTENTS,SDATE,EDATE,TAGS)"
+					+ " VALUES('" + project.getTitle()
+					+ "','" + project.getDescription()
+					+ "','" + project.getStartDate()
+					+ "','" + project.getEndDate()
+					+ "','" + project.getTags()
+					+ "')");
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -124,7 +124,7 @@ public class TaskDao {
 		return count;
 	}
 	
-	public int update(Task task) throws Exception {
+	public int update(Project project) throws Exception {
 		int count = 0;
 		Connection conn = null;
 		Statement stmt = null;
@@ -138,14 +138,14 @@ public class TaskDao {
 			stmt = conn.createStatement();
 
 			StringBuffer buf = new StringBuffer();
-			buf.append("update TASKS set ");
-			buf.append(" TITLE='" + task.getTitle() + "',");
-			buf.append(" SDATE='" + task.getStartDate() + "',");
-			buf.append(" EDATE='" + task.getEndDate() + "',");
-			buf.append(" STATE=" + task.getState() + ",");
-			buf.append(" TAGS='" + task.getTags() + "',");
-			buf.append(" PNO=" + task.getProjectNo());
-			buf.append(" where TNO=" + task.getNo());
+			buf.append("update PROJECTS set ");
+			buf.append(" TITLE='" + project.getTitle() + "',");
+			buf.append(" CONTENTS='" + project.getDescription() + "',");
+			buf.append(" SDATE='" + project.getStartDate() + "',");
+			buf.append(" EDATE='" + project.getEndDate() + "',");
+			buf.append(" STATE=" + project.getState() + ",");
+			buf.append(" TAGS='" + project.getTags() + "'");
+			buf.append(" where PNO=" + project.getNo());
 			
 			count = stmt.executeUpdate(buf.toString());
 		
@@ -173,8 +173,8 @@ public class TaskDao {
 					"spms", "spms");
 			stmt = conn.createStatement();
 			count = stmt.executeUpdate(
-					"delete from TASKS "
-					+ " where TNO=" + no);
+					"delete from PROJECTS "
+					+ " where PNO=" + no);
 		
 		} catch (Exception e) {
 			e.printStackTrace();

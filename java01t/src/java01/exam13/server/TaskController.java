@@ -10,7 +10,6 @@ import java01.exam13.server.vo.Task;
 
 public class TaskController {
 	TaskDao taskDao;
-	ArrayList<Task> tasks;
 	PrintStream out;
 	Scanner in;
 
