@@ -36,6 +36,9 @@ public class Hello implements Servlet {
 	    throws ServletException, IOException {
 	  System.out.println("service()");
 	  
+	  // 출력할 때 기본 문자셋은 ISO-8859-1이다. => UTF-8로 설정해야 한다.
+	  // => 출력스트림을 얻기 전에!
+	  response.setContentType("text/plain;charset=UTF-8");
 	  PrintWriter out = response.getWriter();
 	  out.println("오호라. 바로 이것이여... ");
 	}
