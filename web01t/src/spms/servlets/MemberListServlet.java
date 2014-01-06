@@ -20,19 +20,21 @@ public class MemberListServlet extends GenericServlet {
 	    throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 	  PrintWriter out = response.getWriter();
-	  
+		
+		out.println("<!DOCTYPE html>");
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<meta charset='UTF-8'>");
+		out.println("<title>회원 목록</title>");
+		out.println("</head>");
+		out.println("<body>");
+		
 	  try {
 		  MemberDao memberDao = new MemberDao();
 			ArrayList<Member> members = memberDao.selectList();
 			
-			out.println("<!DOCTYPE html>");
-			out.println("<html>");
-			out.println("<head>");
-			out.println("<meta charset='UTF-8'>");
-			out.println("<title>회원 목록</title>");
-			out.println("</head>");
-			out.println("<body>");
-			
+			out.println("<h1>회원 목록</h1>");
+			out.println("<a href='NewMember.html'>[새회원]</a><br>");
 			out.println("----------------------------<br>");
 			out.println("번호 \t 이름 \t 나이 \t 전화<br>");
 			out.println("----------------------------<br>");
@@ -50,13 +52,13 @@ public class MemberListServlet extends GenericServlet {
 				out.println(member.getTel() + "<br>");
 			}
 			
-			out.println("</body>");
-			out.println("</html>");
-			
 	  } catch (Exception e) {
 	  		e.printStackTrace();
 	  		out.println("실행 중 오류발생!");
 	  }
+	  
+	  out.println("</body>");
+		out.println("</html>");
 	}
 }
 
