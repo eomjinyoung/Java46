@@ -35,23 +35,28 @@ public class MemberListServlet extends GenericServlet {
 			
 			out.println("<h1>회원 목록</h1>");
 			out.println("<a href='NewMember.html'>[새회원]</a><br>");
-			out.println("----------------------------<br>");
-			out.println("번호 \t 이름 \t 나이 \t 전화<br>");
-			out.println("----------------------------<br>");
+			out.println("<table border='1'>");
+			out.println("<tr>");
+			out.println("<th>번호</th>");
+			out.println("<th>이름</th>");
+			out.println("<th>나이</th>");
+			out.println("<th>전화</th>");
+			out.println("</tr>");
 			
 			// * 링크 마크업 
 			// <a href='http://localhost:9999/web01/member/read?no=3'>내용</a>
 			for (Member member : members) {
-				out.print(member.getNo() + "\t");
-				out.print(
-						"<a href='read?no=" 
+				out.print("<tr>");
+				out.print("<td>" + member.getNo() + "</td>");
+				out.print("<td><a href='read?no=" 
 						+ member.getNo() 	+ "'>"
 						+ member.getName() 
-						+ "</a>\t");
-				out.print(member.getAge() + "\t");
-				out.println(member.getTel() + "<br>");
+						+ "</a></td>");
+				out.print("<td>" + member.getAge() + "</td>");
+				out.print("<td>" + member.getTel() + "</td>");
+				out.print("</tr>");
 			}
-			
+			out.println("</table>");
 	  } catch (Exception e) {
 	  		e.printStackTrace();
 	  		out.println("실행 중 오류발생!");
