@@ -3,22 +3,24 @@ package spms.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import spms.dao.MemberDao;
-import spms.vo.Member;
 
-@WebServlet("/member/add")
-public class MemberAddServlet extends MyHttpServlet {
+@WebServlet("/member/delete")
+public class MemberDeleteServlet extends GenericServlet {
   private static final long serialVersionUID = 1L;
 
-  @Override
-	protected void doPost(
-			HttpServletRequest request, HttpServletResponse response)
+	@Override
+	public void service(ServletRequest request, ServletResponse response)
 	    throws ServletException, IOException {
+		//URL => http://localhost:9999/web01/member/delete?no=3
+		int no = Integer.parseInt( request.getParameter("no") );
+		
 		response.setContentType("text/html;charset=UTF-8");
 	  PrintWriter out = response.getWriter();
 	  
@@ -26,23 +28,20 @@ public class MemberAddServlet extends MyHttpServlet {
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<meta charset='UTF-8'>");
-		out.println("<title>회원등록</title>");
+		out.println("<meta http-equiv='Refresh' content='1;url=list'>");
+		out.println("<title>회원삭제</title>");
 		out.println("</head>");
 		out.println("<body>");
-		
-		Member member = new Member();
-		member.setName( request.getParameter("name") );
-		member.setEmail( request.getParameter("email") );
-		member.setTel( request.getParameter("tel") );
-		member.setAge( Integer.parseInt(request.getParameter("age")) );
-		
-		//response.sendRedirect("list");
-		response.setHeader("Refresh", "5;url=list");
 	  
 	  try {
 		  MemberDao memberDao = new MemberDao();
-			memberDao.insert(member);
-			out.println("등록 성공입니다.");
+			int count = memberDao.delete(no);
+			if (count > 0) {
+				out.println("삭제 성공입니다.");
+				
+			} else {
+				out.println("해당 번호의 멤버가 없습니다!");
+			}
 	  } catch (Exception e) {
 	  		e.printStackTrace();
 	  		out.println("실행 중 오류발생!");
@@ -50,17 +49,8 @@ public class MemberAddServlet extends MyHttpServlet {
 	  
 	  out.println("</body>");
 		out.println("</html>");
-	  
 	}
 }
-
-
-
-
-
-
-
-
 
 
 

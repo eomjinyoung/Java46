@@ -39,7 +39,7 @@ public class MemberReadServlet extends GenericServlet {
 			
 			if (member != null) {
 				out.println("<h1>회원 정보</h1>");
-				out.println("<form action='update' method='post'>");
+				out.println("<form action='update'>");
 				out.println("번호: <input readonly type='text' name='no' value='" 
 						+ member.getNo() + "'><br>");
 				out.println(	"이름: <input type='text' name='name' value='" 

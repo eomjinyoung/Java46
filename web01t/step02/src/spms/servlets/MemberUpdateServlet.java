@@ -3,22 +3,23 @@ package spms.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import spms.dao.MemberDao;
 import spms.vo.Member;
 
 @WebServlet("/member/update")
-public class MemberUpdateServlet extends MyHttpServlet {
+public class MemberUpdateServlet extends GenericServlet {
   private static final long serialVersionUID = 1L;
 
 	@Override
-	public void doPost(
-			HttpServletRequest request, HttpServletResponse response)
+	public void service(ServletRequest request, ServletResponse response)
 	    throws ServletException, IOException {
+		//URL => .../web01/member/update?no=3&name=aaa&email=bbb&tel=cccc&age=10
 		Member member = new Member();
 		member.setNo( Integer.parseInt(request.getParameter("no")) );
 		member.setName( request.getParameter("name") );
@@ -33,7 +34,7 @@ public class MemberUpdateServlet extends MyHttpServlet {
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<meta charset='UTF-8'>");
-		out.println("<meta http-equiv='Refresh' content='5;url=list'>");
+		out.println("<meta http-equiv='Refresh' content='1;url=list'>");
 		out.println("<title>회원변경</title>");
 		out.println("</head>");
 		out.println("<body>");
