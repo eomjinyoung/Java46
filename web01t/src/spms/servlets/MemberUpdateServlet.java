@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,7 +13,7 @@ import spms.dao.MemberDao;
 import spms.vo.Member;
 
 @WebServlet("/member/update")
-public class MemberUpdateServlet extends MyHttpServlet {
+public class MemberUpdateServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
 	@Override

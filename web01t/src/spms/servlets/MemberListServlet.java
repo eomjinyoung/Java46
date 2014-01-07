@@ -4,23 +4,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import spms.dao.MemberDao;
 import spms.vo.Member;
 
-public class MemberListServlet extends GenericServlet {
+public class MemberListServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
 	@Override
-	public void service(ServletRequest request, ServletResponse response)
+	public void doGet(
+			HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-		//HttpServletRequest request2 = (HttpServletRequest)request;
-		//String v = request2.getHeader("Referer");
-		
 		response.setContentType("text/html;charset=UTF-8");
 	  PrintWriter out = response.getWriter();
 		
