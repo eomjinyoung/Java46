@@ -39,13 +39,20 @@ public class MemberReadServlet extends GenericServlet {
 			
 			if (member != null) {
 				out.println("<h1>회원 정보</h1>");
-				out.println("번호:" + member.getNo() + "<br>");
-				out.println(	"이름:" + member.getName() + "<br>");
-				out.println("이메일:" + member.getEmail() + "<br>");
-				out.println("전화:" + member.getTel() + "<br>");
-				out.println("나이:" + member.getAge() + "<br>");
+				out.println("<form action='update'>");
+				out.println("번호: <input readonly type='text' name='no' value='" 
+						+ member.getNo() + "'><br>");
+				out.println(	"이름: <input type='text' name='name' value='" 
+						+ member.getName() + "'><br>");
+				out.println("이메일: <input type='text' name='email' value='" 
+						+ member.getEmail() + "'><br>");
+				out.println("전화: <input type='tel' name='tel' value='" 
+						+ member.getTel() + "'><br>");
+				out.println("나이: <input type='text' name='age' value='" 
+						+ member.getAge() + "'><br>");
+				out.println("<input type='submit' value='변경'>");
 				out.println("<a href='delete?no=" + no + "'>[삭제]</a><br>");
-				
+				out.println("</form>");
 			} else {
 				out.println("해당 번호의 멤버가 없습니다!");
 			}
