@@ -18,6 +18,9 @@ public class MemberListServlet extends GenericServlet {
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 	    throws ServletException, IOException {
+		//HttpServletRequest request2 = (HttpServletRequest)request;
+		//String v = request2.getHeader("Referer");
+		
 		response.setContentType("text/html;charset=UTF-8");
 	  PrintWriter out = response.getWriter();
 		
@@ -39,6 +42,7 @@ public class MemberListServlet extends GenericServlet {
 			out.println("<tr>");
 			out.println("<th>번호</th>");
 			out.println("<th>이름</th>");
+			out.println("<th>이메일</th>");
 			out.println("<th>나이</th>");
 			out.println("<th>전화</th>");
 			out.println("</tr>");
@@ -46,15 +50,16 @@ public class MemberListServlet extends GenericServlet {
 			// * 링크 마크업 
 			// <a href='http://localhost:9999/web01/member/read?no=3'>내용</a>
 			for (Member member : members) {
-				out.print("<tr>");
-				out.print("<td>" + member.getNo() + "</td>");
-				out.print("<td><a href='read?no=" 
+				out.println("<tr>");
+				out.println("<td>" + member.getNo() + "</td>");
+				out.println("<td><a href='read?no=" 
 						+ member.getNo() 	+ "'>"
 						+ member.getName() 
 						+ "</a></td>");
-				out.print("<td>" + member.getAge() + "</td>");
-				out.print("<td>" + member.getTel() + "</td>");
-				out.print("</tr>");
+				out.println("<td>" + member.getEmail() + "</td>");
+				out.println("<td>" + member.getAge() + "</td>");
+				out.println("<td>" + member.getTel() + "</td>");
+				out.println("</tr>");
 			}
 			out.println("</table>");
 	  } catch (Exception e) {

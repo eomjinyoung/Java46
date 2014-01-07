@@ -28,7 +28,7 @@ public class MemberAddServlet extends GenericServlet {
 		member.setAge( Integer.parseInt(request.getParameter("age")) );
 		
 		HttpServletResponse response2 = (HttpServletResponse) response;
-		response2.setHeader("Refresh", "20;url=list");
+		response2.setHeader("Refresh", "1;url=list");
 		
 		response.setContentType("text/html;charset=UTF-8");
 	  PrintWriter out = response.getWriter();
