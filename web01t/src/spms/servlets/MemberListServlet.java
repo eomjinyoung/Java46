@@ -1,7 +1,6 @@
 package spms.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -23,6 +22,9 @@ public class MemberListServlet extends HttpServlet {
 	  try {
 		  MemberDao memberDao = new MemberDao();
 			ArrayList<Member> members = memberDao.selectList();
+			
+			// JSP에 데이터를 넘기기 
+			request.setAttribute("members", members);
 			
 			// 데이터 출력을 JSP에게 맡긴다.
 			RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
