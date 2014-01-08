@@ -1,8 +1,8 @@
 package spms.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,29 +27,23 @@ public class MemberUpdateServlet extends HttpServlet {
 		member.setTel( request.getParameter("tel") );
 		member.setAge( Integer.parseInt(request.getParameter("age")) );
 		
-		response.setContentType("text/html;charset=UTF-8");
-	  PrintWriter out = response.getWriter();
-	  
-	  out.println("<!DOCTYPE html>");
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<meta charset='UTF-8'>");
-		out.println("<meta http-equiv='Refresh' content='5;url=list'>");
-		out.println("<title>회원변경</title>");
-		out.println("</head>");
-		out.println("<body>");
-	  
 	  try {
 		  MemberDao memberDao = new MemberDao();
-			memberDao.update(member);
-			out.println("변경 성공입니다.");
+			int count = memberDao.update(member);
+			if (count > 0) {
+				request.setAttribute("message", "변경 성공입니다!");
+			} else {
+				request.setAttribute("message", "해당 번호의 회원 정보를 찾을 수 없습니다!");
+			}
+			
+			RequestDispatcher rd = request.getRequestDispatcher(
+					"update.jsp");
+			rd.forward(request, response);
+			
 	  } catch (Exception e) {
 	  		e.printStackTrace();
-	  		out.println("실행 중 오류발생!");
 	  }
 	  
-	  out.println("</body>");
-		out.println("</html>");
 	}
 }
 

@@ -9,7 +9,7 @@
 <%@ page import="java.sql.Connection" %>
 <%-- JSP 주석 : 무시한다. --%>
 <!-- HTML 주석 : 출력문으로 만든다. -->  
-<%-- 1) Template Date
+<%-- 1) Template Data
 . 그냥 작성한 텍스트
 . 나중에 자바 출력문으로 만들어짐 
  --%>  
