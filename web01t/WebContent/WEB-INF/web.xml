@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>web01</display-name>
+  <!-- 필터 선언 -->
+  <filter>
+    <filter-name>CharEncodingFilter</filter-name>
+    <filter-class>spms.filters.CharEncodingFilter</filter-class>
+  </filter>
   
+  <!-- 필터 URL 매핑 : 어느 URL에 대해 필터를 적용할 지 설정함 -->
+  <filter-mapping>
+    <filter-name>CharEncodingFilter</filter-name>
+    <url-pattern>*</url-pattern>
+  </filter-mapping>
+   
   <!-- 서블릿 클래스를 선언 -->
   <servlet>
     <servlet-name>Hello Servlet</servlet-name> <!-- 서블릿 별명 -->

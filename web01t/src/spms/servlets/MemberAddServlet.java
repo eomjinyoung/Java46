@@ -20,6 +20,13 @@ public class MemberAddServlet extends HttpServlet {
 	protected void doPost(
 			HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
+  	
+  		// getParameter()를 호출하기 전에 문자셋을 알려줘야 한다.
+  		// 단 한 번이라도 getParameter()를 호출하면 무시된다.
+  	  // POST 방식으로 전송된 다국어 문자에 대해서만 적용됨.
+  		// GET 방식은 서버의 설정에 따른다.
+  		//request.setCharacterEncoding("UTF-8"); // 필터로 대체
+  	
 		Member member = new Member();
 		member.setName( request.getParameter("name") );
 		member.setEmail( request.getParameter("email") );

@@ -20,6 +20,8 @@ public class MemberUpdateServlet extends HttpServlet {
 	public void doPost(
 			HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
+		//request.setCharacterEncoding("UTF-8"); // 필터로 대체
+		
 		Member member = new Member();
 		member.setNo( Integer.parseInt(request.getParameter("no")) );
 		member.setName( request.getParameter("name") );
