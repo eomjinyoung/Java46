@@ -35,7 +35,7 @@ for(Member m : members) {
 </table>
 </body>
 </html>
-    
+<% System.out.println("list.jsp: _jspService()"); %>    
     
     
     

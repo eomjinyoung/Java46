@@ -19,6 +19,7 @@ public class MemberListServlet extends HttpServlet {
 	public void doGet(
 			HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
+		System.out.println("MemberListServlet: doGet()");
 	  try {
 		  MemberDao memberDao = new MemberDao();
 			ArrayList<Member> members = memberDao.selectList();
