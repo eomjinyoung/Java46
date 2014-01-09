@@ -19,6 +19,7 @@
 <th>나이</th>
 <th>전화</th>
 </tr>
+
 <% //Scriptlet 엘리먼트 
 ArrayList<Member> members = 
   (ArrayList<Member>) request.getAttribute("members");
