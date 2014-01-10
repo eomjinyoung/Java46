@@ -12,7 +12,7 @@
 <body>
 
 <h1>fmt:parseDate 태그 - java.util.Date 객체 생성</h1>
-<c:set var="startDate" value="1-13-2014"/>
+<c:set var="startDate" value="1"/>
 <fmt:parseDate var="d1" value="${startDate}" pattern="MM-dd-yyyy" />
 ${d1}<br>
 <fmt:formatDate value="${d1}" pattern="yyyy/MM/dd"/><br>
