@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Refresh" content="5;login.html">
+<meta http-equiv="Refresh" content="1;login.html">
 <title>로그인 결과</title>
 </head>
 <body>
