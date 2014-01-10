@@ -34,4 +34,20 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!--  
+  <jsp-config>
+    <taglib>
+      <taglib-uri>/BitTagLibrary</taglib-uri>
+      <taglib-location>/WEB-INF/tags/bit.tld</taglib-location>
+    </taglib>
+  </jsp-config>
+  -->
+  
+  
+  
 </web-app>
+
+
+
+
