@@ -33,6 +33,12 @@ ALTER TABLE `MEMBERS`
       `MNO` -- 회원번호
     );
 
+-- 회원정보 유니크 인덱스
+CREATE UNIQUE INDEX `UIX_MEMBERS`
+  ON `MEMBERS` ( -- 회원정보
+    `EMAIL` ASC -- 이메일
+  );
+  
 ALTER TABLE `MEMBERS`
   MODIFY COLUMN `MNO` INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원번호';
 
