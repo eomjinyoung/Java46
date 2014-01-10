@@ -69,36 +69,41 @@ public class Member implements Serializable {
 	public int getNo() {
 		return no;
 	}
-	public void setNo(int no) {
+	public Member setNo(int no) {
 		this.no = no;
+		return this;
 	}
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public Member setName(String name) {
 		this.name = name;
+		return this;
 	}
 	public int getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public Member setAge(int age) {
 		if(age > 7 && age < 101) {
 			this.age = age;
 		} else { 
 			this.age = 20;
 		}
+		return this;
 	}
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
+	public Member setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 	public String getTel() {
 		return tel;
 	}
-	public void setTel(String tel) {
+	public Member setTel(String tel) {
 		this.tel = tel;
+		return this;
 	}
 	
 
