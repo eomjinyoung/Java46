@@ -30,9 +30,12 @@ public class MemberDeleteServlet extends HttpServlet {
 				request.setAttribute("message", "해당 번호의 회원 정보가 없습니다!");
 			}
 			
-			RequestDispatcher rd = request.getRequestDispatcher(
-					"delete.jsp");
+			response.setHeader("Refresh", "1;url=list");
+			request.setAttribute("pageTitle", "회원 삭제");
+			request.setAttribute("contentPage", "/member/delete.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/template.jsp");
 			rd.forward(request, response);
+			
 	  } catch (Exception e) {
 	  		e.printStackTrace();
 	  		request.setAttribute("error", e);

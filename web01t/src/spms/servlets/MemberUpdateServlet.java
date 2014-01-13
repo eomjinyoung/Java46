@@ -38,8 +38,10 @@ public class MemberUpdateServlet extends HttpServlet {
 				request.setAttribute("message", "해당 번호의 회원 정보를 찾을 수 없습니다!");
 			}
 			
-			RequestDispatcher rd = request.getRequestDispatcher(
-					"update.jsp");
+			response.setHeader("Refresh", "1;url=list");
+			request.setAttribute("pageTitle", "회원 변경");
+			request.setAttribute("contentPage", "/member/update.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/template.jsp");
 			rd.forward(request, response);
 			
 	  } catch (Exception e) {

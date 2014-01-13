@@ -30,8 +30,11 @@ public class MemberListServlet extends HttpServlet {
 			request.setAttribute("members", members);
 			
 			// 데이터 출력을 JSP에게 맡긴다.
-			RequestDispatcher rd = request.getRequestDispatcher("list.jsp");
+			request.setAttribute("pageTitle", "회원 목록");
+			request.setAttribute("contentPage", "/member/list.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/template.jsp");
 			rd.forward(request, response);
+			
 	  } catch (Exception e) {
 	  		e.printStackTrace();
 	  		request.setAttribute("error", e);

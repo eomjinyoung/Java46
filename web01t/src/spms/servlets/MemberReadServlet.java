@@ -27,8 +27,9 @@ public class MemberReadServlet extends HttpServlet {
 			
 			request.setAttribute("member", member);
 			
-			RequestDispatcher rd = request.getRequestDispatcher(
-					"updateForm.jsp");
+			request.setAttribute("pageTitle", "회원 정보");
+			request.setAttribute("contentPage", "/member/updateForm.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/template.jsp");
 			rd.forward(request, response);
 			
 	  } catch (Exception e) {

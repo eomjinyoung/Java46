@@ -42,8 +42,10 @@ public class MemberAddServlet extends HttpServlet {
 				request.setAttribute("message", "등록 실패입니다!");
 			}
 			
-			RequestDispatcher rd = request.getRequestDispatcher(
-					"add.jsp");
+			response.setHeader("Refresh", "1;url=list");
+			request.setAttribute("pageTitle", "회원 등록");
+			request.setAttribute("contentPage", "/member/add.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/template.jsp");
 			rd.forward(request, response);
 			
 	  } catch (Exception e) {
