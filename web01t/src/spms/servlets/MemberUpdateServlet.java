@@ -30,7 +30,8 @@ public class MemberUpdateServlet extends HttpServlet {
 		member.setAge( Integer.parseInt(request.getParameter("age")) );
 		
 	  try {
-		  MemberDao memberDao = new MemberDao();
+	  		MemberDao memberDao = (MemberDao)this.getServletContext()
+	  			.getAttribute("memberDao");
 			int count = memberDao.update(member);
 			if (count > 0) {
 				request.setAttribute("message", "변경 성공입니다!");

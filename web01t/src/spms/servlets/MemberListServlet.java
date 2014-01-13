@@ -23,7 +23,8 @@ public class MemberListServlet extends HttpServlet {
 	    throws ServletException, IOException {
 		System.out.println("MemberListServlet: doGet()");
 	  try {
-		  MemberDao memberDao = new MemberDao();
+		  MemberDao memberDao = (MemberDao)this.getServletContext()
+		  			.getAttribute("memberDao");
 			ArrayList<Member> members = memberDao.selectList();
 			
 			// JSP에 데이터를 넘기기 

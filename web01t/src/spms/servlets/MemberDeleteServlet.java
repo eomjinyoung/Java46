@@ -22,7 +22,8 @@ public class MemberDeleteServlet extends HttpServlet {
 		int no = Integer.parseInt( request.getParameter("no") );
 		
 	  try {
-		  MemberDao memberDao = new MemberDao();
+	  		MemberDao memberDao = (MemberDao)this.getServletContext()
+	  			.getAttribute("memberDao");
 			int count = memberDao.delete(no);
 			if (count > 0) {
 				request.setAttribute("message", "삭제 성공입니다.");

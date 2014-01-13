@@ -22,7 +22,8 @@ public class MemberReadServlet extends HttpServlet {
 	    throws ServletException, IOException {
 		int no = Integer.parseInt( request.getParameter("no") );
 	  try {
-		  MemberDao memberDao = new MemberDao();
+	  		MemberDao memberDao = (MemberDao)this.getServletContext()
+	  			.getAttribute("memberDao");
 			Member member = memberDao.selectOne(no);
 			
 			request.setAttribute("member", member);

@@ -22,6 +22,12 @@
   
    
   <!-- 서블릿 클래스를 선언 -->
+  <!-- load-on-startup 은 웹 애플리케이션을 시작할 때 서블릿을 자동 생성하게 만듦. -->
+  <servlet>
+    <servlet-name>AppInitServlet</servlet-name>
+    <servlet-class>spms.servlets.AppInitServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
   
   <!-- 서블릿에 대해 URL 부여 => 웹 브라우저에서 요청할 수 있다. => URL mapping -->
   
