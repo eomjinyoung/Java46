@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원 등록</title>
+</head>
+<body>
+<div style="border:1px red solid;background-color:lightgray;">
+SPMS
+<a href="member/list">회원</a>
+<a href="project/list">프로젝트</a>
+<a href="task/list">작업</a>
+<a href="#">${member.name}</a>
+<a href="auth/logout">[로그아웃]</a>
+</div>
+
+<h1>회원등록폼</h1>
+<form action="add" method="post">
+이름: <input type="text" name="name"><br>
+이메일: <input type="text" name="email"><br>
+전화: <input type="tel" name="tel"><br>
+나이: <input type="text" name="age"><br>
+<input type="submit" value="등록">
+</form>
+
+<div style="border:1px blue dotted;background-color:LightCyan;">
+이 애플리케이션의 모든 권리는 Java46기에 있습니다.@Java46, 2014
+</div>
+
+</body>
+</html>

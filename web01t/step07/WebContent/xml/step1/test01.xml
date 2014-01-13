@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+a &lt; b
+  <book hard-cover="yes">
+    <title><![CDATA[a < b보다 <b>작은 이유?]]></title>
+    <_author><!-- dkdkdk -->오호라.</_author>
+    <출판사></출판사>
+    <price.ok></price.ok>
+    <price-ok></price-ok>
+    <price2ok></price2ok>
+    <Price></Price>
+  </book>
+</books>
