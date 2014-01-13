@@ -17,7 +17,7 @@ public class LogoutServlet extends HttpServlet {
   			HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
   		request.getSession().invalidate(); //HttpSession 객체 제거 및 새로 생성
-  		response.sendRedirect("login.html");
+  		response.sendRedirect("login");
   }
 }
 
