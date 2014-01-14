@@ -11,8 +11,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.sql.DataSource;
 
+import spms.controls.MemberAddControl;
+import spms.controls.MemberDeleteControl;
 import spms.controls.MemberListControl;
 import spms.controls.MemberReadControl;
+import spms.controls.MemberUpdateControl;
 import spms.dao.MemberDao;
 
 // 웹애플리케이션이 시작될 때 서블릿이 사용할 객체들을 준비
@@ -40,6 +43,15 @@ public class AppInitServlet extends GenericServlet {
 	  	  
 	  	  this.getServletContext().setAttribute("/member/read.do", 
 	  	  		new MemberReadControl().setMemberDao(memberDao));
+	  	  
+	  	  this.getServletContext().setAttribute("/member/add.do", 
+	  	  		new MemberAddControl().setMemberDao(memberDao));
+	  	  
+	  	  this.getServletContext().setAttribute("/member/update.do", 
+	  	  		new MemberUpdateControl().setMemberDao(memberDao));
+	  	  
+	  	  this.getServletContext().setAttribute("/member/delete.do", 
+	  	  		new MemberDeleteControl().setMemberDao(memberDao));
 	  	  
 	  } catch (Exception e) {
 	  		e.printStackTrace();

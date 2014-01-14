@@ -41,6 +41,11 @@ public class DispatcherServlet extends HttpServlet {
 			
 			String contentPage = pageControl.execute(paramMap, resultMap);
 			
+			String refresh = (String)resultMap.get("Refresh");
+			if (refresh != null) {
+				response.setHeader("Refresh", refresh);
+			}
+			
 			copyFromResultMapToServletRequest(resultMap, request);
 			
 			request.setAttribute("contentPage", contentPage);
