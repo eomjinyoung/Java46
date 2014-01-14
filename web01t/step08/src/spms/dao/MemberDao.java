@@ -9,13 +9,10 @@ import spms.util.DBConnectionPool;
 import spms.vo.Member;
 
 public class MemberDao {
-	DBConnectionPool dbPool; // 의존 객체(dependencies)
-	
-	public void setDBConnectionPool(DBConnectionPool dbPool) {
-		this.dbPool = dbPool;
-	}
 	
 	public ArrayList<Member> selectList() throws Exception {
+		DBConnectionPool dbPool = DBConnectionPool.getInstance();
+		
 		ArrayList<Member> list = new ArrayList<Member>();
 		Connection conn = null;
 		Statement stmt = null;
@@ -53,6 +50,8 @@ public class MemberDao {
 	}
 	
 	public Member selectOne(int no) throws Exception {
+		DBConnectionPool dbPool = DBConnectionPool.getInstance();
+		
 		Member member = null;
 		Connection conn = null;
 		Statement stmt = null;
@@ -88,6 +87,8 @@ public class MemberDao {
 	}
 	
 	public int insert(Member member) throws Exception {
+		DBConnectionPool dbPool = DBConnectionPool.getInstance();
+		
 		int count = 0;
 		Connection conn = null;
 		Statement stmt = null;
@@ -115,6 +116,8 @@ public class MemberDao {
 	}
 	
 	public int update(Member member) throws Exception {
+		DBConnectionPool dbPool = DBConnectionPool.getInstance();
+		
 		int count = 0;
 		Connection conn = null;
 		Statement stmt = null;
@@ -142,6 +145,8 @@ public class MemberDao {
 	}
 	
 	public int delete(int no) throws Exception {
+		DBConnectionPool dbPool = DBConnectionPool.getInstance();
+		
 		int count = 0;
 		Connection conn = null;
 		Statement stmt = null;
@@ -166,6 +171,8 @@ public class MemberDao {
 	
 	public Member selectByEmailPassword(String email, String password) 
 			throws Exception {
+		DBConnectionPool dbPool = DBConnectionPool.getInstance();
+		
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
