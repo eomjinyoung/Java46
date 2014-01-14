@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+1) customer의 네임스페이스 이름: http://java46.bitacademy.net/customer
+2) book의 네임스페이스 이름: http://java46.bitacademy.net/book
+ -->
+<order 
+  xmlns:c="http://java46.bitacademy.net/customer"
+  xmlns:b="http://java46.bitacademy.net/book">
+  <c:customer>
+    <c:title>홍길동</c:title>
+    <c:email>ttt@test.com</c:email>
+    <c:tel>111-1111</c:tel>
+  </c:customer>
+  <b:book>
+    <b:title>이것이 태그의 중복인가?</b:title>
+    <b:page>200</b:page>
+    <b:price>20000</b:price>
+  </b:book>
+</order>
