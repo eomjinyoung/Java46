@@ -1,6 +1,7 @@
 package spms.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -60,16 +61,17 @@ public class MemberDao {
 	public Member selectOne(int no) throws Exception {
 		Member member = null;
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
 		try {
 			conn = ds.getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(
+			stmt = conn.prepareStatement(
 					"select MNO,MNAME,EMAIL,TEL,AGE "
 					+ " from MEMBERS"
-					+ " where MNO=" + no);
+					+ " where MNO=?");
+			stmt.setInt(1, no);
+			rs = stmt.executeQuery();
 			
 			if(rs.next()) {
 				member = new Member();
@@ -95,18 +97,17 @@ public class MemberDao {
 	public int insert(Member member) throws Exception {
 		int count = 0;
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		
 		try {
 			conn = ds.getConnection();
-			stmt = conn.createStatement();
-			count = stmt.executeUpdate(
-					"INSERT INTO MEMBERS(MNAME,EMAIL,TEL,AGE)"
-					+ " VALUES('" + member.getName()
-					+ "','" + member.getEmail()
-					+ "','" + member.getTel()
-					+ "'," + member.getAge()
-					+ ")");
+			stmt = conn.prepareStatement(
+					"INSERT INTO MEMBERS(MNAME,EMAIL,TEL,AGE) VALUES(?,?,?,?)");
+			stmt.setString(1, member.getName());
+			stmt.setString(2, member.getEmail());
+			stmt.setString(3, member.getTel());
+			stmt.setInt(4, member.getAge());
+			count = stmt.executeUpdate();		
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,19 +123,19 @@ public class MemberDao {
 	public int update(Member member) throws Exception {
 		int count = 0;
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		
 		try {
 			conn = ds.getConnection();
-			stmt = conn.createStatement();
-			count = stmt.executeUpdate(
-					"update MEMBERS set "
-					+ " MNAME='" + member.getName() + "',"
-					+ " EMAIL='" + member.getEmail() + "',"
-					+ " TEL='" + member.getTel() + "',"
-					+ " AGE=" + member.getAge()
-					+ " where MNO=" + member.getNo());
-		
+			stmt = conn.prepareStatement(
+					"update MEMBERS set MNAME=?,EMAIL=?,TEL=?,AGE=? where MNO=?");
+			stmt.setString(1, member.getName());
+			stmt.setString(2, member.getEmail());
+			stmt.setString(3, member.getTel());
+			stmt.setInt(4, member.getAge());
+			stmt.setInt(5, member.getNo());
+			count = stmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -172,16 +173,18 @@ public class MemberDao {
 	public Member selectByEmailPassword(String email, String password) 
 			throws Exception {
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
 		try {
 			conn = ds.getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(
+			stmt = conn.prepareStatement(
 					"select MNO,MNAME,EMAIL"
 					+ " from MEMBERS"
-					+ " where EMAIL='" + email + "' and PWD='" + password + "'");
+					+ " where EMAIL=? and PWD=?");
+			stmt.setString(1, email);
+			stmt.setString(2, password);
+			rs = stmt.executeQuery();
 			
 			if(rs.next()) {
 				return new Member()
