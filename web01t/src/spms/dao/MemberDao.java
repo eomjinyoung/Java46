@@ -1,27 +1,25 @@
 package spms.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import spms.util.DBConnectionPool;
 import spms.vo.Member;
 
 public class MemberDao {
 	
 	public ArrayList<Member> selectList() throws Exception {
+		DBConnectionPool dbPool = DBConnectionPool.getInstance();
+		
 		ArrayList<Member> list = new ArrayList<Member>();
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost/spmsdb?"
-					+ "useUnicode=true&characterEncoding=UTF8", 
-					"spms", "spms");
+			conn = dbPool.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(
 					"select MNO,MNAME,EMAIL,TEL,AGE from MEMBERS");
@@ -45,24 +43,22 @@ public class MemberDao {
 		} finally {
 			try {if(rs != null) rs.close();} catch (Exception e) {}
 			try {if(stmt != null) stmt.close();} catch (Exception e) {}
-			try {if(conn != null) conn.close();} catch (Exception e) {}
+			dbPool.returnConnection(conn);
 		}
 		
 		return list;
 	}
 	
 	public Member selectOne(int no) throws Exception {
+		DBConnectionPool dbPool = DBConnectionPool.getInstance();
+		
 		Member member = null;
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost/spmsdb?"
-					+ "useUnicode=true&characterEncoding=UTF8", 
-					"spms", "spms");
+			conn = dbPool.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(
 					"select MNO,MNAME,EMAIL,TEL,AGE "
@@ -85,22 +81,20 @@ public class MemberDao {
 		} finally {
 			try {if(rs != null) rs.close();} catch (Exception e) {}
 			try {if(stmt != null) stmt.close();} catch (Exception e) {}
-			try {if(conn != null) conn.close();} catch (Exception e) {}
+			dbPool.returnConnection(conn);
 		}	
 		return member;
 	}
 	
 	public int insert(Member member) throws Exception {
+		DBConnectionPool dbPool = DBConnectionPool.getInstance();
+		
 		int count = 0;
 		Connection conn = null;
 		Statement stmt = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost/spmsdb?"
-					+ "useUnicode=true&characterEncoding=UTF8", 
-					"spms", "spms");
+			conn = dbPool.getConnection();
 			stmt = conn.createStatement();
 			count = stmt.executeUpdate(
 					"INSERT INTO MEMBERS(MNAME,EMAIL,TEL,AGE)"
@@ -116,22 +110,20 @@ public class MemberDao {
 			
 		} finally {
 			try {stmt.close();} catch (Exception e) {}
-			try {conn.close();} catch (Exception e) {}
+			dbPool.returnConnection(conn);
 		}
 		return count;
 	}
 	
 	public int update(Member member) throws Exception {
+		DBConnectionPool dbPool = DBConnectionPool.getInstance();
+		
 		int count = 0;
 		Connection conn = null;
 		Statement stmt = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost/spmsdb?"
-					+ "useUnicode=true&characterEncoding=UTF8", 
-					"spms", "spms");
+			conn = dbPool.getConnection();
 			stmt = conn.createStatement();
 			count = stmt.executeUpdate(
 					"update MEMBERS set "
@@ -147,22 +139,20 @@ public class MemberDao {
 			
 		} finally {
 			try {stmt.close();} catch (Exception e) {}
-			try {conn.close();} catch (Exception e) {}
+			dbPool.returnConnection(conn);
 		}		
 		return count;
 	}
 	
 	public int delete(int no) throws Exception {
+		DBConnectionPool dbPool = DBConnectionPool.getInstance();
+		
 		int count = 0;
 		Connection conn = null;
 		Statement stmt = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost/spmsdb?"
-					+ "useUnicode=true&characterEncoding=UTF8", 
-					"spms", "spms");
+			conn = dbPool.getConnection();
 			stmt = conn.createStatement();
 			count = stmt.executeUpdate(
 					"delete from MEMBERS "
@@ -174,23 +164,21 @@ public class MemberDao {
 			
 		} finally {
 			try {stmt.close();} catch (Exception e) {}
-			try {conn.close();} catch (Exception e) {}
+			dbPool.returnConnection(conn);
 		}		
 		return count;
 	}
 	
 	public Member selectByEmailPassword(String email, String password) 
 			throws Exception {
+		DBConnectionPool dbPool = DBConnectionPool.getInstance();
+		
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost/spmsdb?"
-					+ "useUnicode=true&characterEncoding=UTF8", 
-					"spms", "spms");
+			conn = dbPool.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(
 					"select MNO,MNAME,EMAIL"
@@ -211,7 +199,7 @@ public class MemberDao {
 		} finally {
 			try {if(rs != null) rs.close();} catch (Exception e) {}
 			try {if(stmt != null) stmt.close();} catch (Exception e) {}
-			try {if(conn != null) conn.close();} catch (Exception e) {}
+			dbPool.returnConnection(conn);
 		}	
 		return null;
 	}

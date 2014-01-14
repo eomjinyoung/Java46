@@ -9,6 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import spms.dao.MemberDao;
+import spms.util.DBConnectionPool;
 
 // 웹애플리케이션이 시작될 때 서블릿이 사용할 객체들을 준비
 public class AppInitServlet extends GenericServlet {
@@ -19,6 +20,15 @@ public class AppInitServlet extends GenericServlet {
 	  super.init(config);
 	  
 	  System.out.println("AppInitServlet.init()");
+	  try {
+	  		DBConnectionPool dbPool = DBConnectionPool.prepareInstance(
+				"com.mysql.jdbc.Driver", 
+				"jdbc:mysql://localhost/spmsdb?"
+						+ "useUnicode=true&characterEncoding=UTF8", 
+				"spms", "spms");
+	  } catch (Exception e) {
+	  		e.printStackTrace();
+	  }
 	  
 	  MemberDao memberDao = new MemberDao();
 	  this.getServletContext().setAttribute("memberDao", memberDao);

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 
+//1. Singleton 패턴 적용
+//- 인스턴스를 오로지 한 개만 생성하게 만듦.
 public class DBConnectionPool {
 	ArrayList<Connection> list = new ArrayList<Connection>();
 	
@@ -12,7 +14,24 @@ public class DBConnectionPool {
 	String username;
 	String password;
 	
-	public DBConnectionPool(String driver, String url,
+	static DBConnectionPool instance;
+	
+	public static DBConnectionPool prepareInstance(String driver, String url,
+			String username, String password) throws Exception {
+		if (instance == null) {
+			instance = new DBConnectionPool(driver, url, username, password);
+		}
+		return instance;
+	}
+	
+	public static DBConnectionPool getInstance() {
+		if (instance != null) {
+			return instance;
+		}
+		return null;
+	}
+	
+	private DBConnectionPool(String driver, String url,
 			String username, String password) throws Exception {
 		this.driver = driver;
 		this.url = url;
@@ -32,7 +51,11 @@ public class DBConnectionPool {
 	}
 	
 	public void returnConnection(Connection con) {
-		list.add(con);
+		try {
+			if (con != null && !con.isClosed()) {
+				list.add(con);
+			}
+		} catch (Exception e) {}
 	}
 	
 	public void closeAll() {
