@@ -14,7 +14,7 @@
 <c:forEach var="m" items="${members}">
 <tr>
 <td>${m.no}</td>
-<td><a href='read.do?no=${m.no}'>${m.name}</a></td>
+<td><a href='read?no=${m.no}'>${m.name}</a></td>
 <td>${m.email}</td>
 <td>${m.age}</td>
 <td>${m.tel}</td>

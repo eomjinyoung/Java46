@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT books   (book*)>
+<!ELEMENT book    (title,press,page,price,(in|out)?,author+)>
+<!ELEMENT title   (#PCDATA)>
+<!ELEMENT press   (#PCDATA)>
+<!ELEMENT page    (#PCDATA)>
+<!ELEMENT price   (#PCDATA)>
+<!ELEMENT in      EMPTY>
+<!ELEMENT out     EMPTY>
+<!ELEMENT author  (#PCDATA)>
+
+<!ATTLIST books
+  version     CDATA     #FIXED "1.0">
+
+<!ATTLIST book
+  hardcover   (yes|no)  "no"
+  isbn        ID        #REQUIRED>
+  
+<!ATTLIST author
+  no          ID        #REQUIRED
+  email       CDATA     #REQUIRED
+  tel         CDATA     #IMPLIED>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
