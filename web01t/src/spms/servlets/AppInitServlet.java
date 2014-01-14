@@ -15,23 +15,36 @@ import spms.util.DBConnectionPool;
 public class AppInitServlet extends GenericServlet {
   private static final long serialVersionUID = 1L;
 
+  DBConnectionPool dbPool;
+  
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 	  super.init(config);
 	  
 	  System.out.println("AppInitServlet.init()");
 	  try {
-	  		DBConnectionPool dbPool = DBConnectionPool.prepareInstance(
+	  		dbPool = new DBConnectionPool(
 				"com.mysql.jdbc.Driver", 
 				"jdbc:mysql://localhost/spmsdb?"
 						+ "useUnicode=true&characterEncoding=UTF8", 
 				"spms", "spms");
+	  		
+	  		MemberDao memberDao = new MemberDao();
+	  	  memberDao.setDBConnectionPool(dbPool); // dbPool 주입
+	  	  
+	  	  this.getServletContext().setAttribute("memberDao", memberDao);
+	  	  
 	  } catch (Exception e) {
 	  		e.printStackTrace();
 	  }
-	  
-	  MemberDao memberDao = new MemberDao();
-	  this.getServletContext().setAttribute("memberDao", memberDao);
+	}
+	
+	@Override
+	public void destroy() {
+		super.destroy();
+		
+		System.out.println("AppInitServlet.destroy()");
+		dbPool.closeAll();
 	}
 
 	@Override
@@ -41,3 +54,8 @@ public class AppInitServlet extends GenericServlet {
 	}
 
 }
+
+
+
+
+
