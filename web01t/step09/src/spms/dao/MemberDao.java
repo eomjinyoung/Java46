@@ -5,15 +5,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.sql.DataSource;
-
+import spms.util.DBConnectionPool;
 import spms.vo.Member;
 
 public class MemberDao {
-	DataSource ds; // 의존 객체(dependencies)
+	DBConnectionPool dbPool; // 의존 객체(dependencies)
 	
-	public void setDataSource(DataSource ds) {
-		this.ds = ds;
+	public void setDBConnectionPool(DBConnectionPool dbPool) {
+		this.dbPool = dbPool;
 	}
 	
 	public ArrayList<Member> selectList() throws Exception {
@@ -23,7 +22,7 @@ public class MemberDao {
 		ResultSet rs = null;
 		
 		try {
-			conn = ds.getConnection();
+			conn = dbPool.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(
 					"select MNO,MNAME,EMAIL,TEL,AGE from MEMBERS");
@@ -47,11 +46,7 @@ public class MemberDao {
 		} finally {
 			try {if(rs != null) rs.close();} catch (Exception e) {}
 			try {if(stmt != null) stmt.close();} catch (Exception e) {}
-			//DataSource가 리턴해준 Connection 객체는 
-			//DriverManager가 리턴한 객체를 한 번 더 포장하였다.
-			//그래서 close() 메서드는 DB와의 연결을 끊는 것이 아니라 
-			//Connection Pool에 반환하는 일을 한다.
-			try {if(conn != null) conn.close();} catch (Exception e) {}
+			dbPool.returnConnection(conn);
 		}
 		
 		return list;
@@ -64,7 +59,7 @@ public class MemberDao {
 		ResultSet rs = null;
 		
 		try {
-			conn = ds.getConnection();
+			conn = dbPool.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(
 					"select MNO,MNAME,EMAIL,TEL,AGE "
@@ -87,7 +82,7 @@ public class MemberDao {
 		} finally {
 			try {if(rs != null) rs.close();} catch (Exception e) {}
 			try {if(stmt != null) stmt.close();} catch (Exception e) {}
-			try {if(conn != null) conn.close();} catch (Exception e) {}
+			dbPool.returnConnection(conn);
 		}	
 		return member;
 	}
@@ -98,7 +93,7 @@ public class MemberDao {
 		Statement stmt = null;
 		
 		try {
-			conn = ds.getConnection();
+			conn = dbPool.getConnection();
 			stmt = conn.createStatement();
 			count = stmt.executeUpdate(
 					"INSERT INTO MEMBERS(MNAME,EMAIL,TEL,AGE)"
@@ -114,7 +109,7 @@ public class MemberDao {
 			
 		} finally {
 			try {stmt.close();} catch (Exception e) {}
-			try {if(conn != null) conn.close();} catch (Exception e) {}
+			dbPool.returnConnection(conn);
 		}
 		return count;
 	}
@@ -125,7 +120,7 @@ public class MemberDao {
 		Statement stmt = null;
 		
 		try {
-			conn = ds.getConnection();
+			conn = dbPool.getConnection();
 			stmt = conn.createStatement();
 			count = stmt.executeUpdate(
 					"update MEMBERS set "
@@ -141,7 +136,7 @@ public class MemberDao {
 			
 		} finally {
 			try {stmt.close();} catch (Exception e) {}
-			try {if(conn != null) conn.close();} catch (Exception e) {}
+			dbPool.returnConnection(conn);
 		}		
 		return count;
 	}
@@ -152,7 +147,7 @@ public class MemberDao {
 		Statement stmt = null;
 		
 		try {
-			conn = ds.getConnection();
+			conn = dbPool.getConnection();
 			stmt = conn.createStatement();
 			count = stmt.executeUpdate(
 					"delete from MEMBERS "
@@ -164,7 +159,7 @@ public class MemberDao {
 			
 		} finally {
 			try {stmt.close();} catch (Exception e) {}
-			try {if(conn != null) conn.close();} catch (Exception e) {}
+			dbPool.returnConnection(conn);
 		}		
 		return count;
 	}
@@ -176,7 +171,7 @@ public class MemberDao {
 		ResultSet rs = null;
 		
 		try {
-			conn = ds.getConnection();
+			conn = dbPool.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(
 					"select MNO,MNAME,EMAIL"
@@ -197,7 +192,7 @@ public class MemberDao {
 		} finally {
 			try {if(rs != null) rs.close();} catch (Exception e) {}
 			try {if(stmt != null) stmt.close();} catch (Exception e) {}
-			try {if(conn != null) conn.close();} catch (Exception e) {}
+			dbPool.returnConnection(conn);
 		}	
 		return null;
 	}
