@@ -2,9 +2,11 @@ package spms.controls;
 
 import java.util.Map;
 
+import spms.annotations.Component;
 import spms.dao.MemberDao;
 import spms.vo.Member;
 
+@Component("/member/read.do")
 public class MemberReadControl implements PageControl {
 	MemberDao memberDao;
 	

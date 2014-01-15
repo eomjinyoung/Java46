@@ -2,7 +2,12 @@ package spms.test.annotation;
 
 import java.lang.annotation.Annotation;
 
-@Component(value="오호라")
+
+//@Component("오호라") // value 속성 이름은 생략 가능(단, value 값만 설정할 때)
+//@Component(value="오호라",name="nono",no=3)
+//@Component(value="오호라",no=3,nicknames="우뢰매") // 배열에 값을 한 개 넣을 때는 그냥 문자열 작성 가능
+//@Component(value="오호라",no=3,nicknames={"우뢰매"})
+@Component(value="오호라",no=3,nicknames={"우뢰매","독수리1호"})
 class MyClass {} 
 
 public class AnnotationTest {
@@ -30,7 +35,11 @@ public class AnnotationTest {
 		Component compAnno = (Component)c.getAnnotation(Component.class);
 		System.out.println(compAnno.name());
 		System.out.println(compAnno.value());
-		
+		System.out.println(compAnno.no());
+		System.out.println(compAnno.count());
+		for (String n : compAnno.nicknames()) {
+			System.out.println(n);
+		}
 	}
 
 }

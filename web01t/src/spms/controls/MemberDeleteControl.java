@@ -2,8 +2,10 @@ package spms.controls;
 
 import java.util.Map;
 
+import spms.annotations.Component;
 import spms.dao.MemberDao;
 
+@Component("/member/delete.do")
 public class MemberDeleteControl implements PageControl {
 	MemberDao memberDao;
 	

@@ -15,11 +15,11 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Component {
-	String name() default "okok";
+	String name() default "N/A";
 	String value();
-	//int no();
-	//int count() default 1;
-	//String[] nicknames();
+	int no();
+	int count() default 1;
+	String[] nicknames();
 }
 
 

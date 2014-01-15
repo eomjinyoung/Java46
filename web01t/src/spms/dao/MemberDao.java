@@ -8,8 +8,10 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import spms.annotations.Component;
 import spms.vo.Member;
 
+@Component
 public class MemberDao {
 	DataSource ds; // 의존 객체(dependencies)
 	
