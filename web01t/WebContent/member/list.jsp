@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <h1>회원 목록</h1>
-<a href='NewMember.html'>[새회원]</a><br>
+<a href='add.do'>[새회원]</a><br>
 <table border='1'>
 <tr>
 <th>번호</th>

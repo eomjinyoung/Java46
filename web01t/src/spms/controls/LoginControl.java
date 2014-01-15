@@ -15,12 +15,14 @@ public class LoginControl implements PageControl {
 		return this;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
   public String execute(Map<String, Object> paramMap,
       Map<String, Object> resultMap) throws Exception {
 		String email = (String)paramMap.get("email");
 		if (email == null) { //GET 요청
-			Map<String,String> cookieMap = (Map)paramMap.get("cookieMap");
+      Map<String,String> cookieMap = 
+					(Map<String,String>)paramMap.get("cookieMap");
 		  	for(String cookieName : cookieMap.keySet()) {
 	  			if (cookieName.equals("email")) {
 	  				resultMap.put("email", cookieMap.get(cookieName));
@@ -28,27 +30,32 @@ public class LoginControl implements PageControl {
 	  				break;
 	  			}
 	  		}
+		  	resultMap.put("pageTitle", "로그인");
 		  	return "/auth/login.jsp";
 		  	
 		} else { //POST 요청
 			String password = (String)paramMap.get("password");
 			String saveEmail = (String)paramMap.get("saveEmail");
-			/*
-	  		if (saveEmail != null) {
-	  			response.addCookie(new Cookie("email", email));
+
+			if (saveEmail != null) {
+	  			resultMap.put("cookie:email", email);
 	  		} else {
-	  			Cookie c = new Cookie("email", null);
-	  			c.setMaxAge(0); // 쿠키를 삭제하도록 설정
-	  			response.addCookie(c);
+	  			resultMap.put("cookie:email", "null,0");
 	  		}
-	  		*/
   		
 			Member member = memberDao.selectByEmailPassword(email, password);
+			resultMap.put("pageTitle", "로그인");
 			
 			if (member != null) {
 				resultMap.put("session:member", member);
-				return "redirect:../index.jsp";
+				return "redirect:" + 
+						(String)paramMap.get("contextPath") + 
+						"/main.do";
 			} else {
+				resultMap.put("Refresh", 
+						"1;url=" + 
+						(String)paramMap.get("contextPath") + 
+						"/auth/login.do");
 				return "/auth/loginFail.jsp";
 			}
 		}

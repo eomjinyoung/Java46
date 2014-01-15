@@ -22,56 +22,30 @@ public class DispatcherServlet extends HttpServlet {
 	protected void service(
 			HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-		/* 예) http://localhost:9999/web01/member/list.do?name=aaa&age=20
-		 * getServletPath() => /member/list.do
-		 * getContextPath() => /web01
-		 * getRequestURI() => /web01/member/list.do
-		 * getQueryString() => name=aaa&age=20
-		 */
 		try {
 			String servletPath = request.getServletPath();
+			
 			HashMap<String,Object> resultMap = new HashMap<String,Object>();
+			
 			HashMap<String,Object> paramMap = prepareParameterMap(request);
 			
-			HashMap<String,String> cookieMap = new HashMap<String,String>();
-			Cookie[] cookies = request.getCookies();
-  			if (cookies != null) {
-  				for(Cookie c : cookies) {
-  					cookieMap.put(c.getName(), c.getValue());
-  				}
-  			}
-  			paramMap.put("cookieMap", cookieMap);
+			paramMap.put("cookieMap", getCookieMap(request));
 			
-			PageControl pageControl = 
-					(PageControl)this.getServletContext().getAttribute(servletPath);
+			paramMap.put("contextPath", request.getContextPath());
 			
-			if (pageControl == null) {
-				throw new Exception("해당 서비스가 존재하지 않습니다.");
-			}
+			String contentPage = executePageController(
+					servletPath, paramMap, resultMap);
 			
-			String contentPage = pageControl.execute(paramMap, resultMap);
+			processRefresh(resultMap, response);
 			
-			String refresh = (String)resultMap.get("Refresh");
-			if (refresh != null) {
-				response.setHeader("Refresh", refresh);
-			}
+			processCookie(resultMap, response);
 			
-			for (String name : resultMap.keySet()) {
-				if (name.startsWith("session:")) {
-					request.getSession().setAttribute(
-							name.substring(8), resultMap.remove(name));
-				}
-			}
+			processSession(resultMap, request);
 			
 			copyFromResultMapToServletRequest(resultMap, request);
 			
-			if (contentPage.startsWith("redirect:")) {
-				response.sendRedirect( contentPage.substring(9) );
-			} else {
-				request.setAttribute("contentPage", contentPage);
-				RequestDispatcher rd = request.getRequestDispatcher("/template.jsp");
-				rd.forward(request, response);
-			}
+			processView(request, response, contentPage); 
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 	  		request.setAttribute("error", e);
@@ -80,6 +54,66 @@ public class DispatcherServlet extends HttpServlet {
 		}
 		
 	}
+
+	private String executePageController(String servletPath, 
+			HashMap<String, Object> paramMap, 
+			HashMap<String, Object> resultMap) throws Exception {
+		PageControl pageControl = 
+				(PageControl)this.getServletContext().getAttribute(servletPath);
+		
+		if (pageControl == null) {
+			throw new Exception("해당 서비스가 존재하지 않습니다.");
+		}
+		
+		return pageControl.execute(paramMap, resultMap);
+  }
+
+	private void processView(HttpServletRequest request,
+      HttpServletResponse response, String contentPage) throws Exception {
+		if (contentPage.startsWith("redirect:")) {
+			response.sendRedirect( contentPage.substring(9) );
+		} else {
+			request.setAttribute("contentPage", contentPage);
+			RequestDispatcher rd = request.getRequestDispatcher("/template.jsp");
+			rd.forward(request, response);
+		}
+  }
+
+	private void processRefresh(HashMap<String, Object> resultMap,
+      HttpServletResponse response) {
+		String refresh = (String)resultMap.get("Refresh");
+		if (refresh != null) {
+			response.setHeader("Refresh", refresh);
+		}
+  }
+
+	private void processSession(HashMap<String, Object> resultMap,
+      HttpServletRequest request) {
+		for (String name : resultMap.keySet()) {
+			if (name.startsWith("session:")) {
+				request.getSession().setAttribute(
+						name.substring(8), resultMap.remove(name));
+			}
+		}
+  }
+
+	private void processCookie(HashMap<String, Object> resultMap,
+      HttpServletResponse response) {
+		String cookieName = null;
+		String[] cookieValues = null;
+		Cookie cookie = null;
+		for (String name : resultMap.keySet()) {
+			if (name.startsWith("cookie:")) {
+				cookieName = name.substring(7);
+				cookieValues = ((String)resultMap.remove(name)).split(",");
+				cookie = new Cookie(cookieName, cookieValues[0]);
+				if (cookieValues.length > 1) {
+					cookie.setMaxAge( Integer.parseInt(cookieValues[1]) );
+				}
+				response.addCookie(cookie);
+			}
+		}
+  }
 
 	private void copyFromResultMapToServletRequest(
       HashMap<String, Object> resultMap, HttpServletRequest request) {
@@ -97,9 +131,20 @@ public class DispatcherServlet extends HttpServlet {
 		for(String key : map.keySet()) {
 			paramMap.put(key, map.get(key)[0]);
 		}
-	  
+		
 		return paramMap;
   }
+	
+	private Map<String,String> getCookieMap(HttpServletRequest request) {
+		HashMap<String,String> cookieMap = new HashMap<String,String>();
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
+			for(Cookie c : cookies) {
+				cookieMap.put(c.getName(), c.getValue());
+			}
+		}
+		return cookieMap;
+	}
 }
 
 
