@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,15 +32,6 @@ public class DispatcherServlet extends HttpServlet {
 			HashMap<String,Object> resultMap = new HashMap<String,Object>();
 			HashMap<String,Object> paramMap = prepareParameterMap(request);
 			
-			HashMap<String,String> cookieMap = new HashMap<String,String>();
-			Cookie[] cookies = request.getCookies();
-  			if (cookies != null) {
-  				for(Cookie c : cookies) {
-  					cookieMap.put(c.getName(), c.getValue());
-  				}
-  			}
-  			paramMap.put("cookieMap", cookieMap);
-			
 			PageControl pageControl = 
 					(PageControl)this.getServletContext().getAttribute(servletPath);
 			
@@ -56,22 +46,12 @@ public class DispatcherServlet extends HttpServlet {
 				response.setHeader("Refresh", refresh);
 			}
 			
-			for (String name : resultMap.keySet()) {
-				if (name.startsWith("session:")) {
-					request.getSession().setAttribute(
-							name.substring(8), resultMap.remove(name));
-				}
-			}
-			
 			copyFromResultMapToServletRequest(resultMap, request);
 			
-			if (contentPage.startsWith("redirect:")) {
-				response.sendRedirect( contentPage.substring(9) );
-			} else {
-				request.setAttribute("contentPage", contentPage);
-				RequestDispatcher rd = request.getRequestDispatcher("/template.jsp");
-				rd.forward(request, response);
-			}
+			request.setAttribute("contentPage", contentPage);
+			RequestDispatcher rd = request.getRequestDispatcher("/template.jsp");
+			rd.forward(request, response);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 	  		request.setAttribute("error", e);

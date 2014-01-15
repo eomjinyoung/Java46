@@ -2,20 +2,18 @@ package spms.servlets;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import javax.sql.DataSource;
 
 import spms.annotations.Component;
 
@@ -31,22 +29,21 @@ public class AppInitServlet extends GenericServlet {
 		super.init(config);
 
 		try {
-			//SqlSessionFactory를 만들 때 사용할 설계도
-			String resource = "spms/dao/mybatis-config.xml";
-			
-			//설계도 파일을 읽어들일 InputStream 준비
-			/*
-			String path = this.getServletContext().getRealPath("/WEB-INF/classes");
-			path += "/" + resource;
-			FileInputStream inputStream = new FileInputStream(path);
-			*/
-			
-      InputStream inputStream = Resources.getResourceAsStream(resource);
-      SqlSessionFactory sqlSessionFactory = 
-      		new SqlSessionFactoryBuilder().build(inputStream);
+			Context ctx = new InitialContext();
+			DataSource ds = (DataSource)ctx.lookup(
+					"java:/comp/env/jdbc/spmsdb");
 
-      objMap.put("sqlSessionFactory", sqlSessionFactory);
-			
+			objMap.put("dataSource", ds);
+
+			/*[목표]
+			 * 클래스 목록을 가져와서 @Component가 선언된 클래스를 찾는다.
+			 * 그리고, 그 클래스의 인스턴스를 만들어서 objMap에 저장한다.
+			 * 
+			 *[절차]
+			 * 1) 	WEB-INF/classes에 등록된 모든 클래스 목록을 가져온다.
+			 * 2) 클래스를 로딩한 후 @Component 애노테이션이 붙었는지 조사한다.
+			 * 3) 만약 @Component 애노테이션이 붙었다면, 인스턴스를 생성한 후 맵에 저장한다.
+			 */
 			findClassName("", new File(this.getServletContext().getRealPath(
 					"/WEB-INF/classes")));
 
