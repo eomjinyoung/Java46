@@ -23,12 +23,10 @@ public class LoginControl implements PageControl {
 		if (email == null) { //GET 요청
       Map<String,String> cookieMap = 
 					(Map<String,String>)paramMap.get("cookieMap");
-		  	for(String cookieName : cookieMap.keySet()) {
-	  			if (cookieName.equals("email")) {
-	  				resultMap.put("email", cookieMap.get(cookieName));
-	  				resultMap.put("checkSaveEmail", "checked");
-	  				break;
-	  			}
+		  	String cookieEmail = cookieMap.get("email");
+		  	if (cookieEmail != null) {
+	  			resultMap.put("email", cookieEmail);
+	  			resultMap.put("checkSaveEmail", "checked");
 	  		}
 		  	resultMap.put("pageTitle", "로그인");
 		  	return "/auth/login.jsp";
