@@ -1,56 +1,77 @@
-package spms.servlets;
+package spms.listeners;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Set;
 
-import javax.servlet.GenericServlet;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.log4j.Logger;
 import org.reflections.Reflections;
 
 import spms.annotations.Component;
 
-// 웹애플리케이션이 시작될 때 서블릿이 사용할 객체들을 준비
-public class AppInitServlet extends GenericServlet {
-	private static final long serialVersionUID = 1L; 
-
+/* ServletContextListener 인터페이스 
+ * - 서블릿 컨테이너와 리스너 사이의 호출 규칙
+ * - 웹 애플리케이션을 시작하거나 종료할 때 호출함.
+ * - 구현체:
+ *    웹 애플리케이션을 시작할 때 자원 준비를 수행.
+ *    웹 애플리케이션을 종료할 때 자원 해제를 수행 
+ * - 리스너의 의미?
+ *    이벤트 처리 담당자.
+ *    
+ */
+public class ContextLoaderListener implements ServletContextListener {
+	Logger logger = Logger.getLogger("spms.listener");
 	HashMap<String,Object> objMap = new HashMap<String,Object>();
-
+	ServletContext ctx;
+	
+	// 웹 애플리케이션을 시작할 때 호출됨.
 	@Override
-	public void init(ServletConfig config) throws ServletException {
-		super.init(config);
-
+	public void contextInitialized(ServletContextEvent sce) {
+		ctx = sce.getServletContext();
+		
 		try {
-			String resource = config.getInitParameter("mybatisConfig");
-      InputStream inputStream = Resources.getResourceAsStream(resource);
+			String resource = ctx.getInitParameter("mybatisConfig");
+      logger.debug("mybatisConfig 값은 " + resource);
+      
+			InputStream inputStream = Resources.getResourceAsStream(resource);
       SqlSessionFactory sqlSessionFactory = 
       		new SqlSessionFactoryBuilder().build(inputStream);
 
       objMap.put("sqlSessionFactory", sqlSessionFactory);
-			
+      logger.info("SqlSessionFactory 등록");
+      
 			prepareComponent();
-
+			logger.info("@Component가 선언된 객체를 모두 준비했음.");
+			
 			injectDependency();
-
+			logger.info("의존객체 주입 완료했음.");
+			
 			copyFromObjMapToServletContext();
+			logger.info("객체풀에 저장된 모든 인스턴스를 ServletContext에 복사하였음.");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
+	// 웹 애플리케이션을 종료할 때 호출됨.
+	@Override
+	public void contextDestroyed(ServletContextEvent sce) {}
+	
+	
 	private void copyFromObjMapToServletContext() {
 		for (String key : objMap.keySet()) {
-			this.getServletContext().setAttribute(key, objMap.get(key));
+			ctx.setAttribute(key, objMap.get(key));
+			logger.trace(key + ":" + objMap.get(key) + " 복사완료");
 		}
 	}
 	
@@ -68,6 +89,7 @@ public class AppInitServlet extends GenericServlet {
 					dependency = findObjectInObjMap(m.getParameterTypes()[0]);
 					if (dependency != null) {
 						m.invoke(instance, dependency);
+						logger.debug(clazz.getName() + "." + m.getName() + "() 호출됨.");
 					}
 				}
 			}
@@ -96,15 +118,4 @@ public class AppInitServlet extends GenericServlet {
 		}
 	}
 
-	@Override
-	public void service(ServletRequest req, ServletResponse res)
-			throws ServletException, IOException {
-
-	}
-
 }
-
-
-
-
-

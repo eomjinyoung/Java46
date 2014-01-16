@@ -8,6 +8,16 @@
   id="WebApp_ID" 
   version="3.0">
   <display-name>web01</display-name>
+  
+  <context-param>
+      <param-name>mybatisConfig</param-name>
+      <param-value>spms/dao/mybatis-config.xml</param-value>
+  </context-param>
+    
+  <listener>
+    <listener-class>spms.listeners.ContextLoaderListener</listener-class>
+  </listener>
+  
   <!-- 필터 선언 -->
   <filter>
     <filter-name>CharEncodingFilter</filter-name>
@@ -23,21 +33,6 @@
     <filter-name>CharEncodingFilter</filter-name>
     <url-pattern>*</url-pattern>
   </filter-mapping> 
-  
-   
-  <!-- 서블릿 클래스를 선언 -->
-  <!-- load-on-startup 은 웹 애플리케이션을 시작할 때 서블릿을 자동 생성하게 만듦. -->
-  <servlet>
-    <servlet-name>AppInitServlet</servlet-name>
-    <servlet-class>spms.servlets.AppInitServlet</servlet-class>
-    <init-param>
-      <param-name>mybatisConfig</param-name>
-      <param-value>spms/dao/mybatis-config.xml</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  
-  <!-- 서블릿에 대해 URL 부여 => 웹 브라우저에서 요청할 수 있다. => URL mapping -->
   
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

@@ -3,6 +3,45 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+  <settings>
+    <!-- mybatis의 로그 활성화 -->
+    <!-- 
+      1. log4j.properties 파일을 만들어 자바 클래스 경로에 둔다.
+      2. 프로퍼티 파일의 내용
+        1) 루트 로거의 출력 등급 설정
+            log4j.rootLogger=ERROR
+          출력등급
+            . FATAL : 애플리케이션을 중지해야 할만큼 치명적인 오류
+            . ERROR : 오류가 발생했지만 애플리케이션을 계속 실행할 수 있는 상태.
+            . WARN  : 잠재적인 위험을 안고 있는 상태.
+            . INFO  : 애플리케이션의 일반 실행 정보.
+            . DEBUG : 상세한 내부 실행 상태.
+            . TRACE : 모든 로그.
+            
+        2) 출력 도구를 선언
+            log4j.rootLogger=ERROR, stdout
+           출력 도구는 아무 이름을 사용할 수 있다. 여러 개 지정할 수 있다.
+           
+        3) 출력 도구를 정의
+            log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+            => stdout은 콘솔 창으로 출력하는 도구이다.
+            
+            log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+            => 콘솔로 어떤 형식으로 출력할 것인가? 문자열을 일정 패턴으로 출력하겠다.
+            
+            log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
+            => 문자열의 출력 패턴은? 
+              %5p   : 출력 등급의 이름은 5자리로 출력하라.
+              [%t]  : 스레드의 이름을 출력하라.
+              %m    : 로그 내용을 출력하라.
+              %n    : new line
+        4)
+            
+                
+     -->
+    <setting name="logImpl" value="LOG4J"/>
+  </settings>
+  
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
