@@ -1,0 +1,65 @@
+// Project는 여러 개의 Task들로 이루어진다.
+// 예1) Project: 의존객체 수집 -> 컴파일 -> 테스트 -> 패키징 -> 배치 
+// 예2) Project: 컴파일 -> 배치 
+// 빌드는 작업을 정의 
+// task 작업명 { groovy 스크립트 }
+task t1 {
+	doLast {
+		// groovy 스크립트 코드
+		// 특정 영역 안에서 사용하는 특별한 프로그래밍 언어 
+		// => Domain-Specific Language (DSL)
+		println "t1..ok"
+	}
+}
+
+task t2 {
+	doLast {
+		println "t2..ok"
+	}
+}
+
+task t3 {
+	doLast {
+		println "t3..ok"
+	}
+}
+
+task compile {
+	//1. 소스폴더의 파일을 컴파일 한다.
+	//2. 컴파일된 .class 파일은 /bin 폴더 밑에 둔다.
+	//3. 자원폴더의 파일은 그대로 /bin 폴더에 복사한다.
+}
+
+/*
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.5
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
+*/
