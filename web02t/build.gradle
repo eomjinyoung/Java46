@@ -6,6 +6,15 @@ compileJava.options.encoding = 'UTF-8'
 sourceCompatibility = 1.7
 version = '1.0'
 
+eclipse {
+	wtp {
+			facet {
+					facet name: 'jst.web', version: '3.0' // Servlet Spec Version 지정
+					facet name: 'jst.java', version: '1.7' // Java Version 지정, 1.7 ...
+			}
+	}
+}
+
 repositories {
     mavenCentral()
 }
