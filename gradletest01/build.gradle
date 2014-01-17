@@ -1,5 +1,7 @@
 apply plugin: 'java'
 
+compileJava.options.encoding = 'UTF-8'
+
 // 파일을 제공해주는 서버를 지정
 repositories {
 	mavenCentral() // Maven 중앙 서버

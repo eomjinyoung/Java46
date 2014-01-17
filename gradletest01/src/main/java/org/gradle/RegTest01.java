@@ -1,4 +1,5 @@
 package org.gradle;
+//오호라..
 
 public class RegTest01 {
 
