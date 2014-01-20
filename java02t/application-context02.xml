@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- main03(): AbstractFactoryBean 클래스 상속 -->
+  <bean id="m3" class="java46.vo.factory.MemberFactoryBean">
+    <property name="name" value="홍길동2"/>
+    <property name="age" value="28"/>
+  </bean>
+  
+  <!-- main02(): 인스턴스 팩토리 메서드 사용 -->
+  <bean id="memberFactory" class="java46.vo.factory.MemberFactory"/>
+  
+  <bean id="m2" 
+        factory-bean="memberFactory"
+        factory-method="create2">
+    <property name="name" value="홍길동2"/>
+    <property name="age" value="28"/>
+  </bean>
+  
+  <!-- main01(): static으로 선언된 팩토리 메서드 사용 -->
+  <bean id="m1" class="java46.vo.factory.MemberFactory"
+        factory-method="create">
+    <property name="name" value="홍길동"/>
+    <property name="age" value="18"/>
+  </bean>
+ 
+</beans>
+
+
+
+
+
+
+

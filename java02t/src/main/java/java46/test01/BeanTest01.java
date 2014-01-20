@@ -1,5 +1,10 @@
 package java46.test01;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
@@ -8,11 +13,61 @@ import java46.vo.Project;
 
 public class BeanTest01 {
 
+	public static void main(String[] args) {
+		ApplicationContext ctx = 
+				new FileSystemXmlApplicationContext("application-context.xml");
+	
+	}
+	/* [Properties 타입의 프로퍼티 값 설정]
+	 * - <props> 태그 사용
+	 */
+	public static void main08(String[] args) {
+		ApplicationContext ctx = 
+				new FileSystemXmlApplicationContext("application-context.xml");
+	
+		Member mm2 = (Member)ctx.getBean("mm2");
+		Properties props = mm2.getEmails();
+		for (Object key : props.keySet()) {
+			System.out.println(key + "=" + props.get(key));
+		}
+	}
+	/* [Map 타입의 프로퍼티 값 설정]
+	 * - <map> 태그 사용
+	 */
+	public static void main07(String[] args) {
+		ApplicationContext ctx = 
+				new FileSystemXmlApplicationContext("application-context.xml");
+		
+		Member mm1 = (Member)ctx.getBean("mm1");
+		Map<String,String> tels = mm1.getTels();
+		for (String key : tels.keySet()) {
+			System.out.println( key + "=" + tels.get(key) );
+		}
+		System.out.println("------------------------");
+		for (Map.Entry<String,String> entry : tels.entrySet()) {
+			System.out.println( entry.getKey() + "=" + entry.getValue() );
+		}
+	}
+	
+	/* [List, Set 타입의 프로퍼티 값 설정 ]
+	 * - <list> 또는 <set> 태그를 사용한다.
+	 */
+	public static void main06(String[] args) {
+		ApplicationContext ctx = 
+				new FileSystemXmlApplicationContext("application-context.xml");
+	
+		Project pl1 = (Project)ctx.getBean("pl1");
+		Set<Member> members = pl1.getMembers();
+		for (Member m : members) {
+			System.out.println(m.getName());
+		}
+	
+	}
 	/* [프로퍼티에 객체 할당]
 	 * - ref 속성 사용
 	 * - 객체 생성
 	 */
-	public static void main(String[] args) {
+	public static void main05(String[] args) {
 		ApplicationContext ctx = 
 				new FileSystemXmlApplicationContext("application-context.xml");
 		

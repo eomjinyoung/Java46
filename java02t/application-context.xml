@@ -9,6 +9,45 @@
     <bean id="빈의 참조변수 이름" class="패키지 이름을 포함한 클래스 이름">
     </bean>
   -->
+  <!-- main08(): Properties 타입의 프로퍼티 값 설정 -->
+  <bean id="mm2" class="java46.vo.Member">
+    <property name="emails">
+      <props>
+        <prop key="home">test@test.com</prop>
+        <prop key="office">okok@myoffice.com</prop>
+        <prop key="team">team@myteam.com</prop>
+      </props>
+    </property>
+  </bean>
+  
+  <!-- main07(): Map 타입의 프로퍼티 값 설정 -->
+  <bean id="mm1" class="java46.vo.Member">
+    <property name="tels">
+      <map>
+        <entry key="home" value="02-111-2222"/>
+        <entry key="office" value="02-111-3333"/>
+        <entry key="fax" value="02-111-4444"/>
+      </map>
+    </property>
+  </bean>
+  
+  <!-- main06(): List, Set 타입의 프로퍼티 값 설정 -->
+  <bean id="pl1" class="java46.vo.Project">
+    <constructor-arg value="프로젝트1"/>
+    <constructor-arg value="0"/>
+    <property name="members">
+      <set>
+        <ref bean="m1"/>
+        <ref bean="m2"/>
+        <bean class="java46.vo.Member">
+          <property name="name" value="우헤헤"/>
+          <property name="age" value="30"/>
+        </bean>
+        <ref bean="m1"/>
+        <ref bean="m2"/>
+      </set>
+    </property>
+  </bean>
   
   <!-- main05(): 프로퍼티에 객체 넣기 -->
   <bean id="pm1" class="java46.vo.Project">

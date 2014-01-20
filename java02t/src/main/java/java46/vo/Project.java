@@ -1,9 +1,12 @@
 package java46.vo;
 
+import java.util.Set;
+
 public class Project {
 	String 		title;
 	int				state;
 	Member			manager;
+	Set<Member> members;
 	
 	public Project(String title, int state) {
 		this.title = title;
@@ -32,6 +35,14 @@ public class Project {
 
 	public void setManager(Member manager) {
 		this.manager = manager;
+	}
+
+	public Set<Member> getMembers() {
+		return members;
+	}
+
+	public void setMembers(Set<Member> members) {
+		this.members = members;
 	}
 	
 	
