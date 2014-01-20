@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" exported="true"/>
+	<classpathentry kind="con" path="org.springsource.ide.eclipse.gradle.classpathcontainer" exported="true"/>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-context/4.0.0.RELEASE/source/54a7ccfd434c2ca2ba3a6265f9c42d34b0d05734/spring-context-4.0.0.RELEASE-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-context/4.0.0.RELEASE/jar/57586271e775982f8961e1e7e338447d4af1864c/spring-context-4.0.0.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/commons-logging/commons-logging/1.1.1/source/f3f156cbff0e0fb0d64bfce31a352cce4a33bc19/commons-logging-1.1.1-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/commons-logging/commons-logging/1.1.1/jar/5043bfebc3db072ed80fbd362e7caf00e885d8ae/commons-logging-1.1.1.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-core/4.0.0.RELEASE/source/db9dd83713dbad3d7810a269c026d798f0b8d6db/spring-core-4.0.0.RELEASE-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-core/4.0.0.RELEASE/jar/73b485e25b13a7a44b73a301fe6757c3cbad453e/spring-core-4.0.0.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-beans/4.0.0.RELEASE/source/96ce15137a178249aa14d58ea1e08bc7da93ab71/spring-beans-4.0.0.RELEASE-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-beans/4.0.0.RELEASE/jar/97e97a04aede419679392176ec1df175d3e9a7a0/spring-beans-4.0.0.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/aopalliance/aopalliance/1.0/source/4a4b6d692e17846a9f3da036438a7ac491d3c814/aopalliance-1.0-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/aopalliance/aopalliance/1.0/jar/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-aop/4.0.0.RELEASE/source/faeab9c14a8c24993dd28179c1c20706c3d0ec0b/spring-aop-4.0.0.RELEASE-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-aop/4.0.0.RELEASE/jar/cceb3e9510774b3f88b008a70c6a9aefb98d891f/spring-aop-4.0.0.RELEASE.jar" exported="true"/>
+	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-expression/4.0.0.RELEASE/source/60c70ff1bb9c5ab97a7f3c3230f86cf738bc1505/spring-expression-4.0.0.RELEASE-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-expression/4.0.0.RELEASE/jar/199be03c976524b6427dff31078227bfc703400b/spring-expression-4.0.0.RELEASE.jar" exported="true"/>
+</classpath>
