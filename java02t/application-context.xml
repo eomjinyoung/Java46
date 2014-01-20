@@ -9,6 +9,69 @@
     <bean id="빈의 참조변수 이름" class="패키지 이름을 포함한 클래스 이름">
     </bean>
   -->
+  
+  <!-- main05(): 프로퍼티에 객체 넣기 -->
+  <bean id="pm1" class="java46.vo.Project">
+    <constructor-arg value="프로젝트 with 관리자"/>
+    <constructor-arg value="0"/>
+    <property name="manager">
+      <ref bean="m4"/>
+    </property>
+  </bean>
+  
+  <bean id="pm2" class="java46.vo.Project">
+    <constructor-arg value="프로젝트 with 관리자2"/>
+    <constructor-arg value="0"/>
+    <property name="manager" ref="m3"/>
+  </bean>
+  
+  <bean id="m5" class="java46.vo.Member">
+    <property name="name" value="오호라"/>
+    <property name="age" value="40"/>
+  </bean>
+  
+  <bean id="pm3" class="java46.vo.Project">
+    <constructor-arg value="프로젝트 with 관리자3"/>
+    <constructor-arg value="0"/>
+    <property name="manager" ref="m5"/>
+  </bean>
+  
+  <bean id="pm4" class="java46.vo.Project">
+    <constructor-arg value="프로젝트 with 관리자4"/>
+    <constructor-arg value="0"/>
+    <property name="manager">
+      <bean class="java46.vo.Member">
+        <property name="name" value="우뢰매"/>
+        <property name="age" value="50"/>
+      </bean>
+    </property>
+  </bean>
+  
+  
+  <!-- main04(): 생성자 호출 -->
+  <!-- 오류 발생 => 기본 생성자가 없다! -->
+  <!--  <bean id="p1" class="java46.vo.Project"/> -->
+  
+  <bean id="p1" class="java46.vo.Project">
+    <constructor-arg><value>프로젝트1</value></constructor-arg>
+    <constructor-arg><value>1</value></constructor-arg>
+  </bean>
+  
+  <bean id="p2" class="java46.vo.Project">
+    <constructor-arg value="프로젝트2"/>
+    <constructor-arg value="2"/>
+  </bean>
+  
+  <bean id="p3" class="java46.vo.Project">
+    <constructor-arg index="1" value="3"/>
+    <constructor-arg index="0" value="프로젝트3"/>
+  </bean>
+  
+  <bean id="p4" class="java46.vo.Project">
+    <constructor-arg name="state" value="4"/>
+    <constructor-arg name="title" value="프로젝트4"/>
+  </bean>
+  
   <!-- main03(): 셋터 메서드 호출 = 프로퍼티 값 설정 -->
   <bean id="m2" class="java46.vo.Member">
     <property name="name"><value>임꺽정</value></property>

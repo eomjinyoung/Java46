@@ -4,10 +4,78 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import java46.vo.Member;
+import java46.vo.Project;
 
 public class BeanTest01 {
 
+	/* [프로퍼티에 객체 할당]
+	 * - ref 속성 사용
+	 * - 객체 생성
+	 */
 	public static void main(String[] args) {
+		ApplicationContext ctx = 
+				new FileSystemXmlApplicationContext("application-context.xml");
+		
+		Project pm1 = (Project)ctx.getBean("pm1");
+		Member mgr = pm1.getManager();
+		System.out.println(pm1.getTitle());
+		System.out.println(mgr.getName());
+		
+		Project pm2 = (Project)ctx.getBean("pm2");
+		Member mgr2 = pm2.getManager();
+		System.out.println(pm2.getTitle());
+		System.out.println(mgr2.getName());
+		
+		/* pm3와 m5가 생성되는 시점
+		 * 먼저 모든 객체들을 생성 -> 각 객체에 대해 의존 객체 주입
+		 * 즉, 다음 코드와 같은 원리이다.  
+		 */
+		/*
+		Member m5 = new Member();
+		Project pm3 = new Project("프로젝트 with 관리자3", 0);
+		
+		m5.setName("오호라");
+		m5.setAge(40);
+		pm3.setManager(m5);
+		*/
+		
+		Project pm4 = (Project)ctx.getBean("pm4");
+		Member mgr4 = pm4.getManager();
+		System.out.println(pm4.getTitle());
+		System.out.println(mgr4.getName());
+	}
+	
+	/* 3. 호출할 생성자 설정하는 방법
+	 * - 생성자를 지정하지 않으면 기본 생성자를 호출한다.
+	 * - <constructor-arg> 태그 사용
+	 */
+	public static void main04(String[] args) {
+		ApplicationContext ctx = 
+				new FileSystemXmlApplicationContext("application-context.xml");
+		
+		Project p1 = (Project)ctx.getBean("p1");
+		System.out.println(p1.getTitle());
+		System.out.println(p1.getState());
+		
+		Project p2 = (Project)ctx.getBean("p2");
+		System.out.println(p2.getTitle());
+		System.out.println(p2.getState());
+		
+		Project p3= (Project)ctx.getBean("p3");
+		System.out.println(p3.getTitle());
+		System.out.println(p3.getState());
+		
+		Project p4= (Project)ctx.getBean("p4");
+		System.out.println(p4.getTitle());
+		System.out.println(p4.getState());
+	}
+	
+	/* 2. 빈의 프로퍼티 설정
+	 * - <property>와 <value> 사용
+	 * - <property>와 value 속성 사용
+	 * - p:속성명 사용
+	 */
+	public static void main03(String[] args) {
 		ApplicationContext ctx = 
 				new FileSystemXmlApplicationContext("application-context.xml");
 		
