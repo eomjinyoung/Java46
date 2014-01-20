@@ -4,6 +4,18 @@
     xmlns:p="http://www.springframework.org/schema/p"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+  <!-- main04(): 객체의 scope 지정
+    * scope이란? 객체가 생성되고 소멸되는 범위
+      . singleton : 객체가 하나만 생성 (기본)
+      . prototype : getBean()을 호출할 때 마다 생성
+      . request : HTTP 요청 시 생성 (Web에서만 적용가능)
+      . session : 세션 생성 시 생성  (Web에서만 적용가능)
+   -->      
+  <bean id="m4" class="java46.vo.Member" scope="singleton">
+    <property name="name" value="홍길동4"/>
+    <property name="age" value="48"/>
+  </bean>
 
   <!-- main03(): AbstractFactoryBean 클래스 상속 -->
   <bean id="m3" class="java46.vo.factory.MemberFactoryBean">

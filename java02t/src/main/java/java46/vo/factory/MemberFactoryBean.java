@@ -21,7 +21,6 @@ public class MemberFactoryBean extends AbstractFactoryBean<Member> {
 			temp.setAge(20);
 		else 
 			temp.setAge(this.age);
-		
 	  return temp;
   }
 
