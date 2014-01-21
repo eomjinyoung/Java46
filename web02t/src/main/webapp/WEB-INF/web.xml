@@ -13,7 +13,7 @@
       <param-name>mybatisConfig</param-name>
       <param-value>spms/dao/mybatis-config.xml</param-value>
   </context-param>
-  
+  <!--  
   <context-param>
       <param-name>contextConfig</param-name>
       <param-value>application-context.xml</param-value>
@@ -21,6 +21,16 @@
     
   <listener>
     <listener-class>spms.listeners.ContextLoaderListener</listener-class>
+  </listener>
+  -->
+  
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:application-context.xml</param-value>
+  </context-param>
+
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
   <!-- 필터 선언 -->

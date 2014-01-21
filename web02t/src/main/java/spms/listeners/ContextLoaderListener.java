@@ -8,16 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-/* ServletContextListener 인터페이스 
- * - 서블릿 컨테이너와 리스너 사이의 호출 규칙
- * - 웹 애플리케이션을 시작하거나 종료할 때 호출함.
- * - 구현체:
- *    웹 애플리케이션을 시작할 때 자원 준비를 수행.
- *    웹 애플리케이션을 종료할 때 자원 해제를 수행 
- * - 리스너의 의미?
- *    이벤트 처리 담당자.
- *    
- */
 public class ContextLoaderListener implements ServletContextListener {
 	Logger log = Logger.getLogger(ContextLoaderListener.class);
 	

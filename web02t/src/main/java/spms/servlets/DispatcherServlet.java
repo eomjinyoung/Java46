@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import spms.controls.PageControl;
 
@@ -60,8 +61,15 @@ public class DispatcherServlet extends HttpServlet {
 	private String executePageController(String servletPath, 
 			HashMap<String, Object> paramMap, 
 			HashMap<String, Object> resultMap) throws Exception {
+		/* spms.listeners.ContextLoaderListener를 사용할 때
 		ApplicationContext ctx = (ApplicationContext) this.getServletContext()
 				.getAttribute("applicationContext");
+		*/
+		
+		/* 스프링에서 제공하는 ContextLoaderListener를 사용할 때 */
+		WebApplicationContext ctx = 
+				WebApplicationContextUtils.getWebApplicationContext(
+						this.getServletContext());
 		
 		PageControl pageControl = 
 				(PageControl)ctx.getBean(servletPath);
