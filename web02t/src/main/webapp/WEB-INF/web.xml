@@ -13,6 +13,11 @@
       <param-name>mybatisConfig</param-name>
       <param-value>spms/dao/mybatis-config.xml</param-value>
   </context-param>
+  
+  <context-param>
+      <param-name>contextConfig</param-name>
+      <param-value>application-context.xml</param-value>
+  </context-param>
     
   <listener>
     <listener-class>spms.listeners.ContextLoaderListener</listener-class>

@@ -5,7 +5,13 @@
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
 		<wb-resource deploy-path="/" source-path="src/main/webapp"/>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/javax.inject/javax.inject/1/jar/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.mybatis/mybatis/3.2.3/jar/7eee8564f107ce26a89ab1563ae908d2ff88e32e/mybatis-3.2.3.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-tx/4.0.0.RELEASE/jar/d150bb19360ed1b81a96c9c09ef4d93c2969f34c/spring-tx-4.0.0.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-context/4.0.0.RELEASE/jar/57586271e775982f8961e1e7e338447d4af1864c/spring-context-4.0.0.RELEASE.jar">
@@ -23,6 +29,9 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/com.google.guava/guava/11.0.2/jar/35a3c69e19d72743cac83778aecbee68680f63eb/guava-11.0.2.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.mybatis/mybatis-spring/1.2.2/jar/1e40a7f5373e4242075a1d386817e7dd49b1697d/mybatis-spring-1.2.2.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/commons-logging/commons-logging/1.1.1/jar/5043bfebc3db072ed80fbd362e7caf00e885d8ae/commons-logging-1.1.1.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
@@ -33,6 +42,9 @@
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-expression/4.0.0.RELEASE/jar/199be03c976524b6427dff31078227bfc703400b/spring-expression-4.0.0.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-jdbc/4.0.0.RELEASE/jar/d169c669b85f26f06c5dedb19bfdd169e4e38c3a/spring-jdbc-4.0.0.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/log4j/log4j/1.2.17/bundle/5af35056b4d257e4b64b9e8069c0746e8b08629f/log4j-1.2.17.jar">

@@ -2,7 +2,7 @@ package spms.controls;
 
 import java.util.Map;
 
-import spms.annotations.Component;
+import org.springframework.stereotype.Component;
 
 @Component("/auth/logout.do")
 public class LogoutControl implements PageControl {

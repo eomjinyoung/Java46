@@ -2,17 +2,15 @@ package spms.controls;
 
 import java.util.Map;
 
-import spms.annotations.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import spms.dao.MemberDao;
 
 @Component("/member/delete.do")
 public class MemberDeleteControl implements PageControl {
+	@Autowired(required=false)
 	MemberDao memberDao;
-	
-	public PageControl setMemberDao(MemberDao memberDao) {
-		this.memberDao = memberDao;
-		return this;
-	}
 	
 	@Override
 	public String execute(Map<String, Object> paramMap,

@@ -5,17 +5,15 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import spms.annotations.Component;
 import spms.vo.Member;
 
 @Component
 public class MemberDao {
+	@Autowired(required=false)
 	SqlSessionFactory sqlSessionFactory;
-	
-	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
-		this.sqlSessionFactory = sqlSessionFactory;
-	}
 
 	public List<Member> selectList() throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();

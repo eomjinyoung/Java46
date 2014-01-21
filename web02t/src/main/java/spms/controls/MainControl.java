@@ -2,7 +2,7 @@ package spms.controls;
 
 import java.util.Map;
 
-import spms.annotations.Component;
+import org.springframework.stereotype.Component;
 
 @Component("/main.do")
 public class MainControl implements PageControl {

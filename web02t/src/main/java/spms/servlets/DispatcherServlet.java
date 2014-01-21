@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+
 import spms.controls.PageControl;
 
 @WebServlet("*.do")
@@ -58,8 +60,11 @@ public class DispatcherServlet extends HttpServlet {
 	private String executePageController(String servletPath, 
 			HashMap<String, Object> paramMap, 
 			HashMap<String, Object> resultMap) throws Exception {
+		ApplicationContext ctx = (ApplicationContext) this.getServletContext()
+				.getAttribute("applicationContext");
+		
 		PageControl pageControl = 
-				(PageControl)this.getServletContext().getAttribute(servletPath);
+				(PageControl)ctx.getBean(servletPath);
 		
 		if (pageControl == null) {
 			throw new Exception("해당 서비스가 존재하지 않습니다.");
