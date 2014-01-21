@@ -17,9 +17,28 @@
   <bean id="sqlSessionFactory" 
       class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource" />
+    
+    <!-- <settings> 태그에 특별히 지정할 것이 없다면 다음 설정 파일은 지정하지 않아도 된다. -->
+    <!--  
     <property name="configLocation" 
       value="classpath:spms/dao/mybatis-config.xml"/>
+    -->
+      
+    <!-- 파일명이 Mapper.xml로 끝나는 Sql 맵퍼 파일을 자동 로딩 -->  
+    <property name="mapperLocations" 
+      value="classpath*:spms/dao/*Mapper.xml" />  
+    
+    <!-- spms.vo 패키지에 있는 클래스들에 대해서는 자동으로 별명을 붙임.
+     => 클래스명의 첫 알파벳을 소문자로 한 이름을 별명으로 사용함.
+     -->
+    <property name="typeAliasesPackage" value="spms.vo"/>
   </bean>
+  
+  <!--  
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <property name="basePackage" value="spms.dao" />
+  </bean>
+  -->
   
   <jee:jndi-lookup id="dataSource" 
       jndi-name="java:comp/env/jdbc/spmsdb"/>

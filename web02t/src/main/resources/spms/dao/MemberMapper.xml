@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="spms.dao.MemberDao">
-	<select id="selectList" resultType="spms.vo.Member">
+	<select id="selectList" resultType="member">
 		select
 		  MNO as no,
 		  MNAME as name,
@@ -13,7 +13,7 @@
 		from MEMBERS
 	</select>
 	
-	<select id="selectOne" parameterType="int" resultType="spms.vo.Member">
+	<select id="selectOne" parameterType="int" resultType="member">
     select
       MNO as no,
       MNAME as name,
@@ -28,12 +28,12 @@
     delete from MEMBERS where MNO=#{no}
   </delete>
   
-  <insert id="insert" parameterType="spms.vo.Member">
+  <insert id="insert" parameterType="member">
     INSERT INTO MEMBERS(MNAME,EMAIL,TEL,AGE) 
     VALUES(#{name},#{email},#{tel},#{age})
   </insert>
   
-  <update id="update" parameterType="spms.vo.Member">
+  <update id="update" parameterType="member">
     update MEMBERS set 
       MNAME=#{name},
       EMAIL=#{email},
@@ -44,7 +44,7 @@
   
   <select id="selectByEmailPassword" 
       parameterType="map" 
-      resultType="spms.vo.Member">
+      resultType="member">
     select MNO as no,MNAME as name,EMAIL
     from MEMBERS
     where EMAIL=#{email} and PWD=#{password}

@@ -1,5 +1,6 @@
 package spms.controls;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,11 @@ public class LoginControl implements PageControl {
 	  			resultMap.put("cookie:email", "null,0");
 	  		}
   		
-			Member member = memberDao.selectByEmailPassword(email, password);
+			HashMap<String,String> sqlparamMap = new HashMap<String,String>();
+			sqlparamMap.put("email", email);
+			sqlparamMap.put("password", password);
+			
+			Member member = memberDao.selectByEmailPassword(sqlparamMap);
 			resultMap.put("pageTitle", "로그인");
 			
 			if (member != null) {
