@@ -2,9 +2,16 @@ package java46.test02;
 
 import java.util.Set;
 
-import org.springframework.stereotype.Component;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-@Component
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+
+@Named("ohoraProject")
+@Scope("singleton")
 public class Project {
 	String 		title;
 	int				state;
@@ -22,7 +29,8 @@ public class Project {
 		return title;
 	}
 
-	public void setTitle(String title) {
+	@Inject
+	public void setTitle(@Value("프로젝트테스트") String title) {
 		this.title = title;
 	}
 
@@ -38,7 +46,10 @@ public class Project {
 		return manager;
 	}
 
-	public void setManager(Member manager) {
+	//@Autowired
+	//@Qualifier("mgr3")
+	@Inject
+	public void setManager(@Named("mgr3") Member manager) {
 		this.manager = manager;
 	}
 

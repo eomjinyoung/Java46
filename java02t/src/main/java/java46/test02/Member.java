@@ -19,7 +19,7 @@ public class Member {
 		return name;
 	}
 	
-	@Autowired(required=false)
+	@Autowired
 	public void setName(@Value("홍길동") String name) {
 		this.name = name;
 	}
@@ -29,7 +29,7 @@ public class Member {
 	}
 	
 	@Autowired(required=false)
-	public void setAge(@Value("20") int age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 	public Map<String, String> getTels() {

@@ -9,19 +9,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
         
-  <!-- 자동으로 생성할 객체에 대한 패키지 스캔 설정 
-  . @Component 애노테이션이 붙은 클래스에 대해서만 객체를 생성함.
-  -->
-  <context:component-scan base-package="java46.test02"/>   
-  
-  <bean id="mgr2" class="java46.test02.Member">
-    <property name="name" value="임꺽정"/>
-  </bean>
-  
-  <bean id="mgr3" class="java46.test02.Member">
-    <property name="name" value="일지매"/>
-  </bean>
-  
+  <context:component-scan base-package="java46.test03"/>   
 </beans>
 
 

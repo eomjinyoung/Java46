@@ -10,5 +10,6 @@ repositories {
 
 dependencies {
 	compile 'org.springframework:spring-context:4.0.0.RELEASE'
+	compile 'javax.inject:javax.inject:1'
 }
 
