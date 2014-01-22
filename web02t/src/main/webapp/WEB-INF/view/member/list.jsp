@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${pageTitle}</title>
+<title>회원목록</title>
 </head>
 <body>
 <jsp:include page="/header.jsp"/>

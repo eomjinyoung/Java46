@@ -1,33 +1,22 @@
 package spms.controls;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import spms.dao.MemberDao;
 
-@Component("/member/delete.do")
-public class MemberDeleteControl implements PageControl {
+//@Controller
+public class MemberDeleteControl {
 	@Autowired(required=false)
 	MemberDao memberDao;
 	
-	@Override
-	public String execute(Map<String, Object> paramMap,
-	    Map<String, Object> resultMap) throws Exception {
-		int count = memberDao.delete(
-				Integer.parseInt( (String)paramMap.get("no") ));
-		if (count > 0) {
-			resultMap.put("message", "삭제 성공입니다.");
-		} else {
-			resultMap.put("message", "해당 번호의 회원 정보가 없습니다!");
-		}
-		
-		resultMap.put("Refresh", "1;url=list.do");
-		resultMap.put("pageTitle", "회원 삭제");
-		return "/member/delete.jsp";
+	@RequestMapping("/member/delete")
+	public String execute(int no, Model model) throws Exception {
+		memberDao.delete(no);
+		return "redirect:list.do";
 	}
-
 }
 
 

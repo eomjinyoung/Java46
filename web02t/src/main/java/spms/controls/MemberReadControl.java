@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import spms.dao.MemberDao;
 import spms.vo.Member;
 
-@Controller 
+//@Controller 
 public class MemberReadControl {
 	@Autowired(required=false)
 	MemberDao memberDao;
