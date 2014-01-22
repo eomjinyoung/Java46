@@ -1,17 +1,15 @@
 package spms.controls;
 
-import java.util.Map;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.stereotype.Component;
+@Controller
+public class MainControl {
 
-@Component("/main.do")
-public class MainControl implements PageControl {
-
-	@Override
-  public String execute(Map<String, Object> paramMap,
-      Map<String, Object> resultMap) throws Exception {
-		resultMap.put("pageTitle", "SPMS 메인");
-		return "/main.jsp";
+	@RequestMapping("/main")
+  public String execute() throws Exception {
+		//resultMap.put("pageTitle", "SPMS 메인");
+		return "main";
   }
 }
 

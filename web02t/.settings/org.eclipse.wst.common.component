@@ -17,6 +17,9 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-context/4.0.0.RELEASE/jar/57586271e775982f8961e1e7e338447d4af1864c/spring-context-4.0.0.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-webmvc/4.0.0.RELEASE/jar/a82202c4d09d684a8d52ade479c0e508d904700b/spring-webmvc-4.0.0.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.javassist/javassist/3.16.1-GA/jar/315891b371395271977af518d4db5cee1a0bc9bf/javassist-3.16.1-GA.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
@@ -35,13 +38,13 @@
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/commons-logging/commons-logging/1.1.1/jar/5043bfebc3db072ed80fbd362e7caf00e885d8ae/commons-logging-1.1.1.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
+		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-web/4.0.0.RELEASE/jar/6ce2dda16a3c1581920fc17551f3ae17d26499aa/spring-web-4.0.0.RELEASE.jar">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-beans/4.0.0.RELEASE/jar/97e97a04aede419679392176ec1df175d3e9a7a0/spring-beans-4.0.0.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/xml-apis/xml-apis/1.0.b2/jar/3136ca936f64c9d68529f048c2618bd356bf85c9/xml-apis-1.0.b2.jar">
-			<dependency-type>uses</dependency-type>
-		</dependent-module>
-		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-web/4.0.0.RELEASE/jar/6ce2dda16a3c1581920fc17551f3ae17d26499aa/spring-web-4.0.0.RELEASE.jar">
 			<dependency-type>uses</dependency-type>
 		</dependent-module>
 		<dependent-module deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//Users/bit/.gradle/caches/artifacts-23/filestore/org.springframework/spring-expression/4.0.0.RELEASE/jar/199be03c976524b6427dff31078227bfc703400b/spring-expression-4.0.0.RELEASE.jar">
