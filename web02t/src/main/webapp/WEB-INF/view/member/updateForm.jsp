@@ -1,6 +1,15 @@
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>${pageTitle}</title>
+</head>
+<body>
+<jsp:include page="/header.jsp"/>
+
 <h1>회원 정보</h1>
 <form action='update.do' method='post'>
 번호: <input readonly type='text' name='no' 
@@ -17,7 +26,10 @@
 <a href='delete.do?no=${member.no}'>[삭제]</a><br>
 </form>
 
-
+<jsp:include page="/tail.jsp"/>
+</body>
+</html>
+    
 
 
 

@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>${pageTitle}</title>
+</head>
+<body>
+<jsp:include page="/header.jsp"/>
+
 <h1>회원 목록</h1>
 <a href='add.do'>[새회원]</a><br>
 <table border='1'>
@@ -23,6 +32,9 @@
 
 </table>
     
+<jsp:include page="/tail.jsp"/>
+</body>
+</html>
     
     
     

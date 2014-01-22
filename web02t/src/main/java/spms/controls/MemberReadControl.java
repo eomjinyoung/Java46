@@ -1,28 +1,36 @@
 package spms.controls;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import spms.dao.MemberDao;
 import spms.vo.Member;
 
-@Component("/member/read.do")
-public class MemberReadControl implements PageControl {
+@Controller 
+public class MemberReadControl {
 	@Autowired(required=false)
 	MemberDao memberDao;
 	
-	@Override
-	public String execute(Map<String, Object> paramMap,
-	    Map<String, Object> resultMap) throws Exception {
-		int no = Integer.parseInt( (String)paramMap.get("no") );
+	@RequestMapping("/member/read")
+	public String execute(int no, Model model) throws Exception {
 		Member member = memberDao.selectOne(no);
 		
-		resultMap.put("member", member);
-		resultMap.put("pageTitle", "회원 정보");
-		return "/member/updateForm.jsp";
+		model.addAttribute("member", member);
+		model.addAttribute("pageTitle", "회원 정보");
+		return "member/updateForm";
 	}
+	/*
+	@RequestMapping("/member/read")
+	public String execute(@RequestParam("no") int n, Model model) throws Exception {
+		Member member = memberDao.selectOne(n);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("pageTitle", "회원 정보");
+		return "member/updateForm";
+	}
+	*/
 
 }
 
