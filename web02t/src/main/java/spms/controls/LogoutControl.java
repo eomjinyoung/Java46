@@ -1,19 +1,17 @@
 package spms.controls;
 
-import java.util.Map;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@Component("/auth/logout.do")
-public class LogoutControl implements PageControl {
+//@Controller 
+public class LogoutControl {
 
-	@Override
-  public String execute(Map<String, Object> paramMap,
-      Map<String, Object> resultMap) throws Exception {
-		resultMap.put("Refresh", "1;url=" + 
-				(String)paramMap.get("contextPath") + "/auth/login.do");
-		resultMap.put("pageTitle", "로그아웃");
-		return "/auth/logout.jsp";
+	@RequestMapping("/auth/logout")
+  public String execute(HttpSession session) throws Exception {
+		session.invalidate();
+		return "redirect:login.do";
   }
 }
 

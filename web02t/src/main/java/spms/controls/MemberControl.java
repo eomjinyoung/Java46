@@ -21,7 +21,9 @@ public class MemberControl {
 	}
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
-	public String add(Member member, Model model) throws Exception {
+	public String add(
+			Member member, 
+			Model model) throws Exception {
 		int count = memberDao.insert(member);
 		if (count > 0) {
 			model.addAttribute("message", "등록 성공입니다!");

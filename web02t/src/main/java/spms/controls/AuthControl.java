@@ -3,9 +3,7 @@ package spms.controls;
 import java.util.HashMap;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,16 +11,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import spms.dao.MemberDao;
 import spms.vo.Member;
 
-//@Controller 
-public class LoginControl {
+@Controller
+@RequestMapping("/auth")
+@SessionAttributes("loginUser") // 모델에 들어 있는 값 중에서 loginUser는 세션에 보관하라.
+public class AuthControl {
 	@Autowired(required=false)
 	MemberDao memberDao;
 	
-	@RequestMapping(value="/auth/login",method=RequestMethod.GET)
+	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String form(@CookieValue(required=false) String email, Model model) {
   		if (email != null) {
   			model.addAttribute("email", email);
@@ -31,11 +33,9 @@ public class LoginControl {
   		return "auth/login";
 	}
 	
-	@RequestMapping(value="/auth/login",method=RequestMethod.POST)
+	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String login(String email, String password, String saveEmail,
-			HttpServletRequest request,
 			HttpServletResponse response, 
-			HttpSession session, 
 			Model model) throws Exception {
 		
 		Cookie cookie = null;
@@ -55,11 +55,17 @@ public class LoginControl {
 		Member member = memberDao.selectByEmailPassword(sqlparamMap);
 		
 		if (member != null) {
-			session.setAttribute("loginUser", member);
+			model.addAttribute("loginUser", member);
 			return "redirect:../main.do";
 		} else {
 			return "auth/loginFail";
 		}
+  }
+	
+	@RequestMapping("/logout")
+  public String execute(SessionStatus status) throws Exception {
+		status.setComplete();
+		return "redirect:login.do";
   }
 }
 
