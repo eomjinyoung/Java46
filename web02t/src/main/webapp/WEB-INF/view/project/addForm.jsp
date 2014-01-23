@@ -14,8 +14,8 @@
 <form action="add.do" method="post">
 제목: <input type='text' name='title'><br>
 내용: <textarea name="description" rows="10" cols="50"></textarea><br>
-시작일: <input type='text' name='startDate'><br>
-종료일: <input type='text' name='endDate'><br>
+시작일: <input type='date' name='startDate'><br>
+종료일: <input type='date' name='endDate'><br>
 상태: <select name='state'>
   <option value="0">준비</option>
   <option value="1">진행</option>

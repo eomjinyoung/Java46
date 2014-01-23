@@ -78,7 +78,7 @@ public class ProjectControl {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     dateFormat.setLenient(false);
 		binder.registerCustomEditor(java.util.Date.class, 
-    		new CustomDateEditor(dateFormat, false));
+				new CustomDateEditor(dateFormat, false));
 		
     binder.registerCustomEditor(java.sql.Date.class, 
     		new CustomSqlDateEditor());
