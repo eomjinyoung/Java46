@@ -17,7 +17,6 @@
 <th>번호</th>
 <th>이름</th>
 <th>이메일</th>
-<th>나이</th>
 <th>전화</th>
 </tr>
 <c:forEach var="m" items="${members}">
@@ -25,7 +24,6 @@
 <td>${m.no}</td>
 <td><a href='read.do?no=${m.no}'>${m.name}</a></td>
 <td>${m.email}</td>
-<td>${m.age}</td>
 <td>${m.tel}</td>
 </tr>
 </c:forEach>

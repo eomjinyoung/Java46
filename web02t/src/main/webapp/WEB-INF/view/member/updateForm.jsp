@@ -11,7 +11,11 @@
 <jsp:include page="/header.jsp"/>
 
 <h1>회원 정보</h1>
-<form action='update.do' method='post'>
+<form action='update.do' method='post'
+  enctype="multipart/form-data">
+<img src="../files/${member.photo}" width="120" height="150">
+<input type="file" name="photoFile"><br>
+<input type="hidden" name="photo" value="${member.photo}">
 번호: <input readonly type='text' name='no' 
   value='${requestScope.member.no}'><br>
 이름: <input type='text' name='name' 
