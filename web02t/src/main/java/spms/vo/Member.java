@@ -10,22 +10,8 @@ public class Member implements Serializable {
 	protected int 			age;
 	protected String 	email;
 	protected String 	tel;
+	protected String		password;
 	
-	public Member() {}
-	
-	public Member(String csv) {
-		String[] items = csv.split(",");
-		this.name = items[0];
-		this.age = Integer.parseInt(items[1]);
-		this.email = items[2];
-		this.tel = items[3];
-	}
-	
-	@Override
-  public String toString() {
-	  return name + "," + age + "," + email + "," + tel;
-  }
-
 	@Override
   public int hashCode() {
 	  final int prime = 31;
@@ -33,10 +19,12 @@ public class Member implements Serializable {
 	  result = prime * result + age;
 	  result = prime * result + ((email == null) ? 0 : email.hashCode());
 	  result = prime * result + ((name == null) ? 0 : name.hashCode());
+	  result = prime * result + no;
+	  result = prime * result + ((password == null) ? 0 : password.hashCode());
 	  result = prime * result + ((tel == null) ? 0 : tel.hashCode());
 	  return result;
   }
-
+	
 	@Override
   public boolean equals(Object obj) {
 	  if (this == obj)
@@ -58,6 +46,13 @@ public class Member implements Serializable {
 			  return false;
 	  } else if (!name.equals(other.name))
 		  return false;
+	  if (no != other.no)
+		  return false;
+	  if (password == null) {
+		  if (other.password != null)
+			  return false;
+	  } else if (!password.equals(other.password))
+		  return false;
 	  if (tel == null) {
 		  if (other.tel != null)
 			  return false;
@@ -65,7 +60,7 @@ public class Member implements Serializable {
 		  return false;
 	  return true;
   }
-
+	
 	public int getNo() {
 		return no;
 	}
@@ -104,6 +99,14 @@ public class Member implements Serializable {
 	public Member setTel(String tel) {
 		this.tel = tel;
 		return this;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 

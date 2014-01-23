@@ -3,23 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="spms.dao.MemberDao">
-	<select id="selectList" resultType="member">
-		select
-		  MNO as no,
-		  MNAME as name,
-		  EMAIL,
-		  TEL,
-		  AGE
+  <resultMap type="member" id="memberResultMap">
+    <id property="no" column="MNO"/>
+    <result property="name" column="MNAME"/>
+    <result property="email" column="EMAIL"/>
+    <result property="tel" column="TEL"/>
+    <result property="age" column="AGE"/>
+    <result property="password" column="PWD"/>
+  </resultMap>
+	
+	<select id="selectList" resultMap="memberResultMap">
+		select MNO,MNAME,EMAIL,TEL,AGE
 		from MEMBERS
 	</select>
 	
-	<select id="selectOne" parameterType="int" resultType="member">
-    select
-      MNO as no,
-      MNAME as name,
-      EMAIL,
-      TEL,
-      AGE
+	<select id="selectOne" parameterType="int" resultMap="memberResultMap">
+    select MNO,MNAME,EMAIL,TEL,AGE
     from MEMBERS
     where MNO=#{value}
   </select>
