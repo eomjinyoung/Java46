@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spms.dao.ProjectDao">
+	<select id="selectList" resultType="project">
+		select
+		  PNO as no,
+		  TITLE,
+		  SDATE as startDate,
+		  EDATE as endDate,
+		  STATE
+		from PROJECTS
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="project">
+    select
+      PNO as no,
+      TITLE,
+      CONTENTS as description,
+      SDATE as startDate,
+      EDATE as endDate,
+      STATE,
+      TAGS
+    from PROJECTS
+    where PNO=#{value}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    delete from PROJECTS where PNO=#{no}
+  </delete>
+  
+  <insert id="insert" parameterType="project">
+    insert into PROJECTS(TITLE,CONTENTS,SDATE,EDATE,STATE,TAGS) 
+    values(#{title},#{description},
+      #{startDate},#{endDate},#{state},#{tags})
+  </insert>
+  
+  <update id="update" parameterType="project">
+    update PROJECTS set 
+      TITLE=#{title},
+      CONTENTS=#{description},
+      SDATE=#{startDate},
+      EDATE=#{endDate},
+      STATE=#{state},
+      TAGS=#{tags} 
+    where PNO=#{no}
+  </update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
