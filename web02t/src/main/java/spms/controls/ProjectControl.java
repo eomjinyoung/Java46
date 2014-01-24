@@ -1,5 +1,7 @@
 package spms.controls;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,8 +43,16 @@ public class ProjectControl {
 	}
 	
 	@RequestMapping("/list")
-	public String list(Model model) throws Exception {
-		model.addAttribute("projects", projectDao.selectList());
+	public String list(String search, String keyword, 
+			Model model) throws Exception {
+		HashMap<String,Object> paramMap = new HashMap<String,Object>();
+		if (search != null && keyword != null) {
+			paramMap.put("search", search);
+			String[] keywordList = keyword.split("\\s+");
+			paramMap.put("keywords", keywordList);
+		}
+		model.addAttribute("projects", projectDao.selectList(paramMap));
+		
 		return "project/list";
 	}
 	

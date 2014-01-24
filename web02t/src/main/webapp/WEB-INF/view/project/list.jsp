@@ -12,7 +12,16 @@
 <jsp:include page="/header.jsp"/>
 
 <h1>프로젝트 목록</h1>
-<a href='add.do'>[새프로젝트]</a><br>
+<form action="list.do" method="get">
+<a href='add.do'>[새프로젝트]</a>
+<select name='search'>
+  <option value="all">전체</option>
+  <option value="title">프로젝트명</option>
+  <option value="description">내용</option>
+</select>
+<input type="text" name="keyword">
+<input type="submit" value="검색">
+</form>
 <table border='1'>
 <tr>
 <th>번호</th>
