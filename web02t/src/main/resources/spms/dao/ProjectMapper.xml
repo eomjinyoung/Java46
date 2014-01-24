@@ -75,13 +75,15 @@
   </insert>
   
   <update id="update" parameterType="project">
-    update PROJECTS set 
-      TITLE=#{title},
-      CONTENTS=#{description},
-      SDATE=#{startDate},
-      EDATE=#{endDate},
-      STATE=#{state},
-      TAGS=#{tags} 
+    update PROJECTS
+    <set>
+      <if test="title != null">TITLE=#{title},</if>
+      <if test="description != null">CONTENTS=#{description},</if>
+      <if test="startDate != null">SDATE=#{startDate},</if>
+      <if test="endDate != null">EDATE=#{endDate},</if>
+      <if test="state != -1">STATE=#{state},</if>
+      <if test="tags != null">TAGS=#{tags}</if>
+    </set>
     where PNO=#{no}
   </update>
 </mapper>

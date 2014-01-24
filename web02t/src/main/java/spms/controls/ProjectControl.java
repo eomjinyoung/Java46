@@ -65,6 +65,31 @@ public class ProjectControl {
 	
 	@RequestMapping(value="/update",method=RequestMethod.POST)
   public String update(Project project, Model model) throws Exception {
+		Project origin = projectDao.selectOne(project.getNo());
+		int updateCount = 6;
+		if (origin.getTitle().equals(project.getTitle())) {
+			project.setTitle(null); updateCount--;
+		}
+		if (origin.getDescription().equals(project.getDescription())) {
+			project.setDescription(null); updateCount--;
+		}
+		if (origin.getStartDate().equals(project.getStartDate())) {
+			project.setStartDate(null); updateCount--;
+		}
+		if (origin.getEndDate().equals(project.getEndDate())) {
+			project.setEndDate(null); updateCount--;
+		}
+		if (origin.getTags().equals(project.getTags())) {
+			project.setTags(null); updateCount--;
+		}
+		if (origin.getState() == project.getState()) {
+			project.setState(-1); updateCount--;
+		}
+		
+		if (updateCount == 0) {
+			return "redirect:list.do";
+		}
+		
 		int count = projectDao.update(project);
 		if (count > 0) {
 			model.addAttribute("message", "변경 성공입니다!");
