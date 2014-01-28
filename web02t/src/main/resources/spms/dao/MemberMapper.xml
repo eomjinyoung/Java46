@@ -45,8 +45,8 @@
   
   <select id="selectByEmailPassword" 
       parameterType="map" 
-      resultType="member">
-    select MNO as no,MNAME as name,EMAIL
+      resultMap="memberResultMap">
+    select MNO,MNAME,EMAIL,PHOTO
     from MEMBERS
     where EMAIL=#{email} and PWD=#{password}
   </select>

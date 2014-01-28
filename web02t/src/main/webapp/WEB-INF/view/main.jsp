@@ -12,6 +12,7 @@
 
 <h1>SPMS 홈페이지</h1>
 <p>SPMS 시스템에 오신걸 환영합니다.</p>
+<a href="main2.jsp">main2 테스트</a>
 
 <jsp:include page="/tail.jsp"/>
 </body>

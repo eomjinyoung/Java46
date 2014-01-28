@@ -63,10 +63,17 @@ public class AuthControl {
   }
 	
 	@RequestMapping("/logout")
-  public String execute(SessionStatus status) throws Exception {
+  public String logout(SessionStatus status) throws Exception {
 		status.setComplete();
 		return "redirect:login.do";
   }
+	
+	@RequestMapping("/loginUser")
+  public String loginUser() throws Exception {
+		return "auth/loginUser";
+  }
+	
+	
 }
 
 
