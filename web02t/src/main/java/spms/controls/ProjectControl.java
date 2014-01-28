@@ -5,14 +5,18 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import spms.dao.ProjectDao;
+import spms.vo.Member;
 import spms.vo.Project;
 
 @Controller
 @RequestMapping("/project")
+@SessionAttributes("loginUser")
 public class ProjectControl {
 	@Autowired(required=false)
 	ProjectDao projectDao;
@@ -98,6 +102,16 @@ public class ProjectControl {
 		}
 		return "project/update";
   }
+	
+	@RequestMapping("/myProjects")
+	public String myProjects(
+			@ModelAttribute("loginUser") Member loginUser,
+			Model model) throws Exception {
+		model.addAttribute("projects", 
+				projectDao.selectMyProjects(loginUser.getNo()));
+		
+		return "project/myProjects";
+	}
 	
 }
 

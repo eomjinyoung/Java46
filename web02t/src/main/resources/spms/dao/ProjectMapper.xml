@@ -3,13 +3,26 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="spms.dao.ProjectDao">
-	<select id="selectList" parameterType="map" resultType="project">
-		select
-		  PNO as no,
-		  TITLE,
-		  SDATE as startDate,
-		  EDATE as endDate,
-		  STATE
+  <resultMap type="project" id="projectResultMap">
+    <id     property="no"           column="PNO"/>
+    <result property="title"        column="TITLE"/>
+    <result property="startDate"    column="SDATE"/>
+    <result property="endDate"      column="EDATE"/>
+    <result property="state"        column="STATE"/>
+    <result property="description"  column="CONTENTS"/>
+    <result property="tags"         column="TAGS"/>
+  </resultMap>
+  
+  <resultMap type="projectMember" id="projectMemberResultMap">
+    <result property="memberNo"     column="MNO"/>
+    <result property="projectNo"    column="PNO"/>
+    <result property="title"        column="TITLE"/>
+    <result property="role"         column="ROLE"/>
+  </resultMap>
+	
+	<select id="selectList" parameterType="map" 
+	   resultMap="projectResultMap">
+		select PNO, TITLE, SDATE, EDATE, STATE
 		from PROJECTS
 		<if test="keywords != null">
     <where>
@@ -25,41 +38,11 @@
       </if>
     </where>
     </if>
-    
-		<!--  
-		<if test="keyword != null and keyword != ''">
-		<where>
-      <if test="search == 'all' or search == 'title'">
-      TITLE like concat('%',#{keyword},'%')
-      </if>
-      <if test="search == 'all' or search == 'description'">
-      or CONTENTS like concat('%',#{keyword},'%')
-      </if>
-    </where>
-    </if>
-    -->
-		<!-- 
-		<if test="keyword != null and keyword != ''">
-		where 1=2
-		  <if test="search == 'all' or search == 'title'">
-		  or TITLE like concat('%',#{keyword},'%')
-		  </if>
-		  <if test="search == 'all' or search == 'description'">
-		  or CONTENTS like concat('%',#{keyword},'%')
-		  </if>
-		</if>
-		 -->
 	</select>
 	
-	<select id="selectOne" parameterType="int" resultType="project">
-    select
-      PNO as no,
-      TITLE,
-      CONTENTS as description,
-      SDATE as startDate,
-      EDATE as endDate,
-      STATE,
-      TAGS
+	<select id="selectOne" parameterType="int" 
+	   resultMap="projectResultMap">
+    select PNO, TITLE, CONTENTS, SDATE, EDATE, STATE, TAGS
     from PROJECTS
     where PNO=#{value}
   </select>
@@ -86,6 +69,15 @@
     </set>
     where PNO=#{no}
   </update>
+  
+  <select id="selectMyProjects" parameterType="int" 
+     resultMap="projectMemberResultMap">
+    select A.MNO, B.PNO, B.TITLE, A.ROLE
+    from PRJ_MEMS A right outer join PROJECTS B
+    on A.PNO=B.PNO
+    where A.MNO=#{value}
+    order by B.TITLE;
+  </select>
 </mapper>
 
 

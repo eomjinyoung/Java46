@@ -39,7 +39,16 @@ td {
 /*   border: 1px solid black; */
   vertical-align: middle;
 }
-
+.portlet h1 {
+  font-size: medium;
+}
+.portlet ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.portlet li {
+  padding: 0;
+}
 </style>
 </head>
 <body>
@@ -50,6 +59,7 @@ SPMS(Simple Project Management System)
 <tr>
 <td id="sidebar">
 <jsp:include page="auth/loginUser.do"/>
+<jsp:include page="project/myProjects.do"/>
 </td>
 <td id="contents">2</td>
 <td id="feedbar">3</td>
