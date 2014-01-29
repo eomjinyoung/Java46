@@ -12,6 +12,10 @@
     <result property="tags"         column="TAGS"/>
     <result property="projectNo"    column="PNO"/>
     <result property="memberNo"     column="MNO"/>
+    <association property="worker" javaType="member">
+      <result property="no"    column="MNO"/>
+      <result property="name"  column="MNAME"/>
+    </association>
   </resultMap>
   
   <select id="selectMyTasks" parameterType="int" 
@@ -19,9 +23,50 @@
     select TNO,TITLE,PNO,MNO
     from TASKS
     where MNO=#{value}
-    order by TITLE;
+    order by TITLE
+  </select>
+  
+  <select id="selectList" parameterType="map" 
+     resultMap="taskResultMap">
+    select T1.TNO,T1.TITLE,T2.MNO,T2.MNAME,T1.STATE
+    from TASKS T1 left outer join MEMBERS T2
+    using(MNO)
+    <where>
+      <if test="search == 'title' and keywords != null">
+        <foreach collection="keywords" item="keyword" 
+            open="(" close=")">
+          or T1.TITLE like concat('%',#{keyword},'%')
+        </foreach>
+      </if>
+      <if test="projectNo > 0">
+        and T1.PNO=#{projectNo}
+      </if>
+    </where>
+    order by T1.TNO
   </select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

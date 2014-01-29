@@ -22,6 +22,7 @@ SPMS(Simple Project Management System)
 <td id="contents">
 <jsp:include page="project/desc.do?no=1"/>
 <jsp:include page="member/projectMembers.do?no=1"/>
+<jsp:include page="task/list.do?projectNo=1"/>
 </td>
 <td id="feedbar">3</td>
 </tr>
