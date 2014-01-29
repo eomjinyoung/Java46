@@ -113,7 +113,25 @@ public class ProjectControl {
 		return "project/myProjects";
 	}
 	
+	@RequestMapping("/desc")
+	public String desc(int no, Model model) throws Exception {
+		Project project = projectDao.selectOne(no);
+		model.addAttribute("project", project);
+		return "project/desc";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

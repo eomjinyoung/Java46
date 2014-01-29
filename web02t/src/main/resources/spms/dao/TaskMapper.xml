@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spms.dao.TaskDao">
+  <resultMap type="task" id="taskResultMap">
+    <id     property="no"           column="TNO"/>
+    <result property="title"        column="TITLE"/>
+    <result property="startDate"    column="SDATE"/>
+    <result property="endDate"      column="EDATE"/>
+    <result property="state"        column="STATE"/>
+    <result property="tags"         column="TAGS"/>
+    <result property="projectNo"    column="PNO"/>
+    <result property="memberNo"     column="MNO"/>
+  </resultMap>
+  
+  <select id="selectMyTasks" parameterType="int" 
+     resultMap="taskResultMap">
+    select TNO,TITLE,PNO,MNO
+    from TASKS
+    where MNO=#{value}
+    order by TITLE;
+  </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>SPMS 시작화면</title>
 <style type="text/css">
+body {
+  font-size: small;
+}
 table {
   width: 900px; 
   border: 1px solid blue;
@@ -39,8 +42,11 @@ td {
 /*   border: 1px solid black; */
   vertical-align: middle;
 }
-.portlet h1 {
-  font-size: medium;
+#sidebar h1 {
+  font-size: 120%;
+}
+#contents h1 {
+  font-size: 160%;
 }
 .portlet ul {
   margin: 0;
@@ -60,8 +66,12 @@ SPMS(Simple Project Management System)
 <td id="sidebar">
 <jsp:include page="auth/loginUser.do"/>
 <jsp:include page="project/myProjects.do"/>
+<jsp:include page="task/myTasks.do"/>
 </td>
-<td id="contents">2</td>
+<td id="contents">
+<jsp:include page="project/desc.do?no=1"/>
+<jsp:include page="member/projectMembers.do?no=1"/>
+</td>
 <td id="feedbar">3</td>
 </tr>
 </table>

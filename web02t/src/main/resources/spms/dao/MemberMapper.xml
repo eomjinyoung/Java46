@@ -50,6 +50,15 @@
     from MEMBERS
     where EMAIL=#{email} and PWD=#{password}
   </select>
+  
+  <select id="selectListByProject" parameterType="int" 
+      resultMap="memberResultMap">
+    select T1.MNO, T2.MNAME, T2.PHOTO
+		from PRJ_MEMS T1 left outer join MEMBERS T2
+		  using (MNO)
+		where T1.PNO=#{value}
+		order by T2.MNAME;
+  </select>
 </mapper>
 
 

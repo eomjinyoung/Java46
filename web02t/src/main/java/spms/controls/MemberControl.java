@@ -111,6 +111,11 @@ public class MemberControl {
 		return ++fileCount;
 	}
 	
+	@RequestMapping("/projectMembers")
+	public void projectMembers(int no, Model model) throws Exception {
+		model.addAttribute("members", memberDao.selectListByProject(no));
+	}
+	
 
 }
 
