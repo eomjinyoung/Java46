@@ -11,6 +11,7 @@
 <body>
 <div>
 SPMS(Simple Project Management System)
+<a href="${pageContext.request.contextPath}/auth/logout.do">[로그아웃]</a>
 </div>
 <div id="main">
 
@@ -24,7 +25,9 @@ SPMS(Simple Project Management System)
 <jsp:include page="member/projectMembers.do?no=1"/>
 <jsp:include page="task/list.do?projectNo=1"/>
 </div>
-<div id="feedbar" class="section">3</div>
+<div id="feedbar" class="section">
+<jsp:include page="feed/add.do?projectNo=1"/>
+</div>
 
 </div>
 
