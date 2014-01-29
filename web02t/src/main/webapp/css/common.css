@@ -5,7 +5,7 @@ body {
 
 body > table {
   width: 900px; 
-  border: 1px solid blue;
+/*   border: 1px solid blue; */
 }
 
 #sidebar {
