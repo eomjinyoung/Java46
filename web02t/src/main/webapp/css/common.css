@@ -3,12 +3,17 @@ body {
   font-size: small;
 }
 
-body > table {
+#main {
+	display:table;
+	margin-top: 10px;
   width: 900px; 
 /*   border: 1px solid blue; */
 }
-
+.section {
+  display:table-cell;	
+}
 #sidebar {
+	background-color: #ffa500;
   width: 150px; 
   vertical-align: top;
 }
@@ -16,6 +21,7 @@ body > table {
   font-size: 120%;
 }
 #contents {
+	padding-left: 10px;
   vertical-align: top;
 }
 #contents h1 {

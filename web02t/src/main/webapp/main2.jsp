@@ -12,22 +12,21 @@
 <div>
 SPMS(Simple Project Management System)
 </div>
-<table>
-<tr>
-<td id="sidebar">
+<div id="main">
+
+<div id="sidebar" class="section">
 <jsp:include page="auth/loginUser.do"/>
 <jsp:include page="project/myProjects.do"/>
 <jsp:include page="task/myTasks.do"/>
-</td>
-<td id="contents">
+</div>
+<div id="contents" class="section">
 <jsp:include page="project/desc.do?no=1"/>
 <jsp:include page="member/projectMembers.do?no=1"/>
 <jsp:include page="task/list.do?projectNo=1"/>
-</td>
-<td id="feedbar">3</td>
+</div>
+<div id="feedbar" class="section">3</div>
 
-</tr>
-</table>
+</div>
 
 </body>
 </html>
