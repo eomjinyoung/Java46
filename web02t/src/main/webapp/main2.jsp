@@ -5,57 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>SPMS 시작화면</title>
-<style type="text/css">
-body {
-  font-size: small;
-}
-table {
-  width: 900px; 
-  border: 1px solid blue;
-}
-td {
-  border: 1px dotted green;
-}
-#sidebar {
-  width: 150px; 
-  vertical-align: top;
-}
-#contents {
-  vertical-align: top;
-}
-#feedbar {
-  width: 200px; 
-  vertical-align: top;
-}
-#loginUser {
-  display: table;
-  vertical-align: middle;
-}
-#loginUser img {
-  display: table-cell;
-  width: 60px;
-  height: 80px;
-/*   border: 1px solid black; */
-}
-#loginUser .username {
-  display: table-cell;
-/*   border: 1px solid black; */
-  vertical-align: middle;
-}
-#sidebar h1 {
-  font-size: 120%;
-}
-#contents h1 {
-  font-size: 160%;
-}
-.portlet ul {
-  margin: 0;
-  padding-left: 20px;
-}
-.portlet li {
-  padding: 0;
-}
-</style>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/main2.css">
 </head>
 <body>
 <div>

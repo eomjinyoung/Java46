@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+body {
+  font-size: small;
+}
+
+body > table {
+  width: 900px; 
+  border: 1px solid blue;
+}
+
+#sidebar {
+  width: 150px; 
+  vertical-align: top;
+}
+#sidebar h1 {
+  font-size: 120%;
+}
+#contents {
+  vertical-align: top;
+}
+#contents h1 {
+  font-size: 160%;
+}
+#feedbar {
+  width: 200px; 
+  vertical-align: top;
+}
+
+.portlet ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.portlet li {
+  padding: 0;
+}

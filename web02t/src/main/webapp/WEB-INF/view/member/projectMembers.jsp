@@ -7,7 +7,7 @@
 <c:forEach var="m" items="${members}">
 <li>
 <img src="${pageContext.request.contextPath}/files/${m.photo}"><br>
-<p>${m.name}</p>
+<span>${m.name}</span>
 </li>
 </c:forEach>
 </ul>
