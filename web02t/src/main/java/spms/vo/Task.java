@@ -17,43 +17,8 @@ public class Task implements Serializable {
 	int			state;
 	String 	tags;
 	int			projectNo;
+	int			memberNo;
 	Member		worker;
-	
-	@Override
-  public String toString() {
-	  return "Task [no=" + no + ", title=" + title + ", state=" + state + "]";
-  }
-	
-	@Override
-  public int hashCode() {
-	  final int prime = 31;
-	  int result = 1;
-	  result = prime * result + no;
-	  result = prime * result + state;
-	  result = prime * result + ((title == null) ? 0 : title.hashCode());
-	  return result;
-  }
-	
-	@Override
-  public boolean equals(Object obj) {
-	  if (this == obj)
-		  return true;
-	  if (obj == null)
-		  return false;
-	  if (getClass() != obj.getClass())
-		  return false;
-	  Task other = (Task) obj;
-	  if (no != other.no)
-		  return false;
-	  if (state != other.state)
-		  return false;
-	  if (title == null) {
-		  if (other.title != null)
-			  return false;
-	  } else if (!title.equals(other.title))
-		  return false;
-	  return true;
-  }
 	
 	public int getNo() {
 		return no;
@@ -107,6 +72,12 @@ public class Task implements Serializable {
 
 	public void setTags(String tags) {
 		this.tags = tags;
+	}
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 	
 }

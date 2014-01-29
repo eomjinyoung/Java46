@@ -1,6 +1,7 @@
 package spms.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import spms.vo.Task;
 
@@ -10,6 +11,7 @@ public interface TaskDao {
 	public int insert(Task task) throws Exception;	
 	public int update(Task task) throws Exception;
 	public int delete(int no) throws Exception;
+	public List<Task> selectMyTasks(int no) throws Exception;
 }
 
 
