@@ -15,6 +15,7 @@
   enctype="multipart/form-data">
 이름: <input type="text" name="name"><br>
 이메일: <input type="text" name="email"><br>
+암호: <input type="password" name="password"><br>
 전화: <input type="tel" name="tel"><br>
 나이: <input type="text" name="age"><br>
 사진: <input type="file" name="photoFile"><br>
