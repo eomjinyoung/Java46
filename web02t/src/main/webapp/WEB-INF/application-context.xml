@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx"
     xmlns:jee="http://www.springframework.org/schema/jee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:p="http://www.springframework.org/schema/p"
@@ -9,6 +10,8 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/jee
         http://www.springframework.org/schema/jee/spring-jee.xsd">
         
@@ -33,7 +36,15 @@
   
   <jee:jndi-lookup id="dataSource" 
       jndi-name="java:comp/env/jdbc/spmsdb"/>
-      
+  
+  <!-- 애노테이션으로 트랜잭션 설정하는 것을 활성화시킴 -->
+  <tx:annotation-driven transaction-manager="txManager"/>
+  
+  <!-- 트랜잭션 관리자 선언 -->    
+  <bean id="txManager" 
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+  </bean>    
 </beans>
 
 

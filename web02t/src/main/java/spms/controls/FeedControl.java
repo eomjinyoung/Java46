@@ -2,6 +2,7 @@ package spms.controls;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import spms.dao.FeedDao;
+import spms.services.FeedService;
 import spms.vo.AttachFile;
 import spms.vo.Feed;
 import spms.vo.Member;
@@ -25,7 +26,7 @@ import spms.vo.Member;
 @SessionAttributes("loginUser")
 public class FeedControl {
 	@Autowired
-	FeedDao feedDao;
+	FeedService feedService;
 	
 	@Autowired
 	ServletContext servletContext;
@@ -47,13 +48,16 @@ public class FeedControl {
 			.setContents(contents)
 			.setWriterNo(loginUser.getNo());
 		
-		feedDao.insert(feed);
 		
 		if (!attFile.isEmpty()) {
-			feedDao.insertFile(new AttachFile()
-				.setFeedNo(feed.getNo())
+			ArrayList<AttachFile> fileList = new ArrayList<AttachFile>();
+			fileList.add(new AttachFile()
 				.setFilePath(saveFile(attFile)));
+			
+			feed.setFiles(fileList);
 		}
+		
+		feedService.addFeed(feed);
 		
 		return "redirect:../main2.jsp";
 	}

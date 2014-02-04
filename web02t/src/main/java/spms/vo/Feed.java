@@ -1,6 +1,7 @@
 package spms.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Feed {
 	protected int 			no;
@@ -9,6 +10,7 @@ public class Feed {
 	protected int			writerNo;
 	protected int			projectNo;
 	protected Member		writer;
+	protected List<AttachFile>		files;
 	
 	public int getNo() {
 		return no;
@@ -52,6 +54,18 @@ public class Feed {
 		this.writerNo = writerNo;
 		return this;
 	}
+	public List<AttachFile> getFiles() {
+		return files;
+	}
+	public Feed setFiles(List<AttachFile> files) {
+		this.files = files;
+		return this;
+	}
 	
 	
 }
+
+
+
+
+
