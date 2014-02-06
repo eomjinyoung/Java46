@@ -58,6 +58,16 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
+	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/com.google.code.gson/gson/2.2.4/source/a6dc5db8a12928e583bd3f23e72d3ab611ecd58f/gson-2.2.4-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/com.google.code.gson/gson/2.2.4/jar/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/com.fasterxml.jackson.core/jackson-databind/2.3.0/source/6e8684b28e0a998550799163a49b5772132c2071/jackson-databind-2.3.0-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/com.fasterxml.jackson.core/jackson-databind/2.3.0/bundle/76eb119e9f7769c5b124afbfa17ed0c63cab4920/jackson-databind-2.3.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
 	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/javax.servlet/javax.servlet-api/3.0.1/source/1952f91d84016a39e31346c9d18bd8c9c4a128a/javax.servlet-api-3.0.1-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/javax.servlet/javax.servlet-api/3.0.1/jar/6bf0ebb7efd993e222fc1112377b5e92a13b38dd/javax.servlet-api-3.0.1.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
@@ -139,6 +149,16 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/commons-io/commons-io/2.2/source/8d6b98f21262995489a8418fff8da992d7e25c1e/commons-io-2.2-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/commons-io/commons-io/2.2/jar/83b5b8a7ba1c08f9e8c8ff2373724e33d3c1e22a/commons-io-2.2.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/com.fasterxml.jackson.core/jackson-annotations/2.3.0/source/cc964b08f8d37e3d8465de923b9e6321107a5429/jackson-annotations-2.3.0-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/com.fasterxml.jackson.core/jackson-annotations/2.3.0/bundle/f5e853a20b60758922453d56f9ae1e64af5cb3da/jackson-annotations-2.3.0.jar" exported="true">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/bit/.gradle/caches/artifacts-23/filestore/com.fasterxml.jackson.core/jackson-core/2.3.0/source/f96b1206b2f452bcc5e096d7594bd3e5568debbb/jackson-core-2.3.0-sources.jar" kind="lib" path="/Users/bit/.gradle/caches/artifacts-23/filestore/com.fasterxml.jackson.core/jackson-core/2.3.0/bundle/5e19d8381e01aa64c9dd47ff453e39abc441775c/jackson-core-2.3.0.jar" exported="true">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
