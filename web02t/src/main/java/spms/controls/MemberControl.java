@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,11 +117,45 @@ public class MemberControl {
 		model.addAttribute("members", memberDao.selectListByProject(no));
 	}
 	
+	@RequestMapping(value="/ajax/list", produces="application/json")
+	public Object ajaxList(
+			HttpServletResponse response,
+			Model model) throws Exception {
+		
+		return memberDao.selectList();
+	}
+	
+	/*
+	@RequestMapping("/ajax/list")
+	public ResponseEntity<String> ajaxList(
+			HttpServletResponse response,
+			Model model) throws Exception {
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "text/plain;charset=UTF-8");
+		
+		return new ResponseEntity<String>(
+				new Gson().toJson(memberDao.selectList()),
+				headers,
+				HttpStatus.OK);
+	}
+	*/
+	/*
+	@RequestMapping("/ajax/list")
+	@ResponseBody
+	public String ajaxList(
+			HttpServletResponse response,
+			Model model) throws Exception {
+		return new Gson().toJson(memberDao.selectList());
+	}
+	*/
+	/*
 	@RequestMapping("/ajax/list")
 	public String ajaxList(Model model) throws Exception {
 		model.addAttribute("members", memberDao.selectList());
 		return "ajax/member/list";
 	}
+	*/
 
 }
 

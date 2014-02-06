@@ -9,7 +9,11 @@ window.onload = function() {
 	xhr.send(); // 동기 방식은 서버에서 결과를 받을 때까지 멈춤
 	
 	//responseText 속성에 서버의 응답 데이터가 들어 있다.
-	var members = eval(xhr.responseText);
+	//문자열이 {} 일 경우 양쪽에 괄호 '()'를 붙여야 한다.
+	//문자열이 [] 일 경우 그냥 둔다.
+	//var members = eval("(" + xhr.responseText + ")").memberList;
+	var members = JSON.parse(xhr.responseText).memberList;
+	
 	var m = null;
 	var tr = null;
 	var html = null;
