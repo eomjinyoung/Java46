@@ -116,6 +116,11 @@ public class MemberControl {
 		model.addAttribute("members", memberDao.selectListByProject(no));
 	}
 	
+	@RequestMapping("/ajax/list")
+	public String ajaxList(Model model) throws Exception {
+		model.addAttribute("members", memberDao.selectList());
+		return "ajax/member/list";
+	}
 
 }
 
