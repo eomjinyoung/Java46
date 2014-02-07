@@ -70,12 +70,18 @@ function loadMember(no) {
 				} else {
 					var member = jsonResult.data;
 					console.log(member);
+					document.getElementById("mNo").value = member.no;
+					document.getElementById("mName").value = member.name;
+					document.getElementById("mTel").value = member.tel;
+					document.getElementById("mAge").value = member.age;
+					document.getElementById("mEmail").value = member.email;
+					document.getElementById("mPhoto").src = "../files/" + member.photo;
 				}
 			}
 		}
 	};
 	xhr.open('GET', 
-			'read.do?no=' + no,
+			'ajax/read.do?no=' + no,
 			true);
 	xhr.send();
 }

@@ -117,6 +117,20 @@ public class MemberControl {
 		model.addAttribute("members", memberDao.selectListByProject(no));
 	}
 	
+	@RequestMapping(value="/ajax/read", produces="application/json")
+	public Object ajaxRead(int no) throws Exception {
+		try {
+			return new JsonResult()
+					.setResultStatus(JsonResult.SUCCESS) 
+					.setData(memberDao.selectOne(no));
+			
+		} catch (Throwable ex) {
+			return new JsonResult()
+					.setResultStatus(JsonResult.FAILURE)
+					.setError(ex.getMessage());
+		}
+	}
+	
 	@RequestMapping(value="/ajax/list", produces="application/json")
 	public Object ajaxList() throws Exception {
 		try {
