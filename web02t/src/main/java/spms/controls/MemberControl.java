@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import spms.dao.MemberDao;
+import spms.vo.JsonResult;
 import spms.vo.Member;
 
 @Controller
@@ -118,11 +118,18 @@ public class MemberControl {
 	}
 	
 	@RequestMapping(value="/ajax/list", produces="application/json")
-	public Object ajaxList(
-			HttpServletResponse response,
-			Model model) throws Exception {
+	public Object ajaxList() throws Exception {
+		try {
+			return new JsonResult()
+					.setResultStatus(JsonResult.SUCCESS) 
+					.setData(memberDao.selectList());
+			
+		} catch (Throwable ex) {
+			return new JsonResult()
+					.setResultStatus(JsonResult.FAILURE)
+					.setError(ex.getMessage());
+		}
 		
-		return memberDao.selectList();
 	}
 	
 	/*
