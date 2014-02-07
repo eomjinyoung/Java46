@@ -1,5 +1,10 @@
 function bit(id) {
-	return document.getElementById(id);
+	var element = document.getElementById(id);
+	element.click = function(listener) {
+		this.onclick = listener;
+	};
+	
+	return element;
 }
 
 bit.ajax = function(url, settings) {
@@ -26,7 +31,20 @@ bit.ajax = function(url, settings) {
 		
 	};
 	xhr.open(settings.method, url, true);
-	xhr.send();
+	if (settings.method == 'POST') {
+		var params = '';
+		for (var propName in settings.data) {
+			if (params.length > 0) {
+				params += '&';
+			}
+			params += propName + "=" + settings.data[propName];
+		}
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(encodeURI(params));
+		
+	} else {
+		xhr.send();
+	}
 };
 
 

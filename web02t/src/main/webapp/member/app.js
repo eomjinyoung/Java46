@@ -1,19 +1,44 @@
 window.onload = function() {
+	showViewItems(false);
+	
 	listMember();
 	
-	$('addBtn').onclick = function() {
-		$.ajax( 'ajax/add.do', 
-				'POST',
-				{
-					name: $('mName').value,
-					
-				},
-				function(members){
-		
-		});
-	};
+	$('cancelBtn').click( function() {
+		showViewItems(false);
+	});
 	
-	$('delBtn').onclick = function() {
+	$('addBtn').click( function() {
+		$.ajax( 'ajax/add.do', {
+				method: 'POST',
+				data: {
+					name: $('mName').value,
+					email: $('mEmail').value,
+					tel: $('mTel').value,
+					age: $('mAge').value,
+					password: $('mPassword').value
+				},
+				success: function(members){
+					location.href = 'app.html';
+		}});
+	});
+	
+	$('updateBtn').click( function() {
+		$.ajax( 'ajax/update.do', {
+				method: 'POST',
+				data: {
+					no: $('mNo').value,
+					name: $('mName').value,
+					email: $('mEmail').value,
+					tel: $('mTel').value,
+					age: $('mAge').value,
+					password: $('mPassword').value
+				},
+				success: function(members){
+					location.href = 'app.html';
+		}});
+	});
+	
+	$('delBtn').click( function() {
 		if (confirm('정말 삭제하시겠습니까?')) {
 			$.ajax( 'ajax/delete.do?no=' + $('mNo').value, { 
 					method: 'GET', 
@@ -21,7 +46,7 @@ window.onload = function() {
 						location.href = 'app.html';
 			}});
 		}
-	};
+	});
 };
 
 function listMember() {
@@ -68,7 +93,28 @@ function loadMember(no) {
 		$("mAge").value = member.age;
 		$("mEmail").value = member.email;
 		$("mPhoto").src = "../files/" + member.photo;
+		
+		showViewItems(true);
 	}});
+}
+
+function showViewItems(b) {
+	var elements = document.querySelectorAll('.view');
+	for (var i = 0; i < elements.length; i++) {
+		if (b) {
+			elements[i].style.display = '';
+		} else {
+			elements[i].style.display = 'none';
+		}
+		
+		if (b) {
+			$('addBtn').style.display = 'none';
+			$('delBtn').style.display = '';
+		} else {
+			$('addBtn').style.display = '';
+			$('delBtn').style.display = 'none';
+		}
+	}
 }
 
 
